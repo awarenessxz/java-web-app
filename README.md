@@ -8,3 +8,4 @@ Experimenting with a Java Web Application built with the following components
 - **Microservices**
 - **Message Queues**
 
+![Architecture](./doc/architecture.png)
