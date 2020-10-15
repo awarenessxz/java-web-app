@@ -1,0 +1,12 @@
+###########################################################################################
+# [WEB] Application Configuration - DEFAULT
+###########################################################################################
+
+spring.application.name: @component.name@
+spring.main.banner-mode: log
+
+################### App - Logging #########################################################
+
+logging:
+  level:
+    org.springframework: error

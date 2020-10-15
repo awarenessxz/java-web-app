@@ -1,2 +1,6 @@
 # Ignore intelliJ
 .idea
+
+# Gradle
+.gradle
+build/

@@ -9,3 +9,10 @@ Experimenting with a Java Web Application built with the following components
 - **Message Queues**
 
 ![Architecture](./doc/architecture.png)
+
+
+## Useful commands
+
+1. Gradle
+    - Inside Root Directory: `gradlew projects` --> list all projects
+    - `gradlew tasks --all` --> show all tasks available
