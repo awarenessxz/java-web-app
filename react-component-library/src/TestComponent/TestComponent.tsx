@@ -1,5 +1,5 @@
 import React from "react";
-import "./TestComponent.scss";
+import styles from "./TestComponent.scss";
 
 interface TestComponentProps {
     theme: "primary" | "secondary";

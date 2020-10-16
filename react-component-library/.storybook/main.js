@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  "stories": [
+  stories: [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(ts|tsx)"
   ],
@@ -10,6 +10,15 @@ module.exports = {
     '@storybook/addon-storysource',
     "@storybook/addon-essentials"
   ],
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.scss$/,
@@ -25,14 +34,6 @@ module.exports = {
       ],
       include: path.resolve(__dirname, '../'),
     });
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      loader: require.resolve("babel-loader"),
-      options: {
-        presets: [["react-app", { flow: false, typescript: true }]]
-      }
-    });
-    config.resolve.extensions.push(".ts", ".tsx");
 
     return config;
   },

@@ -5,7 +5,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import typescript from "rollup-plugin-typescript2";
 import commonjs from '@rollup/plugin-commonjs';
 import packageJson from './package.json';
-import path from 'path';
 
 export default {
     input: packageJson.source,
@@ -26,19 +25,12 @@ export default {
         postcss({
             modules: true,
             extensions: ['css', 'scss'],
-            use: [
-                [
-                    'sass',
-                    {
-                        includePaths: [path.resolve('node_modules')],
-                    },
-                ],
-            ],
+            use: ["sass"]
         }),
-        typescript({ useTsconfigDeclarationDir: true }),
         resolve({
             extensions: ['.ts', '.tsx', '.es6', '.es', '.mjs', '.node', '.json'],
         }),
-        commonjs()
+        commonjs(),
+        typescript({ useTsconfigDeclarationDir: true })
     ],
 };
