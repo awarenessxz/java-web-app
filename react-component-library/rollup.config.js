@@ -1,4 +1,3 @@
-// node-resolve will resolve all the node dependencies
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
@@ -25,6 +24,10 @@ export default {
         resolve(),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
-        postcss(),
+        postcss({
+            modules: true,
+            extensions: ['css', 'scss'],
+            use: ['sass']
+        }),
     ],
 };
