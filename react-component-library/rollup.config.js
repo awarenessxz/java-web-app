@@ -21,13 +21,13 @@ export default {
     ],
     plugins: [
         peerDepsExternal(),
+        postcss({
+            modules: true,
+            extensions: ['module.scss'],
+            use: ['sass'],
+        }),
         resolve(),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
-        postcss({
-            modules: true,
-            extensions: ['css', 'scss'],
-            use: ['sass']
-        }),
     ],
 };
