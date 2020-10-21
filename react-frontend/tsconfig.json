@@ -22,7 +22,11 @@
     // suppress typescript generating code during compilation process. Because babel will be generating the javascript code
     "noEmit": true,
     // support JSX in .tsx files
-    "jsx": "react"
+    "jsx": "react",
+    // where to put compile codes
+    "outDir": "./build",
+    // where are out codes
+    "rootDir": "./src"
   },
   // files and folders for typescript to check
   "include": ["src"]
