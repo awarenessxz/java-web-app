@@ -37,4 +37,4 @@ export const TestComponent = () => {
 ```
 
 ## References
-- [How to wriute hypen in CSS Modules](https://medium.com/@hirodeath/how-to-write-hyphen-in-css-modules-639e53d6740a)
+- [How to write hypen in CSS Modules](https://medium.com/@hirodeath/how-to-write-hyphen-in-css-modules-639e53d6740a)
