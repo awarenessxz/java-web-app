@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing if component renders properly Snapshot Testing 1`] = `
+<DocumentFragment>
+  <div
+    class="testComponent "
+    data-testid="test-component"
+  >
+    <h1
+      class="heading"
+    >
+      I'm the test component
+    </h1>
+    <h2>
+      Made with love by Harvey
+    </h2>
+  </div>
+</DocumentFragment>
+`;
