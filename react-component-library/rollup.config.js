@@ -26,7 +26,7 @@ export default {
         typescript({ useTsconfigDeclarationDir: true }),
         postcss({
             modules: true,
-            extensions: ['css', 'scss'],
+            extensions: ['module.scss'],
             use: ['sass']
         }),
     ],
