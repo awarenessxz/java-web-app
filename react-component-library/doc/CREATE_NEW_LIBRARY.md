@@ -370,7 +370,13 @@ This feature allows you to split your code into various bundles which can then b
     - [How to create react component library with typescript, rollup and storybook](https://medium.com/@dennisschneider/how-to-create-a-react-component-library-with-typescript-rollup-js-and-storybook-cc3fe95c9c44)
 - Storybook
     - [Add SCSS to Storybook](https://dev.to/mdrahiem/add-less-scss-global-styles-in-storybook-1k50)
-- Typescript
+- Rollup + Typescript + Stylesheets
     - [Adding CSS Modules to Typescript](https://spin.atomicobject.com/2020/06/22/css-module-typescript/)
+    - [Bundle Libraries With SCSS and CSS Modules Using Rollup](https://florian.ec/blog/rollup-scss-css-modules/)
 - ESLint
     - [Eslint for Typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
+- Scripts
+    - [Updating package.json](https://stackoverflow.com/questions/10685998/how-to-update-a-value-in-a-json-file-and-save-it-through-node-js)
+    - [How can I use an es6 import in node](https://stackoverflow.com/questions/45854169/how-can-i-use-an-es6-import-in-node)
+    - [Change nodejs console log colour](https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color)
+    

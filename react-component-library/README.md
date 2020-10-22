@@ -20,8 +20,8 @@ To use `react-component-libray` in your project, do the following:
 
 1. `yarn add react-component-library` (adding library as a dependency)
 2. Import components
-    - `import { Sample } from 'react-component-library';` -- option A
-    - `import Sample from 'react-component-library/dist/esm/Sample';` -- option B (direct import)
+    - `import { TestComponent } from 'react-component-library';` -- option A
+    - `import TestComponent from 'react-component-library/dist/esm/TestComponent';` -- option B (direct import)
 3. Import Stylesheets
     - `import `
 
@@ -29,7 +29,6 @@ To use `react-component-libray` in your project, do the following:
 
 -   **TLDR**
     - [Testing Library Locally](doc/DEVELOPMENT.md#testing-components)
-        
     - [Writing CSS Modules](doc/WRITING_CSS_MODULES.md)
     - [How to create a react-component-library](./doc/CREATE_NEW_LIBRARY.md)
 -   **Notes**
