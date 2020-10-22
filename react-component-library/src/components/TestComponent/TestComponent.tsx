@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styles from './TestComponent.module.scss';
 import { TestComponentProps } from './TestComponent.types';
 
@@ -7,7 +7,7 @@ import { TestComponentProps } from './TestComponent.types';
  ***************************************************/
 
 const TestComponent = (props: TestComponentProps) => {
-    const theme = props.theme == 'primary' ? '' : styles.testComponentSecondary
+    const theme = props.theme === 'primary' ? '' : styles.testComponentSecondary;
     return (
         <div data-testid="test-component" className={`${styles.testComponent} ${theme}`}>
             <h1 className={`${styles.heading}`}>I'm the test component</h1>

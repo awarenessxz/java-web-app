@@ -1,9 +1,9 @@
 // @ts-ignore
-import React from "react";
+import React from 'react';
 import TestComponent from './TestComponent';
 
 export default {
-    title: "TestComponent"
+    title: 'TestComponent',
 };
 
 export const Primary = () => <TestComponent theme="primary" />;

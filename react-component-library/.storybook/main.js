@@ -1,19 +1,16 @@
 module.exports = {
-    stories: [
-        "../src/**/*.stories.mdx",
-        "../src/**/*.stories.@(ts|tsx)"
-    ],
+    stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(ts|tsx)'],
     addons: [
         {
             name: '@storybook/preset-scss',
             options: {
                 cssLoaderOptions: {
-                    modules: true
-                }
-            }
+                    modules: true,
+                },
+            },
         },
-        "@storybook/addon-links",
-        "@storybook/addon-essentials"
+        '@storybook/addon-links',
+        '@storybook/addon-essentials',
     ],
     typescript: {
         check: false,
