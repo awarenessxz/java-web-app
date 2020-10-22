@@ -29,9 +29,9 @@ for (line of lines) {
         path.normalize(
             String(line.match(/(?<=from)(.*?)(?=;)/g))
                 .trim()
-                .replace(/['"]+/g, '')
-        )
-        + '.tsx';
+                .replace(/['"]+/g, ''),
+        ) +
+        '.tsx';
     entryPoints[entry] = entryPath;
 }
 console.info('\x1b[32m%s\x1b[0m', 'Generating entry points...');

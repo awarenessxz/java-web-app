@@ -1,16 +1,23 @@
 # Content
 
-- [Adding Jest & React-Testing-Library](#adding-jest-and-react-testing-library)
-                                         
-### Adding Jest and React-Testing-Library       
+-   [Adding ESLint & Prettier](#adding-eslint-and-prettier)
+-   [Adding Jest & React-Testing-Library](#adding-jest-and-react-testing-library)
+
+### Adding ESLint and Prettier
+
+1. Install ESLint and Prettier Packages
+    - `yarn add --dev eslint eslint-plugin-react @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb-typescript eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks`
+
+### Adding Jest and React-Testing-Library
 
 1. Install Jest and React Testing Library Packages
     - `yarn add --dev jest ts-jest @types/jest identity-obj-proxy @testing-library/react @testing-library/jest-dom`
         - `identity-obj-proxy` -- required for mocking css modules
 2. Create configuration file `jest.config.js` in root directory
+
     ```
-   /* jest.config.js */
-   
+    /* jest.config.js */
+
     module.exports = {
         roots: ["./src"],
         setupFilesAfterEnv: ["../setup/jest.setup.ts"],
@@ -34,16 +41,20 @@
         }
     };
     ```
+
 3. Create jest setup file `setup/jest.setup.ts`
+
     ```
     /* setup/jest.setup.ts */
-   
+
     import "@testing-library/jest-dom";
     ```
+
 4. Exclude test files from being bundle when building
+
     ```
     /* tsconfig.json */
-   
+
     ...
     "exclude": [
         "node_modules",
@@ -53,10 +64,12 @@
     ]
     ...
     ```
+
 5. Add scripts in `package.json` to run test
+
     ```
     /* package.json */
-   
+
     ...
     "scripts": {
             ...
@@ -67,3 +80,6 @@
     ...
     ```
 
+# References
+
+- [](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
