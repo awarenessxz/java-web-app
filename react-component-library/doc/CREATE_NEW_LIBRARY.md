@@ -2,14 +2,17 @@
 
 ## Table of Content
 
-- [Configure Rollup & Typescript](#configure-rollup-and-typescript)
-- [Configure Storybook v6](#configure-storybook)
-- [Configure CSS](#configure-css)
-    - [CSS Modules](#css-modules-with-sass)
-    - [Style Components](#style-components)
-- [Configure Jest & Testing Library](#configure-jest-and-react-testing-library)
-- [Configure ESLint & Prettier](#configure-eslint-and-prettier)
-- [Code Splitting](#code-splitting-optional)
+- [Steps to create React Library](#steps-to-create-a-react-library)
+    - [Configure Rollup & Typescript](#configure-rollup-and-typescript)
+    - [Configure Storybook v6](#configure-storybook)
+    - [Configure CSS](#configure-css)
+        - [CSS Modules](#css-modules-with-sass)
+        - [Style Components](#style-components)
+    - [Configure Jest & Testing Library](#configure-jest-and-react-testing-library)
+    - [Configure ESLint & Prettier](#configure-eslint-and-prettier)
+- [Additional Configuration](#additional-configuration)
+    - [Code Splitting](#code-splitting-optional)
+- [References](#references)
 
 ## Steps to create a React Library
 
@@ -375,6 +378,7 @@ This feature allows you to split your code into various bundles which can then b
     - [Bundle Libraries With SCSS and CSS Modules Using Rollup](https://florian.ec/blog/rollup-scss-css-modules/)
 - ESLint
     - [Eslint for Typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
+    - [Eslint Tslint Configuration for excluded files](https://stackoverflow.com/questions/60822280/eslint-tslint-config-help-excluding-files)
 - Scripts
     - [Updating package.json](https://stackoverflow.com/questions/10685998/how-to-update-a-value-in-a-json-file-and-save-it-through-node-js)
     - [How can I use an es6 import in node](https://stackoverflow.com/questions/45854169/how-can-i-use-an-es6-import-in-node)

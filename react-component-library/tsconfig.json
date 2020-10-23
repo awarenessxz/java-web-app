@@ -20,7 +20,9 @@
         "noFallthroughCasesInSwitch": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
+        "removeComments": true,
         "allowSyntheticDefaultImports": true,
+        "preserveConstEnums": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "plugins": [{ "name": "typescript-plugin-css-modules" }]

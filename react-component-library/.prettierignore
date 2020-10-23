@@ -2,4 +2,4 @@ coverage/
 doc/
 dist/
 node_modules/
-README.md
+*.md

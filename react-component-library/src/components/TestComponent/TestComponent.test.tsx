@@ -1,6 +1,5 @@
-// @ts-ignore
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import * as React from 'react';
+import { render } from '@testing-library/react';
 
 // Import Component
 import TestComponent from './TestComponent';

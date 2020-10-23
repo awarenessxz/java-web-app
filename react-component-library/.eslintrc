@@ -13,14 +13,26 @@
         "ecmaFeatures": {
             "jsx": true // Allows for parsing of JSX
         },
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.eslint.json"
     },
-    "ignorePatterns": ["/*.*", "setup/*"],
     "settings": {
         "react": {
             "pragma": "React",
             "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-        }
+        },
+        "import/resolver": {
+            "node": {
+                "paths": ["src/"],
+                "extensions": [".ts", ".tsx"]
+            },
+            "webpack": {}
+        },
+        "import/extensions": [".ts", ".tsx"],
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/core-modules": [],
+        "import/ignore": ["node_modules", "\\.(coffee|scss|css|less|hbs|svg|json)$"]
     },
     "extends": [
         "airbnb-typescript/base",
@@ -35,7 +47,7 @@
     "rules": {
         // place to sepcify ESlint rules
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", "jsx"] }], // drops extensions checks for JSX in javascript project
-        "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
+        "react/prefer-stateless-function": [1, { "ignorePureComponents": true }],
         "react-hooks/rules-of-hooks": "error", // checks rules of hooks
         "react-hooks/exhaustive-deps": "error", // checks effect dependencies
         "jsx-a11y/no-static-element-interactions": "off", // See ARIA rules. However, severity decreased from error->warn instead
@@ -53,6 +65,22 @@
         "linebreak-style": "off",
         "no-param-reassign": "error",
         "no-empty-function": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}],
+        "class-methods-use-this": ["error", {
+            "exceptMethods": [
+                "render",
+                "getInitialState",
+                "getDefaultProps",
+                "getChildContext",
+                "componentWillMount",
+                "componentDidMount",
+                "componentWillReceiveProps",
+                "shouldComponentUpdate",
+                "componentWillUpdate",
+                "componentDidUpdate",
+                "componentWillUnmount"
+            ]
+        }],
         // typescript rules
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": ["error"],
