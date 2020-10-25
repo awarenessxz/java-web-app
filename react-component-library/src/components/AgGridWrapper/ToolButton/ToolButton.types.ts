@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum ToolButtonTypes {
     normal,
     badge,
@@ -9,10 +11,10 @@ export enum ToolButtonTypes {
 export interface ToolButtonProps {
     tooltipMsg: string;
     icon: React.ReactNode;
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
-    disabled: boolean;
+    onClick: (param: any) => void;
+    disabled?: boolean;
     buttonType: ToolButtonTypes;
-    buttonTypeProps: ToolButtonTypeProps;
+    buttonTypeProps?: ToolButtonTypeProps;
 }
 
 interface ToolButtonTypeProps {
