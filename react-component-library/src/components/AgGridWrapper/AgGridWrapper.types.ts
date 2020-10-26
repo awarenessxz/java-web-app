@@ -9,6 +9,14 @@ export interface AgGridWrapperProps {
     enableDownload?: boolean;
     /** enable row selection (Refer to Docs for EnableRowSelectionProps) */
     enableRowSelection?: EnableRowSelectionProps;
+    /** enable toggling of column definition with a simplified column definitions (Refer to Docs for EnableSimplifiedViewProps) */
+    enableSimplifiedColumnDefs?: EnableSimplifiedViewProps;
+    /** enable user to edit cell data */
+    enableCellEdit?: boolean;
+    /** enable user to resize columns */
+    enableColumnResize?: boolean;
+    /** enable user to create charts */
+    enableCharts?: boolean;
     /** ag-grid rowData (Refer to official ag-grid documentation) */
     rowData: any[];
     /** ag-grid defaultColDef (Refer to official ag-grid documentation) */
@@ -30,7 +38,16 @@ interface EnableRowSelectionProps {
     showCheckbox: boolean;
 }
 
+interface EnableSimplifiedViewProps {
+    /** ag-grid columnDefs (Refer to official ag-grid documentation) */
+    simplifiedColumnDefs: (ColDef | ColGroupDef)[];
+    /** state for toggling simplified view & normal view */
+    showSimplifiedView: boolean;
+}
+
 export interface ToolBarProps {
+    /** position of toolbar */
     toolbarPosition?: 'top' | 'bottom' | 'none';
+    /** color of toolbar */
     toolbarColor?: string;
 }

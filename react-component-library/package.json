@@ -6,7 +6,8 @@
     "module": "dist/esm/index.js",
     "source": {
         "index": "./src/index.ts",
-        "TestComponent": "./src/components/TestComponent/TestComponent.tsx"
+        "TestComponent": "./src/components/TestComponent/TestComponent.tsx",
+        "AgGridWrapper": "./src/components/AgGridWrapper/AgGridWrapper.tsx"
     },
     "target": {
         "cjs": "dist/cjs",
@@ -81,6 +82,7 @@
         "react-dom": "^17.0.0",
         "react-is": "^17.0.0",
         "rollup": "^2.32.0",
+        "rollup-plugin-copy": "^3.3.0",
         "rollup-plugin-peer-deps-external": "^2.2.4",
         "rollup-plugin-postcss": "^3.1.8",
         "rollup-plugin-typescript2": "^0.28.0",

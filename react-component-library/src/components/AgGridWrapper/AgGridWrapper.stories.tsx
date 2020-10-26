@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { RowNode } from 'ag-grid-community';
 import AgGridWrapper from './AgGridWrapper';
 import { AgGridWrapperProps } from './AgGridWrapper.types';
-import { RowNode } from 'ag-grid-community';
 
 export default {
     title: 'Components/AgGridWrapper',
@@ -53,6 +53,24 @@ export const sampleData = {
     ],
 };
 
+// just for showing simplified view
+export const simplifiedColumnDefsData = [
+    {
+        headerName: 'Simplified',
+        field: 'make',
+    },
+    {
+        headerName: 'Column Definitions',
+        field: 'model',
+        filter: true,
+    },
+    {
+        headerName: 'View',
+        field: 'price',
+        sortable: true,
+    },
+];
+
 /** *************************************************
  * Stories
  ************************************************** */
@@ -77,4 +95,38 @@ EnableRowSelection.args = {
         showCheckbox: true,
     },
     toolbarProps: { toolbarPosition: 'top' },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const EnableCellEdit: Story = Template.bind({});
+EnableCellEdit.args = { ...Basic.args, enableCellEdit: true, toolbarProps: { toolbarPosition: 'top' } };
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const EnableColumnResize: Story = Template.bind({});
+EnableColumnResize.args = { ...Basic.args, enableColumnResize: true, toolbarProps: { toolbarPosition: 'top' } };
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const EnableCharts: Story = Template.bind({});
+EnableCharts.args = { ...Basic.args, enableCharts: true, toolbarProps: { toolbarPosition: 'top' } };
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const EnableSimplifiedView: Story = Template.bind({});
+EnableSimplifiedView.args = {
+    ...Basic.args,
+    enableSimplifiedColumnDefs: {
+        simplifiedColumnDefs: simplifiedColumnDefsData,
+        showSimplifiedView: true,
+    },
+    toolbarProps: { toolbarPosition: 'top' },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const AllTools: Story = Template.bind({});
+AllTools.args = {
+    ...Basic.args,
+    ...EnableDownload.args,
+    ...EnableCellEdit.args,
+    ...EnableColumnResize.args,
+    ...EnableCharts.args,
+    ...EnableSimplifiedView.args,
 };

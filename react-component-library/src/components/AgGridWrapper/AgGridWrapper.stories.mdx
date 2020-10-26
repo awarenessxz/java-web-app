@@ -1,5 +1,31 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, ArgsTable } from '@storybook/addon-docs/blocks';
+import AgGridWrapper from "./AgGridWrapper";
 
-<Meta title='Docs/AgGridWrapper' />
+<Meta title='Docs/AgGridWrapper' component={AgGridWrapper} />
 
-# Ag Grid Wrapper
+# AgGrid Wrapper
+
+This is a custom wrapper for AgGrid Enterprise version. As much as possible, we have included features that we deemed are necessary for our project. If more features are required, feel free to update the component in the library.
+
+<Story id="components-aggridwrapper--all-tools" />
+
+
+# Usage
+
+To use this component, do the following:
+
+1. Import the library
+    - `yarn add react-component-library`
+2. If you are using the enterprise features, provide the license key [optional]. Inside your project's `index.js`, add the following
+    ```
+    import { LicenseManager } from 'ag-grid'
+    ```
+3.
+
+# Types / Interfaces
+
+
+
+# API
+
+<ArgsTable of={AgGridWrapper} />
