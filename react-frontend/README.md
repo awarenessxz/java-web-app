@@ -14,6 +14,11 @@ root
     └── utils               # helper functions
 ```
 
+## Dependencies
+
+- React-Component-Library
+    - We are using react-component-library as a dependency in this project. The custom reusable React component library is installed by `yarn add ../react-component-library` 
+
 ## Documentation Links
 
 - [Webpack configuration details](./doc/webpack.md)

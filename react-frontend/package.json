@@ -85,6 +85,7 @@
     "chalk": "^4.1.0",
     "core-js": "^3.6.5",
     "react": "^16.13.1",
+    "react-component-library": "../react-component-library",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
     "react-redux": "^7.2.1",
