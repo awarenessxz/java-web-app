@@ -7,7 +7,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import packageJson from './package.json';
 
 export default {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: [
         {
             file: packageJson.main,
@@ -34,9 +34,9 @@ export default {
             targets: [
                 {
                     src: 'node_modules/ag-grid-community/dist/styles/**/*',
-                    dest: 'dist/styles/agGrid'
-                }
-            ]
-        })
+                    dest: 'dist/styles/agGrid',
+                },
+            ],
+        }),
     ],
 };
