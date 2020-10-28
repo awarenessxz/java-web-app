@@ -7,24 +7,63 @@ import AgGridWrapper from "./AgGridWrapper";
 
 This is a custom wrapper for AgGrid Enterprise version. As much as possible, we have included features that we deemed are necessary for our project. If more features are required, feel free to update the component in the library.
 
-<Story id="components-aggridwrapper--all-tools" />
+**Technology Stack**
+- Material UI for the toolbar
+- Icons from FontAwesome and Material UI Icons
+- Ag-Grid Library
 
+<Story id="components-aggridwrapper--all-tools" />
 
 # Usage
 
 To use this component, do the following:
 
-1. Import the library
+1. Add the library as dependency
     - `yarn add react-component-library`
 2. If you are using the enterprise features, provide the license key [optional]. Inside your project's `index.js`, add the following
     ```
-    import { LicenseManager } from 'ag-grid'
+    import { AgGridWrapperUtil } from 'react-component-library;'
+
+    AgGridWrapperUtil.setAgGridLicense('YOUR_LICENSE_KEY');
     ```
-3.
+3. Import Ag-Grid stylesheets. Inside your project css file,
+    ```
+    import '~react-component-library/dist/styles/agGrid/ag-grid.css';
+    import '~react-component-library/dist/styles/agGrid/ag-theme-alpine.min.css';
+    ```
+4. Import the component
+    ```
+    import { AgGridWrapper } from 'react-component-library';
+    ```
 
 # Types / Interfaces
 
+```javascript
+import { ColDef, ColGroupDef, GridOptions, GridApi, RowNode } from 'ag-grid-community';
 
+interface EnableRowSelectionProps {
+    /** listener for parent component to get selected row's data */
+    onSelectionChange: (selectedData: RowNode[]) => void;
+    /** allow only single or multi row selection */
+    multiRowSelection: boolean;
+    /** show checkbox in first column */
+    showCheckbox: boolean;
+}
+
+interface EnableSimplifiedViewProps {
+    /** ag-grid columnDefs (Refer to official ag-grid documentation) */
+    simplifiedColumnDefs: (ColDef | ColGroupDef)[];
+    /** state for toggling simplified view & normal view */
+    showSimplifiedView: boolean;
+}
+
+export interface ToolBarProps {
+    /** position of toolbar */
+    toolbarPosition?: 'top' | 'bottom' | 'none';
+    /** color of toolbar */
+    toolbarColor?: string;
+}
+```
 
 # API
 

@@ -18,22 +18,25 @@ This library is designed using the following technology decisions:
 
 To use `react-component-libray` in your project, do the following:
 
-1. `yarn add react-component-library` (adding library as a dependency)
+1. Adding Library as dependency
+    - `yarn add react-component-library`
 2. Import components
-    - `import { TestComponent } from 'react-component-library';` -- option A
-    - `import TestComponent from 'react-component-library/dist/esm/TestComponent';` -- option B (direct import)
-3. Import Stylesheets
-    - `import `
+    - `import { TestComponent } from 'react-component-library';`
+3. Import Stylesheets if required
+    - `import 'react-component-library/dist/styles/whatever/styles.css>';`
 
 ## Development
 
--   **TLDR**
+- **TLDR**
     - [Testing Library Locally](doc/DEVELOPMENT.md#testing-components)
     - [Writing CSS Modules](doc/WRITING_CSS_MODULES.md)
     - [Publishing to NPM Artifactory](doc/PUBLISH_TO_NPM.md)
     - [How to create a react-component-library](./doc/CREATE_NEW_LIBRARY.md)
--   **Notes**
+- **Notes**
     - If coding using visual studio, read the documentation for `typescript-plugin-css-modules`
+- **Future Work**
+    - [code-splitting](doc/CREATE_NEW_LIBRARY.md#code-splitting-incomplete---to-work-on)
+    - [style-components](doc/CREATE_NEW_LIBRARY.md#style-components)
 
 ## License
 
