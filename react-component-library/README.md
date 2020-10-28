@@ -29,9 +29,10 @@ To use `react-component-libray` in your project, do the following:
 
 - **TLDR**
     - [Testing Library Locally](doc/DEVELOPMENT.md#testing-components)
+    - [Writing New Component](doc/NEW_COMPONENT.md)
     - [Writing CSS Modules](doc/WRITING_CSS_MODULES.md)
     - [Publishing to NPM Artifactory](doc/PUBLISH_TO_NPM.md)
-    - [How to create a react-component-library](./doc/CREATE_NEW_LIBRARY.md)
+    - [How to create your own react-component-library](./doc/CREATE_NEW_LIBRARY.md)
 - **Notes**
     - If coding using visual studio, read the documentation for `typescript-plugin-css-modules`
 - **Future Work**

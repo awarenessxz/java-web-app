@@ -1,6 +1,12 @@
 # react-frontend
 Simple React Web Application Template built with typescript,webpack,react
 
+## Technology Stack
+
+- **Webpack & Babel**: Bundling and Transpiling of Javascript codes
+- **Typescript**: 
+- **Elastic UI**: Design System for most of the UI components
+
 ## Folder Structure
 
 ```bash
@@ -14,14 +20,14 @@ root
     └── utils               # helper functions
 ```
 
-## Dependencies
+## Development
 
-- React-Component-Library
-    - We are using react-component-library as a dependency in this project. The custom reusable React component library is installed by `yarn add ../react-component-library` 
-
-## Documentation Links
-
-- [Webpack configuration details](./doc/webpack.md)
+- **TLDR**
+    - [Webpack configuration details](doc/webpack.md)
+- **Notes**
+    - **React-Component-Library** : 
+        - The custom reusable React component library is installed by `yarn add ../react-component-library` 
+- **Future Works**
 
 ## Learning Materials
 - [React Typescript Tutorial](https://www.youtube.com/watch?v=Z5iWr6Srsj8)

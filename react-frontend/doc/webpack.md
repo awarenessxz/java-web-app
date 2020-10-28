@@ -1,6 +1,6 @@
 # Overview on webpack configuration
 
-## ConfigFiles
+## Configuration Files
 - `tsconfig.json`: config for type checking (Note that we will be using babel for code transpilation although we can do it here too)
 - `.babelrc`: config for code transpilation
 - `wepack.config.js`: config for webpack to bundle javascript files
@@ -35,6 +35,7 @@
 # References
 - [creating react and typescript apps with webpack](https://www.carlrippon.com/creating-react-and-typescript-apps-with-webpack/)
 - [redux with typescript](https://medium.com/@ksholla20/react-redux-with-typescript-ad7266896a9b)
+- [How to setup and use css modules in react with webpack](https://medium.com/@michaelceber/how-to-setup-and-use-css-modules-in-react-with-webpack-7f512b946ae0)
 - Eslint
     - [Using Eslint and Prettier in Typescript project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
     - [Using Airbnb Eslint config when moving to typescript](https://medium.com/@myylow/how-to-keep-the-airbnb-eslint-config-when-moving-to-typescript-1abb26adb5c6)
