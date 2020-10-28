@@ -8,6 +8,7 @@
     - [Configure CSS](#configure-css)
         - [CSS Modules](#css-modules-with-sass)
         - [Style Components](#style-components)
+        - [Expose CSS Styles](#exposing-css-styles)
     - [Configure Jest & Testing Library](#configure-jest-and-react-testing-library)
     - [Configure ESLint & Prettier](#configure-eslint-and-prettier)
 - [Additional Configuration](#additional-configuration)
@@ -38,8 +39,8 @@ This is a step by step guide on how to create a custom reusable react component 
         }
         ...
         ```
-2. Install Rollup Packages
-    - `yarn add --dev rollup rollup-plugin-typescript2 @rollup/plugin-commonjs @rollup/plugin-node-resolve rollup-plugin-peer-deps-external rollup-plugin-postcss node-sass`
+2. Install Rollup / Typescript Packages
+    - `yarn add --dev rollup typescript rollup-plugin-typescript2 @rollup/plugin-commonjs @rollup/plugin-node-resolve rollup-plugin-peer-deps-external rollup-plugin-postcss node-sass`
 3. Set up the project with the following structure and files
     ```
     root
@@ -125,6 +126,7 @@ This is a step by step guide on how to create a custom reusable react component 
     ...
     "main": "dist/index.js",
     "module": "dist/index.es.js",
+    "types": "dist/index.d.ts",
     "source": "src/index.ts",
     "files": ["dist"],
     "scripts": {
@@ -208,7 +210,36 @@ CSS Modules allows us to locally scoped css for each component. Some rules to fo
 - Use the convention to name css modules as `*.module.scss`
 
 To set up CSS Modules with SASS, follow these steps
-1. To build library with CSS Modules, configure the following inside `rollup.config.js`
+1. Utilize Typescript to provide types for CSS Modules
+    - `yarn add --dev typescript-plugin-css-modules`
+    - Inside `tsconfig.json`, configure the following
+        ```
+        ...
+        "compilerOptions": {
+                ...
+                "plugins": [
+                    {
+                        "name": "typescript-plugin-css-modules",
+                        "options": {
+                            "customMatcher": "\\.module\\.scss$"
+                        }
+                    }
+                ]
+                ...
+            },
+        ...
+        ```
+    - create a global type declaration file
+        ```
+        /* src/styles.d.ts */
+      
+        declare module '*.module.scss' {
+            const classes: { [key: string]: string };
+            export default classes;
+        }
+        ``` 
+       
+2. To build library with CSS Modules, configure the following inside `rollup.config.js`
     ```
     ...
     plugins: [
@@ -222,7 +253,7 @@ To set up CSS Modules with SASS, follow these steps
     ]
     ...
     ```
-2. For CSS Modules to work in Storybook, configure the following inside `.storybook/main.js`
+3. For CSS Modules to work in Storybook, configure the following inside `.storybook/main.js`
     ```
     ...
     addons: [
@@ -241,6 +272,40 @@ To set up CSS Modules with SASS, follow these steps
 
 #### Style Components
 
+#### Exposing CSS Styles
+
+If you are using third party libraries css or you have your own css that you want to expose for the user to use. Follow the steps below: 
+
+1. Install the rollup plugin
+    - `yarn add --dev rollup-plugin-copy`
+
+2. Configure `rollup.config.js` using AgGrid Styles as an example.
+    ```
+    /* rollup.config.js */ 
+   
+   import copy from "rollup-plugin-copy";
+   
+   export default {
+        ...
+        plugins: [
+            ...
+            copy({
+                targets: [
+                    {
+                        src: 'node_modules/ag-grid-community/dist/styles/**/*',
+                        dest: 'dist/styles/agGrid'
+                    }
+                ]
+            })
+        ]
+        ...
+   }
+    ```
+
+    - Following the set up above, users can now import AgGrid styles in their project by
+        - `import 'react-component-library/dist/styles/agGrid/ag-grid.css';`
+
+
 ### Configure ESLint and Prettier
 
 1. Install ESLint and Prettier Packages
@@ -252,7 +317,6 @@ To set up CSS Modules with SASS, follow these steps
     - `yarn add --dev jest ts-jest @types/jest identity-obj-proxy @testing-library/react @testing-library/jest-dom`
         - `identity-obj-proxy` -- required for mocking css modules
 2. Create configuration file `jest.config.js` in root directory
-
     ```
     /* jest.config.js */
 
@@ -320,13 +384,14 @@ To set up CSS Modules with SASS, follow these steps
 
 ## Additional Configuration
 
-### Code-Splitting [Optional]
+### Code-Splitting [Incomplete - to work on]
 
 This feature allows you to split your code into various bundles which can then be loaded on demand or in parallel. **TLDR:** Code Splitting allows user to direct import the components that they need from the library instead of all the components. This is a popular approach as it reduces the amount of javascript codes sent to the client. 
 
-1. Update `rollup.config.js` to support different formats of output. We are using `dir` instead of `files` as there will be more than one bundle for each format.
-    ```$xslt
+1. Configure `rollup.config.js` to support different formats of output as well as changing the css processor. We are using `dir` instead of `files` as there will be more than one bundle for each format.
+    ```
     ...
+    preserveModules: true,
     input: packageJson.source,
     output: [
         {
@@ -343,7 +408,7 @@ This feature allows you to split your code into various bundles which can then b
     ...
     ```
 2. Update `package.json`. If a tool can support `ECMAScript`, it'll use `module` else it'll use `main`. 
-    ```$$xslt
+    ```
     ...
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -376,6 +441,8 @@ This feature allows you to split your code into various bundles which can then b
 - Rollup + Typescript + Stylesheets
     - [Adding CSS Modules to Typescript](https://spin.atomicobject.com/2020/06/22/css-module-typescript/)
     - [Bundle Libraries With SCSS and CSS Modules Using Rollup](https://florian.ec/blog/rollup-scss-css-modules/)
+    - [Configuring Typescript](https://blog.logrocket.com/publishing-node-modules-typescript-es-modules/)
+    - [Typescript: Is it possible to have multiple targets in compilerOptions](https://stackoverflow.com/questions/45148227/is-it-possible-to-have-multiple-targets-in-compileroptions?rq=1)
 - ESLint
     - [Eslint for Typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
     - [Eslint Tslint Configuration for excluded files](https://stackoverflow.com/questions/60822280/eslint-tslint-config-help-excluding-files)

@@ -2,25 +2,18 @@
     "name": "react-component-library",
     "version": "1.0.0",
     "description": "React Library which contains a collection of custom reusable React Components, documented with storybook and tested using Jest &amp; React-Testing-Library",
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "source": {
-        "index": "./src/index.ts",
-        "TestComponent": "./src/components/TestComponent/TestComponent.tsx",
-        "AgGridWrapper": "./src/components/AgGridWrapper/AgGridWrapper.tsx"
-    },
-    "target": {
-        "cjs": "dist/cjs",
-        "esm": "dist/esm"
-    },
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "source": "src/index.ts",
+    "target": "dist",
     "files": [
-        "dist/cjs/*",
-        "dist/esm/*"
+        "dist"
     ],
     "scripts": {
         "test": "jest",
         "test:watch": "jest --watch",
-        "build": "yarn run build:clean && yarn run build:generate && rollup -c",
+        "build": "yarn run build:clean && rollup -c",
         "build:clean": "rm -rf dist",
         "build:generate": "node ./setup/auto-generate-entry-points ./src/index.ts",
         "storybook": "start-storybook -p 6006",
@@ -85,6 +78,7 @@
         "rollup-plugin-copy": "^3.3.0",
         "rollup-plugin-peer-deps-external": "^2.2.4",
         "rollup-plugin-postcss": "^3.1.8",
+        "rollup-plugin-sass": "^1.2.2",
         "rollup-plugin-typescript2": "^0.28.0",
         "sass-loader": "^10.0.3",
         "style-loader": "^2.0.0",
