@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer as HotReloader } from 'react-hot-loader';
 import App from './components/core/App';
+import './styles/app.scss';
 
 import store from './redux/redux-store';
 

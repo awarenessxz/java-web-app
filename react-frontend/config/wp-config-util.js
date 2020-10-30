@@ -29,9 +29,10 @@ const CSSLoader = {
 const PostCSSLoader = {
     loader: 'postcss-loader',
     options: {
-        ident: 'postcss',
+        postcssOptions: {
+            plugins: () => [autoprefixer()]
+        },
         sourceMap: false, // turned off because of delay
-        plugins: () => [autoprefixer()]
     }
 };
 

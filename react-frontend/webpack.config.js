@@ -4,7 +4,7 @@ const { merge } = require("webpack-merge");
 const util = require('./config/wp-config-util');
 
 // internal configuration
-const commonConfig = require('./config/webpack.common');
+const commonConfig = require('./config/webpack.base');
 const devConfig = require('./config/webpack.dev');
 const prodConfig = require('./config/webpack.prod');
 
