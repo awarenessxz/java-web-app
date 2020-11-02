@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import AppHeader from './AppHeader';
-import AppContent from './AppContent';
+import AppHeader from '../components/AppHeader/AppHeader';
+import AppContent from '../components/AppContent/AppContent';
 
 const App = (): JSX.Element => {
     return (

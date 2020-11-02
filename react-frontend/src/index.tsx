@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer as HotReloader } from 'react-hot-loader';
-import App from './components/core/App';
+import App from './pages/App';
 import './styles/app.scss';
 
 import store from './redux/redux-store';
@@ -24,7 +24,7 @@ render(App);
 
 // webpack dev server : Hot Module Replacement
 if (module.hot) {
-    module.hot.accept('./components/core/App', () => {
+    module.hot.accept('./pages/App', () => {
         render(App);
     });
 }

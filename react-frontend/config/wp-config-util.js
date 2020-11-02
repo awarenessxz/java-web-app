@@ -1,17 +1,27 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // uses "uglify-js" to minify javascript files
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extracts CSS into seperate file (creates a css file epr js file which contains css)
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extracts CSS into separate file (creates a css file epr js file which contains css)
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // optimize and minimize css assets
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const path = require('path');
 
 const CSSModuleLoader = {
     loader: 'css-loader',
     options: {
-        modules: true,
-        localIdentName: '[name]_[local]_[hash:base64:5]',
+        modules: {
+            compileType: 'module',
+            mode: 'local',
+            auto: true,
+            exportGlobals: true,
+            localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            localIdentContext: path.resolve(__dirname, 'src'),
+            localIdentHashPrefix: 'my-custom-hash',
+            namedExport: true,
+            exportLocalsConvention: 'camelCase',
+            exportOnlyLocals: false,
+        },
         importLoaders: 2,
-        camelCase: true,
         sourceMap: false // turned off since this causes delays
     }
 };
@@ -19,9 +29,7 @@ const CSSModuleLoader = {
 const CSSLoader = {
     loader: 'css-loader',
     options: {
-        modules: 'global',
         importLoaders: 2,
-        camelCase: true,
         sourceMap: false // turned off since this causes delays
     }
 };
@@ -30,7 +38,7 @@ const PostCSSLoader = {
     loader: 'postcss-loader',
     options: {
         postcssOptions: {
-            plugins: () => [autoprefixer()]
+            plugins: [autoprefixer()]
         },
         sourceMap: false, // turned off because of delay
     }

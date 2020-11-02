@@ -25,7 +25,9 @@
         "paths": ["src/"],
         "extensions": [".ts", ".tsx"]
       },
-      "webpack": {}
+      "webpack": {
+        "config": "config/webpack.base.js"
+      }
     },
     "import/extensions": [".ts", ".tsx"],
     "import/parsers": {
