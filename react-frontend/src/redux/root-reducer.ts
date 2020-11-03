@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
+import appReducer from './app/app-reducer';
+import { AppActionStateTypes } from './app/app-action.types';
 
-// typescript for redux
-export interface ApplicationState {}
+export interface RootState {
+    app: AppActionStateTypes;
+}
 
 // root reducer for redux
-export const rootReducer = combineReducers<ApplicationState>({});
+export const rootReducer = combineReducers<RootState>({
+    app: appReducer,
+});
