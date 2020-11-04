@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     EuiCollapsibleNav,
     EuiCollapsibleNavGroup,
@@ -9,65 +9,39 @@ import {
     EuiListGroupItem,
     EuiIcon,
     EuiSideNav,
+    EuiSideNavItemType,
 } from '@elastic/eui';
+import { defaultMenuItems } from './AppMenuItems';
+import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
+import { MenuItem } from './AppSideBar.types';
 
 const AppSidebar = (): JSX.Element => {
-    const [navIsOpen, setIsNavOpen] = useState(false);
-    const [navIsDocked, setIsNavDocked] = useState(false);
+    const [navIsOpen, setIsNavOpen] = useState(true);
+    const [navIsDocked, setIsNavDocked] = useState(true);
     const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
+    const dispatch = useDispatch();
 
-    const createItem = (name, data = {}) => {
+    const dispatchSetSelectedMenuItem = (title: string): void => {
+        dispatch(setSelectedMenuItem(title));
+    };
+
+    const createMenuItem = (menuItem: MenuItem): EuiSideNavItemType<any> => {
         // NOTE: Duplicate `name` values will cause `id` collisions.
+        const icon = menuItem.iconType ? <EuiIcon type={menuItem.iconType} /> : undefined;
         return {
-            ...data,
-            id: name,
-            name,
-            isSelected: selectedMenuItem === name,
-            // onClick: () => selectItem(name),
+            icon,
+            id: menuItem.title,
+            name: menuItem.title,
+            isSelected: selectedMenuItem === menuItem.title,
+            onClick: (): void => dispatchSetSelectedMenuItem(menuItem.title),
+            items: menuItem.items?.map((item) => createMenuItem(item)),
         };
     };
 
-    const sideNav = [
-        createItem('Elasticsearch', {
-            icon: <EuiIcon type="logoElasticsearch" />,
-            items: [
-                createItem('Data sources'),
-                createItem('Users'),
-                createItem('Roles'),
-                createItem('Watches'),
-                createItem('Extremely long title will become truncated when the browser is narrow enough'),
-            ],
-        }),
-        createItem('Kibana', {
-            icon: <EuiIcon type="logoKibana" />,
-            items: [
-                createItem('Advanced settings', {
-                    items: [
-                        createItem('General'),
-                        createItem('Timelion', {
-                            items: [
-                                createItem('Time stuff', {
-                                    icon: <EuiIcon type="clock" />,
-                                }),
-                                createItem('Lion stuff', {
-                                    icon: <EuiIcon type="stats" />,
-                                }),
-                            ],
-                        }),
-                        createItem('Visualizations'),
-                    ],
-                }),
-                createItem('Index Patterns'),
-                createItem('Saved Objects'),
-                createItem('Reporting'),
-            ],
-        }),
-        createItem('Logstash', {
-            icon: <EuiIcon type="logoLogstash" />,
-            items: [createItem('Pipeline viewer')],
-        }),
-    ];
+    const generateSideBarMenuItems = (): EuiSideNavItemType<any>[] => {
+        return defaultMenuItems.map((item) => createMenuItem(item));
+    };
 
     return (
         <EuiCollapsibleNav
@@ -86,8 +60,10 @@ const AppSidebar = (): JSX.Element => {
             showCloseButton={false}
         >
             <EuiFlexItem className="eui-yScroll">
-                <EuiSideNav items={sideNav} style={{ padding: '16px' }} />
+                <EuiSideNav items={generateSideBarMenuItems()} style={{ padding: '16px' }} />
+            </EuiFlexItem>
 
+            <EuiFlexItem grow={false}>
                 <EuiShowFor sizes={['l', 'xl']}>
                     <EuiCollapsibleNavGroup>
                         <EuiListGroupItem
@@ -96,6 +72,7 @@ const AppSidebar = (): JSX.Element => {
                             label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
                             onClick={(): void => {
                                 setIsNavDocked(!navIsDocked);
+                                setIsNavOpen(false);
                             }}
                             iconType={navIsDocked ? 'lock' : 'lockOpen'}
                         />

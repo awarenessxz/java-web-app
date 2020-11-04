@@ -18,11 +18,13 @@ root
 ├── doc                     # documentations
 └── src
     ├── components          # components used by pages
-    ├── webpages            # each web pages
+    ├── pages               # each web pages
     ├── redux               # global variable (state management)
     ├── styles              # css style sheets (css modules with SASS)
     └── utils               # helper functions
 ```
+
+Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on how you should structure your codes
 
 ## Usage
 
@@ -35,7 +37,8 @@ root
 ## Development
 
 - **TLDR**
-    - [Webpack configuration details](doc/webpack.md)
+    - [Folder Structure & Coding Conventions](doc/CODING_CONVENTIONS.md)
+    - [Webpack configuration details](doc/WEBPACK.md)
 - **Notes**
     - **React-Component-Library** : 
         - The custom reusable React component library is installed by `yarn add ../react-component-library` 

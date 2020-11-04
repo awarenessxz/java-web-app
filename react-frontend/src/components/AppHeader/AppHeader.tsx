@@ -7,7 +7,7 @@ const AppHeader = (): JSX.Element => {
     const breadcrumbs: EuiBreadcrumb[] = [
         {
             text: 'Management',
-            href: '#',
+            href: 'Something',
             onClick: (e): void => {
                 e.preventDefault();
             },

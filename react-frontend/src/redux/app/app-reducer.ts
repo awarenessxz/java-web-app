@@ -7,6 +7,10 @@ const initialState: AppActionStateTypes = {
 const appReducer = (state: AppActionStateTypes = initialState, action: AppActionTypes): AppActionStateTypes => {
     switch (action.type) {
         case SET_SELECTED_MENU_ITEM:
+            return {
+                ...state,
+                selectedMenuItem: action.payload.menuItem,
+            };
         default:
             return state;
     }
