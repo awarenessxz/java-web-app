@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
+import loadingGif from '../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
 import AppContent from '../components/AppContent/AppContent';
 
@@ -33,7 +34,11 @@ const App = (): JSX.Element => {
         );
     }
 
-    return <div>Loading....</div>;
+    return (
+        <div className="loader-container">
+            <img src={loadingGif} alt="Loading Website..." />
+        </div>
+    );
 };
 
 export default App;

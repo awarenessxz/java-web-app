@@ -16,6 +16,7 @@
     - `@babel/preset-typescript` - enables Babel to transform Typescript code into Javascript
 - `css-loader` - load and bundle css into one file
 - `style-loader` - add all the styles inside the style tag to the document
+- `file-loader` - images for background and icons
 
 **Plugins**
 - `react-hot-loader` - works with webpack dev server hot module replacement (HMR). Tells dev server how to hot reload react codes

@@ -73,6 +73,18 @@ module.exports = {
             ]
         }
     }),
+    loadImages: ({include, exclude}) => ({
+        module: {
+            rules: [
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    include,
+                    exclude,
+                    use: ['file-loader'],
+                }
+            ]
+        }
+    }),
     loadCSS: (extractCSS = false) => {
         if (extractCSS) {
             return {

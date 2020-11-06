@@ -47,3 +47,7 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 ## Learning Materials
 - [React Typescript Tutorial](https://www.youtube.com/watch?v=Z5iWr6Srsj8)
 - [Using Elastic with React-Router](https://github.com/elastic/eui/blob/master/wiki/react-router.md)
+- [React loading screen tactics](https://medium.com/front-end-weekly/react-loading-screen-tactics-improving-user-experience-9452f183c00b)
+
+## Credits
+- [Loading.gif designed by Jane Sorkin](https://medium.com/better-programming/a-quick-and-easy-react-js-loading-screen-with-hooks-940feccd553f)

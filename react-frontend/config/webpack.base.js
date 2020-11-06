@@ -31,6 +31,9 @@ module.exports = merge([
         include: [app.paths.src],
         exclude: /node_modules/,
     }),
+    util.loadImages({
+        include: [app.paths.assets]
+    }),
     util.lint({
         options: {
             emitWarning: true,
