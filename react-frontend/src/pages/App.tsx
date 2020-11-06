@@ -9,6 +9,11 @@ const App = (): JSX.Element => {
             <AppHeader />
             <Switch>
                 <Route exact path="/" component={AppContent} />
+                <Route exact path="/template" render={(props): JSX.Element => <AppContent {...props} position={2} />} />
+                <Route
+                    path="/template/:templateId"
+                    render={(props): JSX.Element => <AppContent {...props} position={3} />}
+                />
             </Switch>
         </Router>
     );

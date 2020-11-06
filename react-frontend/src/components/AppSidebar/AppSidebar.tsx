@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
     EuiCollapsibleNav,
     EuiCollapsibleNavGroup,
@@ -11,19 +12,22 @@ import {
     EuiSideNav,
     EuiSideNavItemType,
 } from '@elastic/eui';
-import { defaultMenuItems } from './AppMenuItems';
+import { defaultMenuItems, MenuItem } from './AppMenuItems';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
-import { MenuItem } from './AppSideBar.types';
 
 const AppSidebar = (): JSX.Element => {
     const [navIsOpen, setIsNavOpen] = useState(true);
     const [navIsDocked, setIsNavDocked] = useState(true);
     const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const dispatchSetSelectedMenuItem = (title: string): void => {
-        dispatch(setSelectedMenuItem(title));
+    const goToRoute = (item: MenuItem): void => {
+        dispatch(setSelectedMenuItem(item.title));
+        if (item.route !== undefined) {
+            history.push(item.route);
+        }
     };
 
     const createMenuItem = (menuItem: MenuItem): EuiSideNavItemType<any> => {
@@ -34,7 +38,7 @@ const AppSidebar = (): JSX.Element => {
             id: menuItem.title,
             name: menuItem.title,
             isSelected: selectedMenuItem === menuItem.title,
-            onClick: (): void => dispatchSetSelectedMenuItem(menuItem.title),
+            onClick: (): void => goToRoute(menuItem),
             items: menuItem.items?.map((item) => createMenuItem(item)),
         };
     };

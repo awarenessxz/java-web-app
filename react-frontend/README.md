@@ -46,3 +46,4 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 
 ## Learning Materials
 - [React Typescript Tutorial](https://www.youtube.com/watch?v=Z5iWr6Srsj8)
+- [Using Elastic with React-Router](https://github.com/elastic/eui/blob/master/wiki/react-router.md)

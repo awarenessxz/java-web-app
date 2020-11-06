@@ -1,49 +1,57 @@
-import { MenuItem } from './AppSideBar.types';
+export interface MenuItem {
+    title: string;
+    route?: string | undefined;
+    iconType?: string | undefined; // EUI Icon Type
+    items?: MenuItem[] | undefined;
+}
 
-// eslint-disable-next-line import/prefer-default-export
 export const defaultMenuItems: MenuItem[] = [
     {
         title: 'Search',
-        iconType: 'logoKibana',
+        iconType: 'searchProfilerApp',
         route: '/',
-    },
-    {
-        title: 'Template',
-        iconType: 'logoAWS',
-        route: '/template',
         items: [
             {
-                title: 'Template A',
-                iconType: 'home',
-                route: '/templateA',
-            },
-            {
-                title: 'Template B',
-                iconType: 'home',
-                route: '/templateB',
+                title: 'Template',
+                iconType: 'list',
+                route: '/template',
                 items: [
                     {
-                        title: 'Template D',
-                        iconType: 'home',
-                        route: '/templateA',
+                        title: 'Default',
+                        iconType: 'list',
+                        items: [
+                            {
+                                title: 'Template A',
+                                iconType: 'search',
+                                route: '/template/templateA',
+                            },
+                            {
+                                title: 'Template B',
+                                iconType: 'search',
+                                route: '/template/templateB',
+                            },
+                        ],
                     },
                     {
-                        title: 'Template E',
-                        iconType: 'home',
-                        route: '/templateB',
+                        title: 'Personal',
+                        iconType: 'list',
                     },
                     {
-                        title: 'Template F',
-                        iconType: 'home',
-                        route: '/templateC',
+                        title: 'Shared',
+                        iconType: 'list',
                     },
                 ],
             },
             {
-                title: 'Template C',
-                iconType: 'home',
-                route: '/templateC',
+                title: 'Search Results',
+                iconType: 'reportingApp',
+                route: '/reports',
             },
         ],
+    },
+    {
+        title: 'Tools & Services',
+        iconType: 'spacesApp',
+        route: '/tools',
     },
 ];
