@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -23,27 +23,43 @@ const AppSidebar = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    useEffect(() => {
+        // set initial selected menu item on first load
+        if (selectedMenuItem === undefined) {
+            dispatch(setSelectedMenuItem(defaultMenuItems[0]));
+        }
+    }, []);
+
     const goToRoute = (item: MenuItem): void => {
-        dispatch(setSelectedMenuItem(item.title));
+        dispatch(setSelectedMenuItem(item));
         if (item.route !== undefined) {
             history.push(item.route);
         }
     };
 
-    const createMenuItem = (menuItem: MenuItem): EuiSideNavItemType<any> => {
+    // function for recursively create menu item in side nav
+    const createMenuItem = (menuItem: MenuItem, parent?: MenuItem): EuiSideNavItemType<any> => {
         // NOTE: Duplicate `name` values will cause `id` collisions.
-        const icon = menuItem.iconType ? <EuiIcon type={menuItem.iconType} /> : undefined;
+        const mMenuItem = { ...menuItem };
+        const icon = mMenuItem.iconType ? <EuiIcon type={mMenuItem.iconType} /> : undefined;
+        if (parent !== undefined) {
+            mMenuItem.parent = { ...parent, items: undefined }; // removes the items to prevent recursive stack overflow
+        }
         return {
             icon,
-            id: menuItem.title,
-            name: menuItem.title,
-            isSelected: selectedMenuItem === menuItem.title,
-            onClick: (): void => goToRoute(menuItem),
-            items: menuItem.items?.map((item) => createMenuItem(item)),
+            id: mMenuItem.title,
+            name: mMenuItem.title,
+            isSelected: selectedMenuItem?.title === mMenuItem.title,
+            onClick: (): void => goToRoute(mMenuItem),
+            items: mMenuItem.items?.map((item) => createMenuItem(item, mMenuItem)),
         };
     };
 
+    // function to re-render sidebar every time user clicks on menu items
     const generateSideBarMenuItems = (): EuiSideNavItemType<any>[] => {
+        if (selectedMenuItem === undefined) {
+            return [];
+        }
         return defaultMenuItems.map((item) => createMenuItem(item));
     };
 

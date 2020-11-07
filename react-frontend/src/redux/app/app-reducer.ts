@@ -1,7 +1,7 @@
 import { AppActionStateTypes, AppActionTypes, SET_SELECTED_MENU_ITEM } from './app-action.types';
 
 const initialState: AppActionStateTypes = {
-    selectedMenuItem: '',
+    selectedMenuItem: undefined,
 };
 
 const appReducer = (state: AppActionStateTypes = initialState, action: AppActionTypes): AppActionStateTypes => {

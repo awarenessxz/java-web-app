@@ -1,6 +1,9 @@
+import { MenuItem } from '../../components/AppSidebar/AppMenuItems';
+
 /* ***************************************************************************************
  * List of all action type
  *************************************************************************************** */
+
 export const SET_SELECTED_MENU_ITEM = 'SET_SELECTED_MENU_ITEM';
 
 /* ***************************************************************************************
@@ -10,7 +13,7 @@ export const SET_SELECTED_MENU_ITEM = 'SET_SELECTED_MENU_ITEM';
 interface SetSelectedMenuItemAction {
     type: typeof SET_SELECTED_MENU_ITEM;
     payload: {
-        menuItem: string;
+        menuItem: MenuItem;
     };
 }
 
@@ -21,5 +24,5 @@ export type AppActionTypes = SetSelectedMenuItemAction;
  *************************************************************************************** */
 
 export interface AppActionStateTypes {
-    selectedMenuItem: string;
+    selectedMenuItem: MenuItem | undefined;
 }

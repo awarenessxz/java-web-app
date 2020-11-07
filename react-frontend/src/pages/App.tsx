@@ -11,7 +11,7 @@ const App = (): JSX.Element => {
         // sleep for 5 seconds to show the loading component
         setTimeout(() => {
             setSiteReadyState(true);
-        }, 5000);
+        }, 1000);
     }, []);
 
     if (isSiteReady) {

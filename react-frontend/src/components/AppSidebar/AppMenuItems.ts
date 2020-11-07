@@ -3,6 +3,7 @@ export interface MenuItem {
     route?: string | undefined;
     iconType?: string | undefined; // EUI Icon Type
     items?: MenuItem[] | undefined;
+    parent?: MenuItem | undefined;
 }
 
 export const defaultMenuItems: MenuItem[] = [
