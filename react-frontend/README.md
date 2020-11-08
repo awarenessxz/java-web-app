@@ -20,7 +20,7 @@ root
     ├── components          # components used by pages
     ├── pages               # each web pages
     ├── redux               # global variable (state management)
-    ├── styles              # css style sheets (css modules with SASS)
+    ├── styles              # css global style sheets (css modules with SASS)
     └── utils               # helper functions
 ```
 

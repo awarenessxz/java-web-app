@@ -13,9 +13,9 @@ export const defaultMenuItems: MenuItem[] = [
         route: '/',
         items: [
             {
-                title: 'Template',
+                title: 'Search Templates',
                 iconType: 'list',
-                route: '/template',
+                route: '/templates',
                 items: [
                     {
                         title: 'Default',
@@ -24,12 +24,12 @@ export const defaultMenuItems: MenuItem[] = [
                             {
                                 title: 'Template A',
                                 iconType: 'search',
-                                route: '/template/templateA',
+                                route: '/templates/templateA',
                             },
                             {
                                 title: 'Template B',
                                 iconType: 'search',
-                                route: '/template/templateB',
+                                route: '/templates/templateB',
                             },
                         ],
                     },
@@ -46,13 +46,13 @@ export const defaultMenuItems: MenuItem[] = [
             {
                 title: 'Search Results',
                 iconType: 'reportingApp',
-                route: '/reports',
+                route: '/searchResults',
             },
         ],
     },
     {
         title: 'Tools & Services',
         iconType: 'spacesApp',
-        route: '/tools',
+        route: '/toolsAndServices',
     },
 ];

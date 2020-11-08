@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import loadingGif from '../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
-import AppContent from '../components/AppContent/AppContent';
+import SearchForm from './Search/SearchForm';
+import SearchResults from './Search/SearchResults';
+import SearchTemplateList from './Search/SearchTemplateList';
+import ToolsAndServices from './ToolsAndServices/ToolsAndServices';
 
 const App = (): JSX.Element => {
     const [isSiteReady, setSiteReadyState] = useState(false);
@@ -19,16 +22,14 @@ const App = (): JSX.Element => {
             <Router>
                 <AppHeader />
                 <Switch>
-                    <Route exact path="/" component={AppContent} />
+                    <Route exact path="/" component={SearchForm} />
+                    <Route exact path="/templates" component={SearchTemplateList} />
                     <Route
-                        exact
-                        path="/template"
-                        render={(props): JSX.Element => <AppContent {...props} position={2} />}
+                        path="/templates/:templateId"
+                        render={(props): JSX.Element => <SearchForm {...props} loadTemplate />}
                     />
-                    <Route
-                        path="/template/:templateId"
-                        render={(props): JSX.Element => <AppContent {...props} position={3} />}
-                    />
+                    <Route exact path="/searchResults" component={SearchResults} />
+                    <Route path="/toolsAndServices" component={ToolsAndServices} />
                 </Switch>
             </Router>
         );
