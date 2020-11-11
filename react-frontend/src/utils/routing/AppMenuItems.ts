@@ -57,7 +57,19 @@ export const defaultMenuItems: MenuItem[] = [
     {
         title: 'Tools & Services',
         iconType: 'spacesApp',
-        route: '/toolsAndServices',
+        route: '/tns',
+        items: [
+            {
+                title: 'React Component Library',
+                iconType: 'canvasApp',
+                route: '/tns/componentLibrary',
+            },
+            {
+                title: 'Micro Frontend',
+                iconType: 'emsApp',
+                route: '/tns/microFrontend',
+            },
+        ]
     },
 ];
 

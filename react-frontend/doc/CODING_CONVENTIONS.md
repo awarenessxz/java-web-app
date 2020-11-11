@@ -3,6 +3,14 @@
 - Code using typescript
 - Use CSS Modules for components instead of global CSS
 
+# React Components
+
+1. **Import Order** -- When writing react components, try to order your imports in the following order (Refer to [App.tsx](../src/pages/App.tsx) for example): 
+    - React
+    - Redux Actions
+    - Utility Functions
+    - Components / Pages
+
 ## Redux 
 
 In a nutshell, redux uses a one way data flow for state management

@@ -60,7 +60,7 @@ const App = (): JSX.Element => {
                         render={(props): JSX.Element => <SearchForm {...props} loadTemplate />}
                     />
                     <Route exact path="/searchResults" component={SearchResults} />
-                    <Route path="/toolsAndServices" component={ToolsAndServices} />
+                    <Route path="/tns" component={ToolsAndServices} />
                 </Switch>
             </Router>
         );

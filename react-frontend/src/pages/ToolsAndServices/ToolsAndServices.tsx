@@ -1,4 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { setSelectedMenuItem } from '../../redux/app/app-action';
+import { RootState } from '../../redux/root-reducer';
+import { tnsCards } from '../../utils/routing/AppToolsAndServicesCard';
 import {
     EuiCard,
     EuiIcon,
@@ -14,21 +19,30 @@ import {
 } from '@elastic/eui';
 
 const ToolsAndServices = (): JSX.Element => {
-    const icons = ['dashboard', 'monitoring', 'watches'];
-    const badges = [undefined, 'Beta', 'Lab'];
+    const menuItemsMap = useSelector((state: RootState) => state.app.menuItemsMapping);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const cardNodes = icons.map((item, index) => {
+    const goToRoute = (route: string): void => {
+        if (route in menuItemsMap) {
+            const menuItem = menuItemsMap[route];
+            dispatch(setSelectedMenuItem(menuItem));
+            history.push(route);
+        }
+    };
+
+    const cardNodes = tnsCards.map((item, index) => {
         return (
-            <EuiFlexItem key={index}>
+            <EuiFlexItem key={index} grow={false}>
                 <EuiCard
-                    icon={<EuiIcon size="xxl" type={`${item}App`} />}
-                    title={`Kibana ${item}`}
-                    description="Example of a card's description. Stick to one or two sentences."
-                    betaBadgeLabel={badges[index]}
-                    betaBadgeTooltipContent={
-                        badges[index] ? 'This module is not GA. Please help us by reporting any bugs.' : undefined
-                    }
-                    onClick={() => {}}
+                    icon={item.iconType ? <EuiIcon size="xxl" type={item.iconType} /> : undefined}
+                    title={item.title}
+                    description={item.description}
+                    betaBadgeLabel={item.betaBadgeLabel}
+                    betaBadgeTooltipContent={item.betaBadgeTooltipContent}
+                    onClick={() => {
+                        goToRoute(item.route);
+                    }}
                 />
             </EuiFlexItem>
         );
