@@ -6,6 +6,10 @@ export interface MenuItem {
     parent?: MenuItem | undefined;
 }
 
+export interface MenuItemMap {
+    [route: string]: MenuItem; // ['route'] = MenuItem
+}
+
 export const defaultMenuItems: MenuItem[] = [
     {
         title: 'Search',
@@ -56,3 +60,18 @@ export const defaultMenuItems: MenuItem[] = [
         route: '/toolsAndServices',
     },
 ];
+
+// creates menu Item recursively
+const createMenuItemMappingRecursively = (menuItemMapping: MenuItemMap, menuItem: MenuItem) => {
+    if (menuItem.route !== undefined) {
+        menuItemMapping[menuItem.route] = menuItem;
+    }
+    menuItem.items?.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
+};
+
+// initialize menu Item Mapping for easy reference
+export const generateMenuItemMapping = (): MenuItemMap => {
+    const menuItemMapping: MenuItemMap = {};
+    defaultMenuItems.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
+    return menuItemMapping;
+};

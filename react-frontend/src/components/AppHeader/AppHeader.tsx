@@ -1,13 +1,18 @@
-import React from 'react';
+// ******************************************************************************* React
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { EuiBreadcrumb, EuiHeader, EuiHeaderLogo } from '@elastic/eui';
-import AppSidebar from '../AppSidebar/AppSidebar';
-import { MenuItem } from '../AppSidebar/AppMenuItems';
+// ******************************************************************************* Redux Actions
 import { RootState } from '../../redux/root-reducer';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
+// ******************************************************************************* Utility Functions
+import { MenuItem } from '../../utils/routing/AppMenuItems';
+// ******************************************************************************* Components / Pages
+import { EuiBreadcrumb, EuiHeader, EuiHeaderLogo } from '@elastic/eui';
+import AppSidebar from '../AppSidebar/AppSidebar';
 
 const AppHeader = (): JSX.Element => {
+    const [breadcrumbs, setBreadcrumbs] = useState<EuiBreadcrumb[]>([]);
     const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -20,7 +25,7 @@ const AppHeader = (): JSX.Element => {
     };
 
     // function for recursively create breadcrumbs in header
-    const createBreadcrumb = (breadcrumbs: EuiBreadcrumb[], menuItem: MenuItem): void => {
+    const createBreadcrumb = (breadcrumbsArr: EuiBreadcrumb[], menuItem: MenuItem): void => {
         const breadcrumb: EuiBreadcrumb = {
             text: menuItem.title,
         };
@@ -32,19 +37,24 @@ const AppHeader = (): JSX.Element => {
             };
         }
         if (menuItem.parent !== undefined) {
-            createBreadcrumb(breadcrumbs, menuItem.parent);
+            createBreadcrumb(breadcrumbsArr, menuItem.parent);
         }
-        breadcrumbs.push(breadcrumb);
+        breadcrumbsArr.push(breadcrumb);
     };
 
     // function to re-render breadcrumbs in header every time user clicks on menu items
-    const generateBreadcrumbs = (): EuiBreadcrumb[] => {
-        const breadcrumbs: EuiBreadcrumb[] = [];
+    const generateBreadcrumbs = (): void => {
+        const breadcrumbsArr: EuiBreadcrumb[] = [];
         if (selectedMenuItem !== undefined) {
-            createBreadcrumb(breadcrumbs, selectedMenuItem);
+            createBreadcrumb(breadcrumbsArr, selectedMenuItem);
+            setBreadcrumbs(breadcrumbsArr);
         }
-        return breadcrumbs;
     };
+
+    useEffect(() => {
+        // re-render breadcrumbs whenever selected menuItem changes
+        generateBreadcrumbs();
+    }, [selectedMenuItem]);
 
     // Navigation Menu + Logo
     const leftSectionItems = [
@@ -61,7 +71,7 @@ const AppHeader = (): JSX.Element => {
                 {
                     items: leftSectionItems,
                     borders: 'right',
-                    breadcrumbs: generateBreadcrumbs(),
+                    breadcrumbs,
                     breadcrumbProps: {
                         'aria-label': 'Header sections breadcrumbs',
                     },

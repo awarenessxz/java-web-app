@@ -19,7 +19,6 @@ interface SearchFormProps extends RouteComponentProps<SearchFormRouterParams> {
 }
 
 const SearchForm = ({ loadTemplate = false, ...props }: SearchFormProps): JSX.Element => {
-    // temporary for demo only
     const content = (): JSX.Element => {
         if (loadTemplate) {
             return <div>Showing Template -- {props.match.params.templateId}</div>;

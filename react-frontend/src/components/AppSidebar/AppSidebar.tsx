@@ -1,6 +1,13 @@
-import React, { useEffect, useState } from 'react';
+// ******************************************************************************* React
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+// ******************************************************************************* Redux Actions
+import { setSelectedMenuItem } from '../../redux/app/app-action';
+import { RootState } from '../../redux/root-reducer';
+// ******************************************************************************* Utility Functions
+import { defaultMenuItems, MenuItem } from '../../utils/routing/AppMenuItems';
+// ******************************************************************************* Components / Pages
 import {
     EuiCollapsibleNav,
     EuiCollapsibleNavGroup,
@@ -12,9 +19,6 @@ import {
     EuiSideNav,
     EuiSideNavItemType,
 } from '@elastic/eui';
-import { defaultMenuItems, MenuItem } from './AppMenuItems';
-import { setSelectedMenuItem } from '../../redux/app/app-action';
-import { RootState } from '../../redux/root-reducer';
 
 const AppSidebar = (): JSX.Element => {
     const [navIsOpen, setIsNavOpen] = useState(true);
@@ -22,13 +26,6 @@ const AppSidebar = (): JSX.Element => {
     const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
     const dispatch = useDispatch();
     const history = useHistory();
-
-    useEffect(() => {
-        // set initial selected menu item on first load
-        if (selectedMenuItem === undefined) {
-            dispatch(setSelectedMenuItem(defaultMenuItems[0]));
-        }
-    }, []);
 
     const goToRoute = (item: MenuItem): void => {
         dispatch(setSelectedMenuItem(item));

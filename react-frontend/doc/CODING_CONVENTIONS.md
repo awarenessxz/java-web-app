@@ -7,7 +7,7 @@
 
 In a nutshell, redux uses a one way data flow for state management
 
-![one-way-data-flow](doc/images/redux-one-way-data-flow.png)
+![one-way-data-flow](images/redux-one-way-data-flow.png)
 
 - view: dispatch actions
 - reducer: receives actions and update state
@@ -28,4 +28,4 @@ root
         └── root-reducer.ts             # combine all reducers
 ```
 
-
+To use states in the redux store in components, make use of `useDispatch` and `useSelector` hooks

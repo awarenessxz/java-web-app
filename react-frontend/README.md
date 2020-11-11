@@ -18,10 +18,13 @@ root
 ├── doc                     # documentations
 └── src
     ├── components          # components used by pages
-    ├── pages               # each web pages
+    ├── pages               # main web pages
     ├── redux               # global variable (state management)
     ├── styles              # css global style sheets (css modules with SASS)
     └── utils               # helper functions
+        ├── hooks           # custom hooks 
+        ├── routing         # routing / menu / navigation related
+        └── ...             # etc...
 ```
 
 Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on how you should structure your codes

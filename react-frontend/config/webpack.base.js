@@ -22,6 +22,7 @@ module.exports = merge([
         plugins: [
             new HtmlWebpackPlugin({
                 title: app.title,
+                favicon: `${app.paths.assets}/favicon.ico`,
                 template: `${app.paths.src}/index.html`,
                 hash: true,
             })
