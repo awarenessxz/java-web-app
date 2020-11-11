@@ -14,6 +14,8 @@ import SearchForm from './Search/SearchForm';
 import SearchResults from './Search/SearchResults';
 import SearchTemplateList from './Search/SearchTemplateList';
 import ToolsAndServices from './ToolsAndServices/ToolsAndServices';
+import DemoCompLibrary from './ToolsAndServices/DemoCompLibrary';
+import DemoMicroFrontend from './ToolsAndServices/DemoMicroFrontend';
 
 const App = (): JSX.Element => {
     const [isSiteReady, setSiteReadyState] = useState(false);
@@ -24,9 +26,8 @@ const App = (): JSX.Element => {
         const route = window.location.hash.replace(/#/, '');
         if (route === '') {
             return '/'; // "website.com/#/" ---> this will give empty string
-        } else {
-            return route;
         }
+        return route;
     };
 
     // initial load (set application state)
@@ -60,7 +61,9 @@ const App = (): JSX.Element => {
                         render={(props): JSX.Element => <SearchForm {...props} loadTemplate />}
                     />
                     <Route exact path="/searchResults" component={SearchResults} />
-                    <Route path="/tns" component={ToolsAndServices} />
+                    <Route exact path="/tns" component={ToolsAndServices} />
+                    <Route exact path="/tns/componentLibrary" component={DemoCompLibrary} />
+                    <Route exact path="/tns/microFrontend" component={DemoMicroFrontend} />
                 </Switch>
             </Router>
         );
