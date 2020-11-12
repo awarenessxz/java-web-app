@@ -5,7 +5,8 @@ import {
     SET_IS_ADMIN_USER,
     SET_SELECTED_MENU_ITEM,
 } from './app-action.types';
-import { generateMenuItemMapping, getCurrentRoute, MenuItem, MenuItemMap } from '../../utils/routing/navigation-utils';
+import { MenuItem } from '../../utils/routing/app-menu-item';
+import { generateMenuItemMapping, getCurrentRoute, MenuItemMap } from '../../utils/routing/navigation-utils';
 import { checkUserAccess } from '../../utils/app/access-control';
 
 /* ***************************************************************************************
@@ -50,7 +51,7 @@ export const initBaseApplication = (): AppThunkResult<void> => {
     const menuItemMapping = generateMenuItemMapping();
     const selectedMenuItem = menuItemMapping[getCurrentRoute()];
 
-    // verify user details
+    // verify user details (temporary)
     // fetch user details
     const userDetails = { userId: 'user123' };
     const isAdminUser = checkUserAccess(userDetails.userId);

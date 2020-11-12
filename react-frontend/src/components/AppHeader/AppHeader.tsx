@@ -6,7 +6,7 @@ import AppHeaderKeypadMenu from './AppHeaderKeypadMenu';
 import AppSidebar from '../AppSidebar/AppSidebar';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
-import { MenuItem } from '../../utils/routing/navigation-utils';
+import { MenuItem } from '../../utils/routing/app-menu-item';
 
 const AppHeader = (): JSX.Element => {
     const [breadcrumbs, setBreadcrumbs] = useState<EuiBreadcrumb[]>([]);

@@ -1,10 +1,7 @@
-import { defaultMenuItems, NavMenuItem } from './app-nav-menu';
-import { adminConsoleMenuItems, AdminMenuItem } from './app-admin-menu';
-
-export type MenuItem = NavMenuItem | AdminMenuItem;
+import { adminConsoleMenuItems, defaultMenuItems, MenuItem } from './app-menu-item';
 
 export interface MenuItemMap {
-    [route: string]: MenuItem; // ['route'] = NavMenuItem | AdminMenuItem;
+    [route: string]: MenuItem; // ['route'] = MenuItem;
 }
 
 /* ***************************************************************************************
@@ -17,10 +14,7 @@ const createMenuItemMappingRecursively = (menuItemMapping: MenuItemMap, menuItem
         // eslint-disable-next-line no-param-reassign
         menuItemMapping[menuItem.route] = menuItem;
     }
-    // MenuItems have sub Items [Additional processing required]
-    if ('items' in menuItem) {
-        menuItem.items?.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
-    }
+    menuItem.items?.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
 };
 
 // initialize menu Item Mapping for easy reference
@@ -35,7 +29,7 @@ export const generateMenuItemMapping = (): MenuItemMap => {
  * Routing Related Utility Functions
  *************************************************************************************** */
 
-// eslint-disable-next-line import/prefer-default-export
+// get current url route
 export const getCurrentRoute = (): string => {
     const route = window.location.hash.replace(/#/, '');
     if (route === '') {

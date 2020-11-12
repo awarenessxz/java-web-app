@@ -15,8 +15,7 @@ import {
 import AppSidebarAdminConsole from './AppSidebarAdminConsole';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
-import { defaultMenuItems, NavMenuItem } from '../../utils/routing/app-nav-menu';
-import { MenuItem } from '../../utils/routing/navigation-utils';
+import { defaultMenuItems, MenuItem } from '../../utils/routing/app-menu-item';
 
 const AppSidebar = (): JSX.Element => {
     const [navIsOpen, setIsNavOpen] = useState(true);
@@ -34,7 +33,7 @@ const AppSidebar = (): JSX.Element => {
     };
 
     // function for recursively create menu item in side nav
-    const createMenuItem = (menuItem: NavMenuItem, parent?: NavMenuItem): EuiSideNavItemType<any> => {
+    const createMenuItem = (menuItem: MenuItem, parent?: MenuItem): EuiSideNavItemType<any> => {
         // NOTE: Duplicate `name` values will cause `id` collisions.
         const mMenuItem = { ...menuItem };
         const icon = mMenuItem.iconType ? <EuiIcon type={mMenuItem.iconType} /> : undefined;

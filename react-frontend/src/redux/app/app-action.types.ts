@@ -1,5 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
-import { MenuItem, MenuItemMap } from '../../utils/routing/navigation-utils';
+import { MenuItem } from '../../utils/routing/app-menu-item';
+import { MenuItemMap } from '../../utils/routing/navigation-utils';
 
 /* ***************************************************************************************
  * Types Definition for other

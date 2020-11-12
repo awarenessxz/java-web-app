@@ -1,12 +1,29 @@
-export interface NavMenuItem {
+import { EuiListGroupItemProps } from '@elastic/eui';
+
+export interface MenuItem {
     title: string;
     route?: string | undefined;
     iconType?: string | undefined; // EUI Icon Type
-    items?: NavMenuItem[] | undefined;
-    parent?: NavMenuItem | undefined;
+    items?: MenuItem[] | undefined;
+    parent?: MenuItem | undefined;
 }
 
-export const defaultMenuItems: NavMenuItem[] = [
+type AdminMenuItem = MenuItem & EuiListGroupItemProps;
+
+export const adminConsoleMenuItems: AdminMenuItem[] = [
+    {
+        route: '/admin/announcements',
+        title: 'Announcements', // required for MenuItem
+        label: 'Announcements', // required for EuiListGroupItemProps
+        iconType: 'cheer',
+        size: 's',
+        parent: {
+            title: 'admin',
+        },
+    },
+];
+
+export const defaultMenuItems: MenuItem[] = [
     {
         title: 'Search',
         iconType: 'searchProfilerApp',

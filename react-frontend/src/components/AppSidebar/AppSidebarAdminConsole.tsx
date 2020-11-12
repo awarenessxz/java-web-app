@@ -1,30 +1,16 @@
 import React from 'react';
 import { EuiCollapsibleNavGroup, EuiFlexItem, EuiListGroup } from '@elastic/eui';
-import { adminConsoleMenuItems, AdminMenuItem } from '../../utils/routing/app-admin-menu';
-import { MenuItem } from '../../utils/routing/navigation-utils';
+import { adminConsoleMenuItems, MenuItem } from '../../utils/routing/app-menu-item';
 
 interface AppSidebarAdminConsoleProps {
     goToRoute: (item: MenuItem) => void;
 }
 
 const AppSidebarAdminConsole = (props: AppSidebarAdminConsoleProps): JSX.Element => {
-    const goToRoute = (item: AdminMenuItem): void => {
-        const menuItem: MenuItem = {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-            title: item.label?.toString()!,
-            iconType: item.iconType?.toString(),
-            route: item.route,
-            parent: {
-                title: 'admin',
-            },
-        };
-        props.goToRoute(menuItem);
-    };
-
     const listItems = adminConsoleMenuItems.map((item) => {
         return {
             ...item,
-            onClick: (): void => goToRoute(item),
+            onClick: (): void => props.goToRoute(item),
         };
     });
 
