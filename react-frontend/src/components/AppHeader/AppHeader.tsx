@@ -1,15 +1,12 @@
-// ******************************************************************************* React
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// ******************************************************************************* Redux Actions
-import { RootState } from '../../redux/root-reducer';
-import { setSelectedMenuItem } from '../../redux/app/app-action';
-// ******************************************************************************* Utility Functions
-import { MenuItem } from '../../utils/routing/AppMenuItems';
-// ******************************************************************************* Components / Pages
 import { EuiBreadcrumb, EuiHeader, EuiHeaderLogo } from '@elastic/eui';
+import AppHeaderKeypadMenu from './AppHeaderKeypadMenu';
 import AppSidebar from '../AppSidebar/AppSidebar';
+import { setSelectedMenuItem } from '../../redux/app/app-action';
+import { RootState } from '../../redux/root-reducer';
+import { MenuItem } from '../../utils/routing/navigation-utils';
 
 const AppHeader = (): JSX.Element => {
     const [breadcrumbs, setBreadcrumbs] = useState<EuiBreadcrumb[]>([]);
@@ -47,8 +44,8 @@ const AppHeader = (): JSX.Element => {
         const breadcrumbsArr: EuiBreadcrumb[] = [];
         if (selectedMenuItem !== undefined) {
             createBreadcrumb(breadcrumbsArr, selectedMenuItem);
-            setBreadcrumbs(breadcrumbsArr);
         }
+        setBreadcrumbs(breadcrumbsArr);
     };
 
     useEffect(() => {
@@ -64,6 +61,9 @@ const AppHeader = (): JSX.Element => {
         </EuiHeaderLogo>,
     ];
 
+    // Other Icons
+    const rightSectionItems = [<AppHeaderKeypadMenu key="appKeypadMenu" />];
+
     return (
         <EuiHeader
             position="fixed"
@@ -75,6 +75,9 @@ const AppHeader = (): JSX.Element => {
                     breadcrumbProps: {
                         'aria-label': 'Header sections breadcrumbs',
                     },
+                },
+                {
+                    items: rightSectionItems,
                 },
             ]}
         />

@@ -1,13 +1,6 @@
-// ******************************************************************************* React
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// ******************************************************************************* Redux Actions
-import { setSelectedMenuItem } from '../../redux/app/app-action';
-import { RootState } from '../../redux/root-reducer';
-// ******************************************************************************* Utility Functions
-import { defaultMenuItems, MenuItem } from '../../utils/routing/AppMenuItems';
-// ******************************************************************************* Components / Pages
 import {
     EuiCollapsibleNav,
     EuiCollapsibleNavGroup,
@@ -19,11 +12,17 @@ import {
     EuiSideNav,
     EuiSideNavItemType,
 } from '@elastic/eui';
+import AppSidebarAdminConsole from './AppSidebarAdminConsole';
+import { setSelectedMenuItem } from '../../redux/app/app-action';
+import { RootState } from '../../redux/root-reducer';
+import { defaultMenuItems, NavMenuItem } from '../../utils/routing/app-nav-menu';
+import { MenuItem } from '../../utils/routing/navigation-utils';
 
 const AppSidebar = (): JSX.Element => {
     const [navIsOpen, setIsNavOpen] = useState(true);
     const [navIsDocked, setIsNavDocked] = useState(true);
     const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
+    const isAdminUser = useSelector((state: RootState) => state.app.isAdminUser);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -35,7 +34,7 @@ const AppSidebar = (): JSX.Element => {
     };
 
     // function for recursively create menu item in side nav
-    const createMenuItem = (menuItem: MenuItem, parent?: MenuItem): EuiSideNavItemType<any> => {
+    const createMenuItem = (menuItem: NavMenuItem, parent?: NavMenuItem): EuiSideNavItemType<any> => {
         // NOTE: Duplicate `name` values will cause `id` collisions.
         const mMenuItem = { ...menuItem };
         const icon = mMenuItem.iconType ? <EuiIcon type={mMenuItem.iconType} /> : undefined;
@@ -76,6 +75,8 @@ const AppSidebar = (): JSX.Element => {
             }
             showCloseButton={false}
         >
+            {isAdminUser && <AppSidebarAdminConsole goToRoute={goToRoute} />}
+
             <EuiFlexItem className="eui-yScroll">
                 <EuiSideNav items={generateSideBarMenuItems()} style={{ padding: '16px' }} />
             </EuiFlexItem>

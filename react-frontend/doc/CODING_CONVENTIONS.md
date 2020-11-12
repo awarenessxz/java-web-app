@@ -3,13 +3,11 @@
 - Code using typescript
 - Use CSS Modules for components instead of global CSS
 
-# React Components
+# Naming Conventions
 
-1. **Import Order** -- When writing react components, try to order your imports in the following order (Refer to [App.tsx](../src/pages/App.tsx) for example): 
-    - React
-    - Redux Actions
-    - Utility Functions
-    - Components / Pages
+- React JSX files eg. `SomethingComponent.tsx`
+- Javascript files eg. `something-functions.ts`
+- Readme files eg. `SOMETHING_README.md`
 
 ## Redux 
 

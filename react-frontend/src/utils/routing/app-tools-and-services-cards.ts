@@ -1,18 +1,18 @@
-import { EuiCardProps } from "@elastic/eui";
+import { EuiCardProps } from '@elastic/eui';
 
-export interface tnsCardDetail extends EuiCardProps {
+export interface TnsCardDetail extends EuiCardProps {
     route: string;
     iconType?: string | undefined; // EUI Icon Type
 }
 
-export const tnsCards: tnsCardDetail[] = [
+export const tnsCards: TnsCardDetail[] = [
     {
         route: '/tns/componentLibrary',
         title: 'React Component Library',
         iconType: 'canvasApp',
         description: 'Demonstrations of component library capability',
         betaBadgeLabel: 'Beta',
-        betaBadgeTooltipContent: 'Still experimenting...'
+        betaBadgeTooltipContent: 'Still experimenting...',
     },
     {
         route: '/tns/microFrontend',
@@ -20,6 +20,6 @@ export const tnsCards: tnsCardDetail[] = [
         iconType: 'emsApp',
         description: 'Demonstrations of micro frontend possibility',
         betaBadgeLabel: 'Beta',
-        betaBadgeTooltipContent: 'Still experimenting...'
-    }
+        betaBadgeTooltipContent: 'Still experimenting...',
+    },
 ];

@@ -1,16 +1,12 @@
-export interface MenuItem {
+export interface NavMenuItem {
     title: string;
     route?: string | undefined;
     iconType?: string | undefined; // EUI Icon Type
-    items?: MenuItem[] | undefined;
-    parent?: MenuItem | undefined;
+    items?: NavMenuItem[] | undefined;
+    parent?: NavMenuItem | undefined;
 }
 
-export interface MenuItemMap {
-    [route: string]: MenuItem; // ['route'] = MenuItem
-}
-
-export const defaultMenuItems: MenuItem[] = [
+export const defaultMenuItems: NavMenuItem[] = [
     {
         title: 'Search',
         iconType: 'searchProfilerApp',
@@ -69,21 +65,6 @@ export const defaultMenuItems: MenuItem[] = [
                 iconType: 'emsApp',
                 route: '/tns/microFrontend',
             },
-        ]
+        ],
     },
 ];
-
-// creates menu Item recursively
-const createMenuItemMappingRecursively = (menuItemMapping: MenuItemMap, menuItem: MenuItem) => {
-    if (menuItem.route !== undefined) {
-        menuItemMapping[menuItem.route] = menuItem;
-    }
-    menuItem.items?.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
-};
-
-// initialize menu Item Mapping for easy reference
-export const generateMenuItemMapping = (): MenuItemMap => {
-    const menuItemMapping: MenuItemMap = {};
-    defaultMenuItems.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
-    return menuItemMapping;
-};

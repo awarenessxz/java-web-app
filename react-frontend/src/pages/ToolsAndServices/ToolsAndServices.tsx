@@ -1,9 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { setSelectedMenuItem } from '../../redux/app/app-action';
-import { RootState } from '../../redux/root-reducer';
-import { tnsCards } from '../../utils/routing/AppToolsAndServicesCard';
 import {
     EuiCard,
     EuiIcon,
@@ -17,6 +14,9 @@ import {
     EuiPageContentBody,
     EuiTitle,
 } from '@elastic/eui';
+import { setSelectedMenuItem } from '../../redux/app/app-action';
+import { RootState } from '../../redux/root-reducer';
+import { tnsCards } from '../../utils/routing/app-tools-and-services-cards';
 
 const ToolsAndServices = (): JSX.Element => {
     const menuItemsMap = useSelector((state: RootState) => state.app.menuItemsMapping);
@@ -40,7 +40,7 @@ const ToolsAndServices = (): JSX.Element => {
                     description={item.description}
                     betaBadgeLabel={item.betaBadgeLabel}
                     betaBadgeTooltipContent={item.betaBadgeTooltipContent}
-                    onClick={() => {
+                    onClick={(): void => {
                         goToRoute(item.route);
                     }}
                 />
