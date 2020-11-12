@@ -1,19 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-    EuiCard,
-    EuiIcon,
-    EuiFlexGroup,
-    EuiFlexItem,
-    EuiPage,
-    EuiPageBody,
-    EuiPageContent,
-    EuiPageContentHeader,
-    EuiPageContentHeaderSection,
-    EuiPageContentBody,
-    EuiTitle,
-} from '@elastic/eui';
+import { EuiCard, EuiIcon, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+import AppContent from '../../components/AppContent/AppContent';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
 import { tnsCards } from '../../utils/routing/app-tools-and-services-cards';
@@ -49,22 +38,9 @@ const ToolsAndServices = (): JSX.Element => {
     });
 
     return (
-        <EuiPage>
-            <EuiPageBody component="div">
-                <EuiPageContent>
-                    <EuiPageContentHeader>
-                        <EuiPageContentHeaderSection>
-                            <EuiTitle>
-                                <h2>Tools & Services</h2>
-                            </EuiTitle>
-                        </EuiPageContentHeaderSection>
-                    </EuiPageContentHeader>
-                    <EuiPageContentBody>
-                        <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>
-                    </EuiPageContentBody>
-                </EuiPageContent>
-            </EuiPageBody>
-        </EuiPage>
+        <AppContent title="Tools & Services">
+            <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>
+        </AppContent>
     );
 };
 

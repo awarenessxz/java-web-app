@@ -1,7 +1,8 @@
 import React from 'react';
+import AppContent from '../../components/AppContent/AppContent';
 
 const DemoCompLibrary = (): JSX.Element => {
-    return <div>Demo React Component Library</div>;
+    return <AppContent title="Demo React Component Library" />;
 };
 
 export default DemoCompLibrary;

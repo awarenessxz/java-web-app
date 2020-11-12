@@ -1,14 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import {
-    EuiPage,
-    EuiPageBody,
-    EuiPageContent,
-    EuiPageContentBody,
-    EuiPageContentHeader,
-    EuiPageContentHeaderSection,
-    EuiTitle,
-} from '@elastic/eui';
+import AppContent from '../../components/AppContent/AppContent';
 
 type SearchFormRouterParams = {
     templateId: string;
@@ -26,22 +18,7 @@ const SearchForm = ({ loadTemplate = false, ...props }: SearchFormProps): JSX.El
         return <div>Base Search Form</div>;
     };
 
-    return (
-        <EuiPage>
-            <EuiPageBody component="div">
-                <EuiPageContent>
-                    <EuiPageContentHeader>
-                        <EuiPageContentHeaderSection>
-                            <EuiTitle>
-                                <h2>Search Form</h2>
-                            </EuiTitle>
-                        </EuiPageContentHeaderSection>
-                    </EuiPageContentHeader>
-                    <EuiPageContentBody>{content()}</EuiPageContentBody>
-                </EuiPageContent>
-            </EuiPageBody>
-        </EuiPage>
-    );
+    return <AppContent title="Search Form">{content()}</AppContent>;
 };
 
 export default SearchForm;

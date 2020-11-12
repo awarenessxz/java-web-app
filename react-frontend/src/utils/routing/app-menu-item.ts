@@ -13,8 +13,8 @@ type AdminMenuItem = MenuItem & EuiListGroupItemProps;
 export const adminConsoleMenuItems: AdminMenuItem[] = [
     {
         route: '/admin/announcements',
-        title: 'Announcements', // required for MenuItem
-        label: 'Announcements', // required for EuiListGroupItemProps
+        title: 'Announcement Console', // required for MenuItem
+        label: 'Announcement Console', // required for EuiListGroupItemProps
         iconType: 'cheer',
         size: 's',
         parent: {

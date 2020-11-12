@@ -1,7 +1,8 @@
 import React from 'react';
+import AppContent from '../../components/AppContent/AppContent';
 
 const DemoMicroFrontend = (): JSX.Element => {
-    return <div>Demo Micro-frontend</div>;
+    return <AppContent title="Demo Micro-frontend" />;
 };
 
 export default DemoMicroFrontend;

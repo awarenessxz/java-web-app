@@ -4,10 +4,12 @@ import {
     INIT_BASE_APP,
     SET_IS_ADMIN_USER,
     SET_SELECTED_MENU_ITEM,
+    SET_SHOW_ANNOUNCEMENT,
 } from './app-action.types';
 
 const initialState: AppActionStateTypes = {
     isAdminUser: false,
+    showAnnouncement: false,
     selectedMenuItem: undefined,
     menuItemsMapping: {},
     isSiteReady: false,
@@ -20,6 +22,11 @@ const appReducer = (state: AppActionStateTypes = initialState, action: AppAction
                 ...state,
                 isAdminUser: action.payload.isAdminUser,
             };
+        case SET_SHOW_ANNOUNCEMENT:
+            return {
+                ...state,
+                showAnnouncement: action.payload.showAnnouncement,
+            };
         case SET_SELECTED_MENU_ITEM:
             return {
                 ...state,
@@ -30,6 +37,7 @@ const appReducer = (state: AppActionStateTypes = initialState, action: AppAction
                 ...state,
                 selectedMenuItem: action.payload.selectedMenuItem,
                 menuItemsMapping: action.payload.menuItemsMapping,
+                showAnnouncement: action.payload.showAnnouncement,
                 isAdminUser: action.payload.isAdminUser,
                 isSiteReady: action.payload.isSiteReady,
             };

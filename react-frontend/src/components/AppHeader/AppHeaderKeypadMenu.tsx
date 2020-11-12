@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { EuiHeaderSectionItemButton, EuiIcon, EuiKeyPadMenu, EuiKeyPadMenuItem, EuiPopover } from '@elastic/eui';
 import { RootState } from '../../redux/root-reducer';
-import { setIsAdminUser } from '../../redux/app/app-action';
+import { setIsAdminUser, setShowAnnouncement } from '../../redux/app/app-action';
 
 const AppHeaderKeypadMenu = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const isAdmin = useSelector((state: RootState) => state.app.isAdminUser);
+    const showAnnouncement = useSelector((state: RootState) => state.app.showAnnouncement);
     const dispatch = useDispatch();
 
     const toggleAdminState = (): void => {
         dispatch(setIsAdminUser(!isAdmin));
+    };
+
+    const toggleAnnouncement = (): void => {
+        dispatch(setShowAnnouncement(!showAnnouncement));
     };
 
     const button = (
@@ -36,6 +41,12 @@ const AppHeaderKeypadMenu = (): JSX.Element => {
         >
             <EuiKeyPadMenu id="keypad_menu">
                 <EuiKeyPadMenuItem label={isAdmin ? 'Admin User' : 'Normal User'} onClick={toggleAdminState}>
+                    <EuiIcon type="user" size="l" />
+                </EuiKeyPadMenuItem>
+                <EuiKeyPadMenuItem
+                    label={`${showAnnouncement ? 'Hide' : 'Show'} Announcement`}
+                    onClick={toggleAnnouncement}
+                >
                     <EuiIcon type="user" size="l" />
                 </EuiKeyPadMenuItem>
             </EuiKeyPadMenu>

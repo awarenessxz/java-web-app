@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import loadingGif from '../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
+import AnnouncementsConsole from './Admin/AnnouncementsConsole';
 import SearchForm from './Search/SearchForm';
 import SearchResults from './Search/SearchResults';
 import SearchTemplateList from './Search/SearchTemplateList';
@@ -41,7 +42,7 @@ const App = (): JSX.Element => {
                     <Route exact path="/tns" component={ToolsAndServices} />
                     <Route exact path="/tns/componentLibrary" component={DemoCompLibrary} />
                     <Route exact path="/tns/microFrontend" component={DemoMicroFrontend} />
-                    <Route exact path="/admin/announcements" component={DemoMicroFrontend} />
+                    <Route exact path="/admin/announcements" component={AnnouncementsConsole} />
                 </Switch>
             </Router>
         );

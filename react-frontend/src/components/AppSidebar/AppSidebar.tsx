@@ -13,6 +13,7 @@ import {
     EuiSideNavItemType,
 } from '@elastic/eui';
 import AppSidebarAdminConsole from './AppSidebarAdminConsole';
+import AppSidebarAnnouncement from './AppSidebarAnnouncement';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
 import { defaultMenuItems, MenuItem } from '../../utils/routing/app-menu-item';
@@ -22,6 +23,7 @@ const AppSidebar = (): JSX.Element => {
     const [navIsDocked, setIsNavDocked] = useState(true);
     const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
     const isAdminUser = useSelector((state: RootState) => state.app.isAdminUser);
+    const showAnnouncement = useSelector((state: RootState) => state.app.showAnnouncement);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -74,10 +76,17 @@ const AppSidebar = (): JSX.Element => {
             }
             showCloseButton={false}
         >
+            {/* Console */}
             {isAdminUser && <AppSidebarAdminConsole goToRoute={goToRoute} />}
 
             <EuiFlexItem className="eui-yScroll">
-                <EuiSideNav items={generateSideBarMenuItems()} style={{ padding: '16px' }} />
+                {/* Announcement Section */}
+                {showAnnouncement && <AppSidebarAnnouncement />}
+
+                {/* Side Navigation Bar */}
+                <EuiCollapsibleNavGroup>
+                    <EuiSideNav items={generateSideBarMenuItems()} style={{ padding: '8px' }} />
+                </EuiCollapsibleNavGroup>
             </EuiFlexItem>
 
             <EuiFlexItem grow={false}>
