@@ -2,6 +2,9 @@
 @import "~@elastic/eui/src/theme_light.scss";
 @import '~@elastic/eui/src/themes/eui/eui_colors_light.scss';
 @import '~@elastic/eui/src/themes/eui/eui_globals.scss';
+// Ag-Grid
+@import '~react-component-library/dist/styles/agGrid/ag-grid.css';
+@import '~react-component-library/dist/styles/agGrid/ag-theme-alpine.min.css';
 
 body {
   @include euiHeaderAffordForFixed;

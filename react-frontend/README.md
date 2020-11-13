@@ -46,6 +46,10 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
     - **React-Component-Library** : 
         - The custom reusable React component library is installed by `yarn add ../react-component-library` 
 - **Future Works**
+    - create `Announcement Console` for managing announcements
+    - create `announcements-util` to poll for announcement on an hourly interval
+    - create `fetch-util` to handle all API fetch
+    - create a `Search Component`
 
 ## Learning Materials
 - [React Typescript Tutorial](https://www.youtube.com/watch?v=Z5iWr6Srsj8)

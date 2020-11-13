@@ -28,7 +28,7 @@ const AppSidebarAdminConsole = (props: AppSidebarAdminConsoleProps): JSX.Element
                 initialIsOpen={false}
                 background="dark"
             >
-                <div role="group" className="kibanaNavDeployment__content">
+                <div role="group">
                     <EuiListGroup listItems={listItems} flush />
                 </div>
             </EuiCollapsibleNavGroup>
