@@ -1,7 +1,7 @@
 {
-  "name": "react-frontend",
+  "name": "react-micro-frontend-1",
   "version": "1.0.0",
-  "description": "Simple React Web Application",
+  "description": "React Micro Frontend",
   "main": "index.js",
   "scripts": {
     "analyze": "webpack-bundle-analyzer --port 4200 stats.json",
@@ -24,9 +24,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/awarenessxz/java-web-app/issues"
+    "url": "https://github.com/awarenessxz/react-frontend/issues"
   },
-  "homepage": "https://github.com/awarenessxz/java-web-app/react-frontend#readme",
+  "homepage": "https://github.com/awarenessxz/java-web-app/react-micro-frontend-1#readme",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
