@@ -33,6 +33,7 @@ const buildDevelopmentConfig = baseConfig => {
                 // turn on hot module replacement (HMR)
                 hot: true,
                 hotOnly: false,
+                open: true,
                 port: devServerPort,
                 //proxy: devServerProxy,
                 //publicPath: devServerPublicPath,
@@ -40,9 +41,6 @@ const buildDevelopmentConfig = baseConfig => {
                     errors: true,
                     warnings: true
                 }
-            },
-            optimization: {
-                namedModules: true
             },
             plugins: [new HotModuleReplacementPlugin()]
         },

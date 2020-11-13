@@ -11,7 +11,8 @@ module.exports = merge([
         },
         resolve: {
             alias: {
-                'react-dom': '@hot-loader/react-dom'
+                'react-dom': '@hot-loader/react-dom',
+                path: 'path-browserify' // https://medium.com/@sanchit3b/how-to-polyfill-node-core-modules-in-webpack-5-905c1f5504a0
             },
             extensions: ['.tsx', '.ts', ".js"]
         },

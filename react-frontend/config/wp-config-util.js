@@ -77,10 +77,10 @@ module.exports = {
         module: {
             rules: [
                 {
-                    test: /\.(png|svg|jpg|gif)$/,
+                    test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
                     include,
                     exclude,
-                    use: ['file-loader'],
+                    type: 'asset/resource',
                 }
             ]
         }

@@ -34,6 +34,7 @@
 - `@typescript-eslint/eslint-plugin` - contains standard linting rules for Typescript code
 
 # References
+- [Set up webpack 5 from scratch](https://www.taniarascia.com/how-to-use-webpack/)
 - [creating react and typescript apps with webpack](https://www.carlrippon.com/creating-react-and-typescript-apps-with-webpack/)
 - [redux with typescript](https://medium.com/@ksholla20/react-redux-with-typescript-ad7266896a9b)
 - [How to setup and use css modules in react with webpack](https://medium.com/@michaelceber/how-to-setup-and-use-css-modules-in-react-with-webpack-7f512b946ae0)
