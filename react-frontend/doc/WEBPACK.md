@@ -7,18 +7,25 @@
 - `.eslintrc`: config for lint
 - `package.json`: npm dependency manager
 
-## Babel & Webpack Related
+## Dependencies
+
+### Webpack
+- `webpack` - Module and asset bundler
+- `webpack-cli` - Command line interface for webpack
+
+### Babel
 - `@babel/core` - transforms es6 code to es5
 - `@babel/plugin-transform-runtime` and `@babel/runtime` - plugins to allow us to use `aysnc` and `await` Javascript features
 - `babel-loader` - webpack helper to transpile code, given the preset
     - `@babel/preset-env` - preset which helps babel to transform es6, es7, es8 code to es5
     - `@babel/preset-react` - preset which transform jsx to javascript (es5)
     - `@babel/preset-typescript` - enables Babel to transform Typescript code into Javascript
+
+### Assets
 - `css-loader` - load and bundle css into one file
 - `style-loader` - add all the styles inside the style tag to the document
-- `file-loader` - images for background and icons
 
-**Plugins**
+### React
 - `react-hot-loader` - works with webpack dev server hot module replacement (HMR). Tells dev server how to hot reload react codes
     - Note: can safely install react-hot-loader as a regular dependency instead of a dev dependency as it automatically ensures it is not executed in production and the footprint is minimal
 
