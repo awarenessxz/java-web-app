@@ -1,6 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extracts CSS into separate file (creates a css file epr js file which contains css)
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // optimize and minimize css assets
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // optimize and minimize css assets
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const path = require('path');
@@ -58,7 +58,7 @@ module.exports = {
             ]
         }
     }),
-    loadJavascript: ({include, exclude, isDevelopment}) => ({
+    loadJavascript: ({include, exclude}) => ({
         module: {
             rules: [
                 {
@@ -68,7 +68,6 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
-                        plugins: [isDevelopment && require('react-refresh/babel')]
                     }
                 }
             ]
@@ -127,18 +126,22 @@ module.exports = {
         }
     },
     minifyCSS: () => ({
-        plugins: [
-            new OptimizeCSSAssetsPlugin({
-                cssProcessor: cssnano,
-                cssProcessorOptions: {
-                    discardComments: {
-                        removeAll: true,
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new CssMinimizerPlugin({
+                    parallel: true,
+                    minimizerOptions: {
+                        preset: [
+                            'default',
+                            {
+                                discardComments: { removeAll: true },
+                            },
+                        ],
                     },
-                    safe: true // run cssnano in safe mode to avoid potential unsafe transformation
-                },
-                canPrint: false
-            })
-        ]
+                }),
+            ],
+        }
     }),
     clean: path => {
         console.info("cleaning ", path);

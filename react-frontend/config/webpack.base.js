@@ -25,6 +25,10 @@ module.exports = merge([
             })
         ],
     },
+    util.loadJavascript({
+        include: [app.paths.src],
+        exclude: /node_modules/,
+    }),
     util.loadImages({
         include: [app.paths.assets]
     }),

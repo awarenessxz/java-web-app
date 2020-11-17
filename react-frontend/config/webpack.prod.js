@@ -14,11 +14,6 @@ const buildProductionConfig = baseConfig => {
                 //filename: '[name][chunkhash].js'
             },
         },
-        util.loadJavascript({
-            include: [app.paths.src],
-            exclude: /node_modules/,
-            isDevelopment: false,
-        }),
         util.minifyCSS(),
         util.generateSourceMap({ type: 'source-map' }),
         util.loadCSS(true)

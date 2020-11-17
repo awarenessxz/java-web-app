@@ -48,11 +48,6 @@ const buildDevelopmentConfig = baseConfig => {
                 new ForkTsCheckerWebpackPlugin()
             ]
         },
-        util.loadJavascript({
-            include: [app.paths.src],
-            exclude: /node_modules/,
-            isDevelopment: true,
-        }),
         util.generateSourceMap({ type: 'cheap-module-source-map' }),
         util.loadCSS(false)
     ]);
