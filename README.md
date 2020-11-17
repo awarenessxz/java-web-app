@@ -27,3 +27,15 @@ Experimenting with a Java Web Application built with the following components
 2. **IntelliJ Setup**
     1. Import project into IntelliJ (select `build.gradle.kts` in the root directory)
     2. Follow Instruction on how to setup configuration for Javascript projects
+    
+## Contributions
+
+If you are keen on making contributions. Please adhere to the following rules:
+1. Create a branch / fork 
+2. Create a pull request to merge your codes to master
+3. **DO NOT** edit the master branch directly
+
+## Documentations
+
+- [Setting up Gradle for Multi Project](doc/CreateProject.md)
+- [Create custom reusable React component Library](react-component-library)
