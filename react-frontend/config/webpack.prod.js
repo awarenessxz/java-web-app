@@ -1,9 +1,10 @@
 const { merge } = require("webpack-merge");
-const app = require('./wp-config-app');
+const app = require('./wp-config');
 const util = require('./wp-config-util');
 
 const buildProductionConfig = baseConfig => {
     return merge([
+        util.clean(app.paths.build),
         baseConfig,
         {
             mode: "production",
@@ -13,8 +14,11 @@ const buildProductionConfig = baseConfig => {
                 //filename: '[name][chunkhash].js'
             },
         },
-        util.clean(app.paths.build),
-        util.minifyJS(),
+        util.loadJavascript({
+            include: [app.paths.src],
+            exclude: /node_modules/,
+            isDevelopment: false,
+        }),
         util.minifyCSS(),
         util.generateSourceMap({ type: 'source-map' }),
         util.loadCSS(true)

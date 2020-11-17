@@ -1,5 +1,4 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // uses "uglify-js" to minify javascript files
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extracts CSS into separate file (creates a css file epr js file which contains css)
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // optimize and minimize css assets
 const autoprefixer = require('autoprefixer');
@@ -59,15 +58,17 @@ module.exports = {
             ]
         }
     }),
-    loadJavascript: ({include, exclude}) => ({
+    loadJavascript: ({include, exclude, isDevelopment}) => ({
         module: {
             rules: [
                 {
                     test: /\.(ts|js)x?$/,
-                    exclude: /node_modules/,
+                    include,
+                    exclude,
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
+                        plugins: [isDevelopment && require('react-refresh/babel')]
                     }
                 }
             ]
@@ -125,21 +126,6 @@ module.exports = {
             };
         }
     },
-    minifyJS: (noComment = true) => ({
-        optimization: {
-            minimizer: [
-                new UglifyJSPlugin({
-                    sourceMap: true,
-                    uglifyOptions: {
-                        warnings: false,
-                        output: {
-                            comments: !noComment
-                        }
-                    }
-                })
-            ]
-        }
-    }),
     minifyCSS: () => ({
         plugins: [
             new OptimizeCSSAssetsPlugin({
@@ -169,7 +155,7 @@ module.exports = {
             splitChunks: {
                 // assigns all modules from node_modules into cache_group and extract out common chunks into vendor.js
                 cacheGroups: {
-                    vendors: {
+                    defaultVendors: {
                         test: '/[\\/]node_modules[\\/]/',
                         name: 'node_vendor',
                         chunks: 'all'

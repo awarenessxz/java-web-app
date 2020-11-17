@@ -10,17 +10,12 @@
 ## Babel & Webpack Related
 - `@babel/core` - transforms es6 code to es5
 - `@babel/plugin-transform-runtime` and `@babel/runtime` - plugins to allow us to use `aysnc` and `await` Javascript features
-- `babel-loader` - webpack helper to transpile code, given the preset
+- `babel-loader` - webpack helper to transpile code, given the preset (using babel-loader instead of ts-loader to transpile typescript files)
     - `@babel/preset-env` - preset which helps babel to transform es6, es7, es8 code to es5
     - `@babel/preset-react` - preset which transform jsx to javascript (es5)
     - `@babel/preset-typescript` - enables Babel to transform Typescript code into Javascript
 - `css-loader` - load and bundle css into one file
 - `style-loader` - add all the styles inside the style tag to the document
-- `file-loader` - images for background and icons
-
-**Plugins**
-- `react-hot-loader` - works with webpack dev server hot module replacement (HMR). Tells dev server how to hot reload react codes
-    - Note: can safely install react-hot-loader as a regular dependency instead of a dev dependency as it automatically ensures it is not executed in production and the footprint is minimal
 
 ## Eslint
 - `eslint` - core Eslint library
@@ -41,3 +36,5 @@
 - Eslint
     - [Using Eslint and Prettier in Typescript project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
     - [Using Airbnb Eslint config when moving to typescript](https://medium.com/@myylow/how-to-keep-the-airbnb-eslint-config-when-moving-to-typescript-1abb26adb5c6)
+- [How to set up Webpack 5, ES6 with ESLint, PostCSS with Stylelint, CSSNANO and more!](https://jontorrado.medium.com/working-with-webpack-4-es6-postcss-with-preset-env-and-more-93b3d77db7b2)
+- [use webpack 5](https://github.com/webpack/webpackjs.org/pull/3963)

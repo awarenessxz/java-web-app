@@ -1,6 +1,7 @@
-const { HotModuleReplacementPlugin } = require("webpack");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { merge } = require("webpack-merge");
-const app = require('./wp-config-app');
+const app = require('./wp-config');
 const util = require('./wp-config-util');
 
 const buildDevelopmentConfig = baseConfig => {
@@ -42,8 +43,16 @@ const buildDevelopmentConfig = baseConfig => {
                     warnings: true
                 }
             },
-            plugins: [new HotModuleReplacementPlugin()]
+            plugins: [
+                new ReactRefreshWebpackPlugin(),
+                new ForkTsCheckerWebpackPlugin()
+            ]
         },
+        util.loadJavascript({
+            include: [app.paths.src],
+            exclude: /node_modules/,
+            isDevelopment: true,
+        }),
         util.generateSourceMap({ type: 'cheap-module-source-map' }),
         util.loadCSS(false)
     ]);
