@@ -10,7 +10,7 @@ import { MenuItem } from '../../utils/routing/app-menu-item';
 
 const AppHeader = (): JSX.Element => {
     const [breadcrumbs, setBreadcrumbs] = useState<EuiBreadcrumb[]>([]);
-    const selectedMenuItem = useSelector((state: RootState) => state.appReducer.selectedMenuItem);
+    const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
     const dispatch = useDispatch();
     const history = useHistory();
 

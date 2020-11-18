@@ -5,7 +5,7 @@ import {
     SET_SELECTED_MENU_ITEM,
     SET_SHOW_ANNOUNCEMENT,
 } from './app-action.types';
-import { RootThunkResult } from '../root-redux-thunk';
+import { RootThunkResult } from '../root-action';
 import { MenuItem } from '../../utils/routing/app-menu-item';
 import { generateMenuItemMapping, getCurrentRoute, MenuItemMap } from '../../utils/routing/navigation-utils';
 import { checkUserAccess } from '../../utils/app/access-control';

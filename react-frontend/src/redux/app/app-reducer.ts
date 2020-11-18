@@ -1,4 +1,3 @@
-import { Reducer } from 'react';
 import {
     AppStateTypes,
     AppActionTypes,
@@ -16,10 +15,7 @@ const initialState: AppStateTypes = {
     isSiteReady: false,
 };
 
-const appReducer: Reducer<AppStateTypes, AppActionTypes> = (
-    state: AppStateTypes = initialState,
-    action: AppActionTypes,
-): AppStateTypes => {
+const appReducer = (state: AppStateTypes = initialState, action: AppActionTypes): AppStateTypes => {
     switch (action.type) {
         case SET_IS_ADMIN_USER:
             return {

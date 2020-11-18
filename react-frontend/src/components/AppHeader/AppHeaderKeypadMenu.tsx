@@ -6,8 +6,8 @@ import { setIsAdminUser, setShowAnnouncement } from '../../redux/app/app-action'
 
 const AppHeaderKeypadMenu = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
-    const isAdmin = useSelector((state: RootState) => state.appReducer.isAdminUser);
-    const showAnnouncement = useSelector((state: RootState) => state.appReducer.showAnnouncement);
+    const isAdmin = useSelector((state: RootState) => state.app.isAdminUser);
+    const showAnnouncement = useSelector((state: RootState) => state.app.showAnnouncement);
     const dispatch = useDispatch();
 
     const toggleAdminState = (): void => {

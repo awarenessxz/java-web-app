@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import App from './pages/App';
 import './styles/app.scss';
 
-import store from './redux/redux-store';
+import configureStore from './redux/redux-store';
 
-const reduxStore = store();
+const reduxStore = configureStore();
 const render = (AppComponent: React.FC): void => {
     ReactDOM.render(
         <Provider store={reduxStore}>

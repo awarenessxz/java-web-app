@@ -3,7 +3,7 @@ import appReducer from './app/app-reducer';
 
 // root reducer for redux
 export const rootReducer = combineReducers({
-    appReducer,
+    app: appReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

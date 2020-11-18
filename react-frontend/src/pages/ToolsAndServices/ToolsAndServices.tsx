@@ -8,7 +8,7 @@ import { RootState } from '../../redux/root-reducer';
 import { tnsCards } from '../../utils/routing/app-tools-and-services-cards';
 
 const ToolsAndServices = (): JSX.Element => {
-    const menuItemsMap = useSelector((state: RootState) => state.appReducer.menuItemsMapping);
+    const menuItemsMap = useSelector((state: RootState) => state.app.menuItemsMapping);
     const dispatch = useDispatch();
     const history = useHistory();
 
