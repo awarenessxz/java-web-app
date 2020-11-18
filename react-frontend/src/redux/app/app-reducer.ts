@@ -1,5 +1,6 @@
+import { Reducer } from 'react';
 import {
-    AppActionStateTypes,
+    AppStateTypes,
     AppActionTypes,
     INIT_BASE_APP,
     SET_IS_ADMIN_USER,
@@ -7,7 +8,7 @@ import {
     SET_SHOW_ANNOUNCEMENT,
 } from './app-action.types';
 
-const initialState: AppActionStateTypes = {
+const initialState: AppStateTypes = {
     isAdminUser: false,
     showAnnouncement: false,
     selectedMenuItem: undefined,
@@ -15,7 +16,10 @@ const initialState: AppActionStateTypes = {
     isSiteReady: false,
 };
 
-const appReducer = (state: AppActionStateTypes = initialState, action: AppActionTypes): AppActionStateTypes => {
+const appReducer: Reducer<AppStateTypes, AppActionTypes> = (
+    state: AppStateTypes = initialState,
+    action: AppActionTypes,
+): AppStateTypes => {
     switch (action.type) {
         case SET_IS_ADMIN_USER:
             return {

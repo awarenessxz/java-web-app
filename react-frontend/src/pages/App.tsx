@@ -14,7 +14,7 @@ import { RootState } from '../redux/root-reducer';
 import { initBaseApplication } from '../redux/app/app-action';
 
 const App = (): JSX.Element => {
-    const isSiteReady = useSelector((state: RootState) => state.app.isSiteReady);
+    const isSiteReady = useSelector((state: RootState) => state.appReducer.isSiteReady);
     const dispatch = useDispatch();
 
     // initial load (load base application state)

@@ -9,6 +9,7 @@ const configureProdStore = (initialState?: RootState): Store<RootState> => {
         // Add other middleware on this line...
         thunkMiddleware,
     ];
+
     return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
 };
 

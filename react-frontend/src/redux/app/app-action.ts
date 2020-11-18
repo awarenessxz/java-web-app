@@ -1,11 +1,11 @@
 import {
     AppActionTypes,
-    AppThunkResult,
     INIT_BASE_APP,
     SET_IS_ADMIN_USER,
     SET_SELECTED_MENU_ITEM,
     SET_SHOW_ANNOUNCEMENT,
 } from './app-action.types';
+import { RootThunkResult } from '../root-redux-thunk';
 import { MenuItem } from '../../utils/routing/app-menu-item';
 import { generateMenuItemMapping, getCurrentRoute, MenuItemMap } from '../../utils/routing/navigation-utils';
 import { checkUserAccess } from '../../utils/app/access-control';
@@ -57,7 +57,7 @@ const initBaseApp = (
  * Thunk Action (for supporting async/wait)
  *************************************************************************************** */
 
-export const initBaseApplication = (): AppThunkResult<void> => {
+export const initBaseApplication = (): RootThunkResult<void> => {
     // initialize menu items
     const menuItemMapping = generateMenuItemMapping();
     const selectedMenuItem = menuItemMapping[getCurrentRoute()];

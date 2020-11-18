@@ -21,9 +21,9 @@ import { defaultMenuItems, MenuItem } from '../../utils/routing/app-menu-item';
 const AppSidebar = (): JSX.Element => {
     const [navIsOpen, setIsNavOpen] = useState(true);
     const [navIsDocked, setIsNavDocked] = useState(true);
-    const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
-    const isAdminUser = useSelector((state: RootState) => state.app.isAdminUser);
-    const showAnnouncement = useSelector((state: RootState) => state.app.showAnnouncement);
+    const selectedMenuItem = useSelector((state: RootState) => state.appReducer.selectedMenuItem);
+    const isAdminUser = useSelector((state: RootState) => state.appReducer.isAdminUser);
+    const showAnnouncement = useSelector((state: RootState) => state.appReducer.showAnnouncement);
     const dispatch = useDispatch();
     const history = useHistory();
 

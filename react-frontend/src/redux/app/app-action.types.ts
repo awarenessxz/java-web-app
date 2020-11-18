@@ -1,4 +1,3 @@
-import { ThunkAction } from 'redux-thunk';
 import { MenuItem } from '../../utils/routing/app-menu-item';
 import { MenuItemMap } from '../../utils/routing/navigation-utils';
 
@@ -7,7 +6,7 @@ import { MenuItemMap } from '../../utils/routing/navigation-utils';
  *************************************************************************************** */
 
 // Redux State (App)
-export interface AppActionStateTypes {
+export interface AppStateTypes {
     // Access Control
     isAdminUser: boolean;
     // Announcements
@@ -69,6 +68,3 @@ export type AppActionTypes =
     | SetShowAnnouncementAction
     | SetSelectedMenuItemAction
     | InitBaseAppAction;
-
-// redux-thunk actions
-export type AppThunkResult<R> = ThunkAction<R, AppActionStateTypes, undefined, AppActionTypes>;
