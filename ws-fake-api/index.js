@@ -12,7 +12,7 @@ app.get('/fakeapi', (req, res, next) => {
 app.listen(PORT, () => {
     axios({
         method: 'POST',
-        url: 'http://localhost:4000/register',
+        url: 'http://localhost:9090/register',
         headers: {'Content-Type': 'application/json'},
         data: {
             apiName: 'registryTest',

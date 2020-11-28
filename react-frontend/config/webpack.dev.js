@@ -1,23 +1,9 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { merge } = require("webpack-merge");
-const app = require('./wp-config');
 const util = require('./wp-config-util');
 
 const buildDevelopmentConfig = baseConfig => {
-    const devServerPort = app.devServer.port;
-    const devServerProxyDetails = app.devServer.proxy;
-    const devServerProxy = {};
-    const devServerPublicPath = app.devServer.publicPath;
-    console.log(devServerPublicPath);
-
-    /*
-    devServerProxy[app.devServer.contextPath + devServerProxyDetails.url] = {
-        target: devServerProxyDetails.target,
-        secure: devServerProxyDetails.secure,
-        prependPath: devServerProxyDetails.prependPath
-    };*/
-
     return merge([
         baseConfig,
         {
@@ -31,13 +17,19 @@ const buildDevelopmentConfig = baseConfig => {
             devServer: {
                 historyApiFallback: true,
                 stats: 'errors-only',
-                // turn on hot module replacement (HMR)
-                hot: true,
+                hot: true, // turn on hot module replacement (HMR)
                 hotOnly: false,
                 open: true,
-                port: devServerPort,
-                //proxy: devServerProxy,
-                //publicPath: devServerPublicPath,
+                port: 8080,
+                proxy: {
+                    '/rest/*': {     // route all rest api call to api-gateway
+                        target: 'http://localhost:9090', // path of the targeted external server that house the external api
+                        pathRewrite: {'^/rest' : ''},
+                        secure: false,
+                        prependPath: false,
+                    }
+                },
+                publicPath: '/',
                 overlay: {
                     errors: true,
                     warnings: true

@@ -20,11 +20,11 @@ balancing, caching, request shaping and management, and static response handling
         }
         ```
     - Test using the following curl command
-        - `curl -X POST -d '{"apiName": "registryTest", "host": "http://localhost", "port": "3001" }' -H "Content-Type: application/json" http://localhost:4000/register`
+        - `curl -X POST -d '{"apiName": "registryTest", "host": "http://localhost", "port": "3001" }' -H "Content-Type: application/json" http://localhost:9090/register`
 
 3. **Unregister API from API Gateway**
     - Remove API using this curl command
-        - `curl -X POST -d "apiName=API_TO_REMOVE" http://localhost:4000/unregister`
+        - `curl -X POST -d "apiName=API_TO_REMOVE" http://localhost:9090/unregister`
 
 ## References
 

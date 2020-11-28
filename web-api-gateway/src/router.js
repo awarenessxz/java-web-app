@@ -16,7 +16,7 @@ router.all('/:apiName/:path', (req, res) => {
         }).then(apiResponse => {
             res.send(apiResponse.data);
         }).catch(error => {
-            res.status(503).send(error);
+            res.send(error);
         });
     } else {
         res.status(404).send("API does not exist!");

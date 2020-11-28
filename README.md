@@ -1,14 +1,28 @@
 # java-web-app
 
 Experimenting with a Java Web Application built with the following components
-- **React Frontend** (Main frontend)
-- **Custom React Reusable Component Library**
-- **Micro Frontend** (to be loaded into main frontend)
-- **Config Server as a Microservice** (with feature toggle)
-- **Microservices**
-- **Message Queues**
+- **Frontend**
+    - **React Frontend** (Main Frontend App)
+    - **Custom React Reusable Component Library**
+    - **Micro Frontend** (to be loaded into main frontend)
+- **Backend**
+    - **Config Server as a Microservice** (with feature toggle)
+    - **Microservices**
+- **Infrastructure**
+    - **Message Queues**
+    - **Databases**
 
-![Architecture](./doc/architecture.png)
+![Architecture](doc/architecture.png)
+
+## Folder Structure
+
+```
+root    
+├── react-component-library     # Custom React Reusable Component Library
+├── react-frontend              # Main Frontend App
+├── react-micro-frontend        # Sub Frontend that is consumes by main frontend app  
+└── web-api-gateway             # API Gateway  
+```
 
 ## Useful commands
 
