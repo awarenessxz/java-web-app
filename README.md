@@ -16,12 +16,16 @@ Experimenting with a Java Web Application built with the following components
 
 ## Folder Structure
 
+**Note: Do ignore folders with asterisk as they are just experimental projects!!**
+
 ```
 root    
+├── ms-admin-service            # Micro-service (centralized admin services)
 ├── react-component-library     # Custom React Reusable Component Library
 ├── react-frontend              # Main Frontend App
 ├── react-micro-frontend        # Sub Frontend that is consumes by main frontend app  
-└── web-api-gateway             # API Gateway  
+├── web-api-gateway-node*       # API Gateway (Node)
+└── ws-fake-api*                # Web Service (Node)
 ```
 
 ## Useful commands
@@ -53,3 +57,4 @@ If you are keen on making contributions. Please adhere to the following rules:
 
 - [Setting up Gradle for Multi Project](doc/CreateProject.md)
 - [Create custom reusable React component Library](react-component-library)
+- [React MicroFrontend Experiments](https://github.com/awarenessxz/react-micro-frontend)
