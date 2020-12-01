@@ -9,7 +9,8 @@ root/src/main
 ├── kotlin
     └── com.javawebapp.admin
         ├── controller          # HTTP requests are handled by a REST controller
-        └── service             # Web Service (Restful API)
+        ├── entity              # Database related
+        └── repository          # Database related
 └── resources                 
 ```
 
