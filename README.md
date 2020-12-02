@@ -43,6 +43,7 @@ root
     4. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     5. [Install Java JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
     6. [Install Docker](https://docs.docker.com/get-docker/)
+    7. [Install Docker-Compose](https://docs.docker.com/compose/install/)
 2. **IntelliJ Setup**
     1. Import project into IntelliJ (select `build.gradle.kts` in the root directory)
     2. Follow Instruction on how to setup configuration for Javascript projects
