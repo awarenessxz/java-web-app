@@ -2,7 +2,7 @@
     "compilerOptions": {
         "rootDir": "src",
         "module": "esnext",
-        "target": "es5",
+        "target": "esnext",
         "jsx": "react",
         "allowJs": false,
         "lib": ["dom", "dom.iterable", "esnext"],

@@ -3,13 +3,16 @@
 ###############################################################################################
 
 server:
-  port: 9001
+  port: 7001
 
 ###############################################################################################
 # Mongo DB Configuration
 ###############################################################################################
 
 spring:
+  profiles:
+    active: dev
   data:
     mongodb:
-      uri: mongodb://localhost:27017/exampleDB
+      uri: mongodb://user:123@localhost:27017/exampleDB
+      authentication-database: exampleDB

@@ -54,3 +54,4 @@ Using Mongo Docker to create a simple mongo db cluster
 ## References
 - [Managing MongoDB on docker with docker-compose](https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bbae3)
 - [Write Mongo Scripts](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/)
+- [[VIDEO] configuring authentication in Mongo](https://www.youtube.com/watch?v=SY_9zwb29LA)

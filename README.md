@@ -36,18 +36,32 @@ root
 
 ## Project Set up
 
-1. **Environment Setup**
-    1. [Install Gradle](https://gradle.org/install/#manually)
-    2. [Install IntelliJ](https://www.jetbrains.com/help/idea/installation-guide.html#toolbox)
-    3. [Install Node-12](https://github.com/nodejs/help/wiki/Installation)
-    4. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-    5. [Install Java JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-    6. [Install Docker](https://docs.docker.com/get-docker/)
-    7. [Install Docker-Compose](https://docs.docker.com/compose/install/)
-2. **IntelliJ Setup**
-    1. Import project into IntelliJ (select `build.gradle.kts` in the root directory)
-    2. Follow Instruction on how to setup configuration for Javascript projects
-    
+### Environment Setup
+
+1. [Install Gradle](https://gradle.org/install/#manually)
+2. [Install IntelliJ](https://www.jetbrains.com/help/idea/installation-guide.html#toolbox)
+3. [Install Node-12](https://github.com/nodejs/help/wiki/Installation)
+4. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+5. [Install Java JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+6. [Install Docker](https://docs.docker.com/get-docker/)
+7. [Install Docker-Compose](https://docs.docker.com/compose/install/)
+
+### IntelliJ Setup
+
+1. Import project into IntelliJ (select `build.gradle.kts` in the root directory)
+2. Follow Instruction on how to setup configuration for Javascript projects
+
+### Apps & API
+
+- **Hosts**
+    - **6006** -- Storybook (React Component Library)
+    - **8080** -- React Frontend
+    - **9090** -- API Gateway
+    - **7001** -- Microservice (Admin Service)
+- **API Endpoints**
+    - **Admin Service**
+        - **/announcements** -- Announcements related 
+
 ## Contributions
 
 If you are keen on making contributions. Please adhere to the following rules:
