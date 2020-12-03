@@ -25,6 +25,7 @@ module.exports = merge([
             })
         ],
     },
+    util.loadTinyMCE(),
     util.loadJavascript({
         include: [app.paths.src],
         exclude: /node_modules/,

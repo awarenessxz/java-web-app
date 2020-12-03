@@ -23,7 +23,7 @@ const buildDevelopmentConfig = baseConfig => {
                 port: 8080,
                 proxy: {
                     '/announcements/*': {     // route all rest api call to api-gateway
-                        target: 'http://localhost:9001', // path of the targeted external server that house the external api
+                        target: 'http://localhost:7001', // path of the targeted external server that house the external api
                         secure: false,
                         prependPath: false,
                     },

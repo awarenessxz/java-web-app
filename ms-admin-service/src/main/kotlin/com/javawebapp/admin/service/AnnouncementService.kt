@@ -24,11 +24,16 @@ class AnnouncementService(
     }
 
     fun deleteAnnouncementById(id: String) {
-        return announcementRepository.deleteById(id)
+        announcementRepository.deleteById(id)
     }
 
     fun createNewAnnouncement(announcement: Announcement) {
         announcement.initAnnouncementMetadata()
         announcementRepository.insert(announcement)
+    }
+
+    fun updateAnnouncementById(announcement: Announcement) {
+        announcement.updateAnnouncementMetadata()
+        announcementRepository.save(announcement)
     }
 }

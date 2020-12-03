@@ -55,9 +55,9 @@ root
 
 - **Hosts**
     - **6006** -- Storybook (React Component Library)
+    - **7001** -- Microservice (Admin Service)
     - **8080** -- React Frontend
     - **9090** -- API Gateway
-    - **7001** -- Microservice (Admin Service)
 - **API Endpoints**
     - **Admin Service**
         - **/announcements** -- Announcements related 

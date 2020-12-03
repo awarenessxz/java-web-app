@@ -44,6 +44,25 @@ const PostCSSLoader = {
 };
 
 module.exports = {
+    loadTinyMCE: () => ({
+        module: {
+            rules: [
+                {
+                    test: require.resolve('tinymce/tinymce'),
+                    loader: [
+                        'imports?this=>window',
+                        'exports?window.tinymce'
+                    ]
+                },
+                {
+                    test: /tinymce\/(themes|plugins)\//,
+                    loader: [
+                        'imports?this=>window'
+                    ]
+                }
+            ]
+        }
+    }),
     lint: ({include, exclude, options}) => ({
         module: {
             rules: [

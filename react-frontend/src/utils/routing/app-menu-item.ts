@@ -8,9 +8,9 @@ export interface MenuItem {
     parent?: MenuItem | undefined;
 }
 
-type AdminMenuItem = MenuItem & EuiListGroupItemProps;
+type GeneralMenuItem = MenuItem & EuiListGroupItemProps;
 
-export const adminConsoleMenuItems: AdminMenuItem[] = [
+export const adminConsoleMenuItems: GeneralMenuItem[] = [
     {
         route: '/admin/announcements',
         title: 'Announcement Console', // required for MenuItem
@@ -83,5 +83,15 @@ export const defaultMenuItems: MenuItem[] = [
                 route: '/tns/microFrontend',
             },
         ],
+    },
+];
+
+export const generalMenuItems: GeneralMenuItem[] = [
+    {
+        route: '/announcements',
+        title: 'Announcements', // required for MenuItem
+        label: 'Announcements', // required for EuiListGroupItemProps
+        iconType: 'cheer',
+        size: 's'
     },
 ];

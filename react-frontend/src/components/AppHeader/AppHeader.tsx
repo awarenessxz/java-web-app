@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { EuiBreadcrumb, EuiHeader, EuiHeaderLogo } from '@elastic/eui';
 import AppHeaderKeypadMenu from './AppHeaderKeypadMenu';
+import AppHeaderAnnouncementBtn from "./AppHeaderAnnouncementBtn";
 import AppSidebar from '../AppSidebar/AppSidebar';
 import { setSelectedMenuItem } from '../../redux/app/app-action';
 import { RootState } from '../../redux/root-reducer';
@@ -62,7 +63,7 @@ const AppHeader = (): JSX.Element => {
     ];
 
     // Other Icons
-    const rightSectionItems = [<AppHeaderKeypadMenu key="appKeypadMenu" />];
+    const rightSectionItems = [<AppHeaderAnnouncementBtn />, <AppHeaderKeypadMenu key="appKeypadMenu" />];
 
     return (
         <EuiHeader

@@ -1,32 +1,43 @@
 import React, { Fragment } from 'react';
+import { EuiTabbedContent, EuiSpacer } from '@elastic/eui';
 import AppContent from '../../components/AppContent/AppContent';
-import {EuiButton} from "@elastic/eui";
-import { AnnouncementEntity } from "../../types/api/announcement-api.types";
+import AnnouncementEditor from '../../components/Announcement/AnnouncementEditor';
+import AnnouncementListView from '../../components/Announcement/AnnouncementListView';
 
 const AnnouncementsConsole = (): JSX.Element => {
-    const handleOnClick = () => {
-        const reqBody: AnnouncementEntity = {
-            content: "something",
-            snippets: "Something",
-            author: "Something",
-        };
-        fetch('/announcements/new', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reqBody)
-        })
-            .then(res => res.text())
-            .then(data => console.log(data));
-    };
+    const tabs = [
+        {
+            id: 'manage--id',
+            name: 'Manage Announcements',
+            content: (
+                <Fragment>
+                    <EuiSpacer />
+                    <AnnouncementListView />
+                </Fragment>
+            ),
+        },
+        {
+            id: 'edit--id',
+            name: 'Editor',
+            content: (
+                <Fragment>
+                    <EuiSpacer />
+                    <AnnouncementEditor />
+                </Fragment>
+            ),
+        },
+    ];
 
     return (
         <AppContent title="Admin Announcement Console">
-            <Fragment>
-                <EuiButton onClick={handleOnClick}/>
-            </Fragment>
+            <EuiTabbedContent
+                tabs={tabs}
+                initialSelectedTab={tabs[0]}
+                autoFocus="selected"
+                onTabClick={(tab) => {
+                    console.log('clicked tab', tab);
+                }}
+            />
         </AppContent>
     );
 };

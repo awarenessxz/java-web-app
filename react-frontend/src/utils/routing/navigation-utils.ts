@@ -1,4 +1,4 @@
-import { adminConsoleMenuItems, defaultMenuItems, MenuItem } from './app-menu-item';
+import { adminConsoleMenuItems, defaultMenuItems, generalMenuItems, MenuItem } from './app-menu-item';
 
 export interface MenuItemMap {
     [route: string]: MenuItem; // ['route'] = MenuItem;
@@ -22,6 +22,7 @@ export const generateMenuItemMapping = (): MenuItemMap => {
     const menuItemMapping: MenuItemMap = {};
     defaultMenuItems.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
     adminConsoleMenuItems.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
+    generalMenuItems.forEach((item) => createMenuItemMappingRecursively(menuItemMapping, item));
     return menuItemMapping;
 };
 

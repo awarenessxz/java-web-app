@@ -5,6 +5,9 @@
 // Ag-Grid
 @import '~react-component-library/dist/styles/agGrid/ag-grid.css';
 @import '~react-component-library/dist/styles/agGrid/ag-theme-alpine.min.css';
+// Tinymce
+@import '~tinymce/skins/ui/oxide/skin.min.css';
+@import '~tinymce/skins/ui/oxide/content.inline.css';
 
 body {
   @include euiHeaderAffordForFixed;

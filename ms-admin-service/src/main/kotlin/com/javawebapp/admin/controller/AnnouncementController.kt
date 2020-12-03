@@ -34,10 +34,16 @@ class AnnouncementController(
         return ResponseEntity.noContent().build() // returns HTTP Status Code: 204
     }
 
+    @PutMapping("/{id}")
+    fun updateAnnouncement(@PathVariable("id") id: String, @RequestBody announcement: Announcement): ResponseEntity<Void> {
+        announcementService.updateAnnouncementById(announcement)
+        return ResponseEntity.noContent().build() // returns HTTP Status Code: 204
+    }
+
     @PostMapping("/new")
     fun createNewAnnouncement(@RequestBody announcement: Announcement): ResponseEntity<Void> {
-        System.out.println("announcement ==> $announcement");
-        //announcementService.createNewAnnouncement(announcement)
+        System.out.println("received ==> $announcement");
+        announcementService.createNewAnnouncement(announcement)
         return ResponseEntity.noContent().build() // returns HTTP Status Code: 204
     }
 }
