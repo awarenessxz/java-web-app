@@ -1,15 +1,11 @@
-# Development
+# Testing Components
 
-
-
-## Testing Components
-
-### Option A) Test Components in Storybook
+## Option A) Test Components in Storybook
 
 1. `yarn run storybook` -- run storybook
 2. `http://localhost:6006` -- open in internet browser to view storybook locally
 
-### Option B) Link Library to Project to Test Component
+## Option B) Link Library to Project to Test Component
 
 Instead of publishing to NPM to test the library, you can follow these steps to test the library locally before publishing.
 

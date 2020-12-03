@@ -17,6 +17,7 @@
         "build": "yarn run build:clean && rollup -c",
         "build:clean": "rm -rf dist",
         "build:generate": "node ./setup/auto-generate-entry-points src/index.ts",
+        "postinstall": "rm -rf node_modules",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
         "lint": "eslint .",
