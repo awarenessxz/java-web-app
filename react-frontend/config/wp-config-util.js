@@ -1,4 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extracts CSS into separate file (creates a css file epr js file which contains css)
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // optimize and minimize css assets
 const autoprefixer = require('autoprefixer');
@@ -45,23 +46,15 @@ const PostCSSLoader = {
 
 module.exports = {
     loadTinyMCE: () => ({
-        module: {
-            rules: [
-                {
-                    test: require.resolve('tinymce/tinymce'),
-                    loader: [
-                        'imports?this=>window',
-                        'exports?window.tinymce'
-                    ]
-                },
-                {
-                    test: /tinymce\/(themes|plugins)\//,
-                    loader: [
-                        'imports?this=>window'
-                    ]
-                }
-            ]
-        }
+        plugins: [
+            new CopyWebpackPlugin({
+                patterns: [
+                    { from: './node_modules/tinymce/plugins', to: './plugins' },
+                    { from: './node_modules/tinymce/themes', to: './themes' },
+                    { from: './node_modules/tinymce/skins', to: './skins' }
+                ]
+            })
+        ]
     }),
     lint: ({include, exclude, options}) => ({
         module: {
