@@ -1,0 +1,70 @@
+import { Meta, Story, ArgsTable } from '@storybook/addon-docs/blocks';
+import InfiniteScrollVirtualizedList from "./InfiniteScrollVirtualizedList";
+
+<Meta title='Docs/InfiniteScrollVirtualizedList' component={InfiniteScrollVirtualizedList} />
+
+# Infinite Scrolling List View Component
+
+This is a infinite scrolling list view that is meant to mimic how outlook email list. This project is made possible
+because of [react-window by bvaughn](https://github.com/bvaughn/react-window) Check out his explanation on how to
+implement infinite scrolling in React Component.
+
+**Future Improvement**
+- currently new data is appended into the list inside the component. If there is a change in order, this will break the
+component. Hence, improvement will have to be made on data that changes dynamically.
+- Read/Unread Feature
+- Badges
+- Write Test Cases!!
+
+## Usage
+
+To use this component, do the following:
+
+1. Add the library as dependency
+    - `yarn add react-component-library`
+2. Import the component
+    ```
+    import { InfiniteScrollVirtualizedList } from 'react-component-library';
+    ```
+
+## Properties
+
+<ArgsTable of={InfiniteScrollVirtualizedList} />
+
+### Data To Item Mapping
+
+As we are making this component dynamic, the data returned from api is different. Hence, `dataToItemMapping` variable
+will map the data retrieved from the api to the `ListViewItem` object. Below is an example scenario
+
+- Fetch API returns the following object
+    ```
+    {
+        id: 123123
+        header: something,
+        result: asdasdasd
+    }
+    ```
+
+- When using the Component, set the `dataToItemMapping` parameter as shown
+    ```
+    <InfiniteScrollVirtualizedList
+        ...
+        dataToItemMapping: {
+            id: 'id',                   # maps id to id
+            title: 'header',            # maps header to title
+            message: 'result',          # maps result to message
+        },
+        ...
+    />
+    ```
+
+
+
+
+
+
+
+
+
+
+

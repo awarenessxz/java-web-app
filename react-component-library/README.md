@@ -43,6 +43,11 @@ To use `react-component-libray` in your project, do the following:
     - [Guide to fix Invalid Hook Error when yarn add ../react-component-library](./doc/FIX_INVALID_HOOK_ERROR.md)
 - **Notes**
     - If coding using visual studio, read the documentation for `typescript-plugin-css-modules`
+    - Because we are using `postinstall` to remove `node_modules` for `yarn add path/to/react-component-library` to work,
+    we will have to use --ignore-scripts whenever we use `yarn install`. This will prevent `postinstall` script from being 
+    executed.
+        - eg. `yarn install --ignore scripts`
+        - eg. `yarn add --dev lodash --ignore-scripts`
 - **Future Work**
     - [code-splitting](doc/CREATE_NEW_LIBRARY.md#code-splitting-incomplete---to-work-on)
     - [style-components](doc/CREATE_NEW_LIBRARY.md#style-components)
