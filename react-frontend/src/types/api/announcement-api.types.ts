@@ -1,9 +1,11 @@
-import moment, { Moment } from "moment";
+import { Moment } from 'moment';
 
 export interface AnnouncementEntity {
-    content: String;
-    snippets: String;
-    author: String;
+    content: string;
+    snippets: string;
+    author: string;
+    header: string;
+    announcementType: string;
     startDate: Moment;
     endDate: Moment;
 }

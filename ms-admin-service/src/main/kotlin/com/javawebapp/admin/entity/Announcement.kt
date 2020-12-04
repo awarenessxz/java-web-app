@@ -7,6 +7,7 @@ import java.time.ZonedDateTime
 @Document(collection="announcements")
 data class Announcement(
         @Id val id: String?,                  // mongoDB ID
+        val header: String,                   // announcement header
         val content: String,                  // html content
         val snippets: String,                 // short display
         val announcementType: String,         // type of announcement
@@ -20,7 +21,7 @@ data class Announcement(
     override fun toString(): String {
         return "Announcement { id=${id}, content=${content}, snippets=${snippets}, startDate=${startDate}, " +
                 "endDate=${endDate}, creationDate=${creationDate}, lastModifiedDate=${lastModifiedDate}, " +
-                "author=${author}, lastEditedBy=${lastEditedBy} }"
+                "author=${author}, lastEditedBy=${lastEditedBy}, header=${header} }"
     }
 
     fun initAnnouncementMetadata() {

@@ -35,7 +35,7 @@ const AnnouncementsConsole = (): JSX.Element => {
                 initialSelectedTab={tabs[0]}
                 autoFocus="selected"
                 onTabClick={(tab) => {
-                    console.log('clicked tab', tab);
+                    // console.log('clicked tab', tab);
                 }}
             />
         </AppContent>

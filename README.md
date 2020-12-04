@@ -62,6 +62,33 @@ root
     - **Admin Service**
         - **/announcements** -- Announcements related 
 
+## Running the Project in Development
+
+### Frontend
+
+1. Build React Component Library
+    - `cd react-component-library`
+    - `yarn install --ignore-scripts`
+    - `yarn run build`
+
+2. Start React Micro Frontend
+    - `cd react-micro-frontend`
+    - `yarn install`
+    - `yarn start`
+
+3. Start the Main Frontend App
+    - `cd react-frontend`
+    - `yarn install`
+    - `yarn start`
+    
+### Backend
+
+1. Start API Gateway
+
+2. Start Config Server
+
+3. Start Microservices
+
 ## Contributions
 
 If you are keen on making contributions. Please adhere to the following rules:

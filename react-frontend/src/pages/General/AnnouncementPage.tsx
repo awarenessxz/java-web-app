@@ -9,10 +9,13 @@ const AnnouncementPage = (): JSX.Element => {
         const reqBody: AnnouncementEntity = {
             content: 'something',
             snippets: 'Something',
+            header: 'title 01',
             author: 'Something',
+            announcementType: 'GENERAL',
             startDate: moment(),
             endDate: moment(),
         };
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         fetch('/announcements/new', {
             method: 'POST',
             headers: {
