@@ -101,3 +101,4 @@ If you are keen on making contributions. Please adhere to the following rules:
 - [Setting up Gradle for Multi Project](doc/CreateProject.md)
 - [Create custom reusable React component Library](react-component-library)
 - [React MicroFrontend Experiments](https://github.com/awarenessxz/react-micro-frontend)
+- [Writing Test using react-testing-library](react-component-library/doc/TESTING_USING_REACT_TESTING_LIBRARY.md)

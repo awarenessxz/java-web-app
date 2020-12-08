@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import { InfiniteScrollListView } from 'react-component-library';
 import { EuiPage, EuiPageBody, EuiPageSideBar } from '@elastic/eui';
 import { fetchWithQueryParams } from '../../utils/fetch-util';
@@ -8,8 +8,8 @@ const AnnouncementListView = (): JSX.Element => {
         <EuiPage>
             <EuiPageSideBar>
                 <InfiniteScrollListView
-                    onLoadMoreData={(): Promise<Response> =>
-                        fetchWithQueryParams('/announcements/all', { limit: 5, offset: 5 })
+                    onLoadMoreData={(limit, offset): Promise<Response> =>
+                        fetchWithQueryParams('/announcements/all', { limit, offset })
                     }
                     totalAmountOfData={20}
                     dataFetchAmount={5}
@@ -20,6 +20,8 @@ const AnnouncementListView = (): JSX.Element => {
                         title: 'author',
                         message: 'snippets',
                     }}
+                    height="500px"
+                    width="auto"
                 />
             </EuiPageSideBar>
             <EuiPageBody component="div">

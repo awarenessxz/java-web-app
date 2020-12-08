@@ -7,26 +7,27 @@ export interface ListViewItem {
 export type DataToItemMapping = ListViewItem;
 
 export interface InfiniteScrollListViewProps {
-    /** Promise<Response> simply refers to the return result of a fetch command in javascript */
-    onLoadMoreData: (limit: number, offset: number) => Promise<Response>;
     /** Data to Item Mapping (Refer to Documentation) */
     dataToItemMapping: DataToItemMapping;
-    /** The total amount of data to track if data have reached the end */
-    totalAmountOfData: number;
+    /** Data API URL eg. /api/something (Refer to Documentation) */
+    dataApiUrl: string;
     /** Amount of data to fetch per load -- refer to sql LIMIT */
-    dataFetchAmount: number; // refer to sql LIMIT (Amount to fetch)
+    dataLimit: number; // refer to sql LIMIT (Amount to fetch)
     /** data fetch position -- refer to sql OFFSET */
     dataOffset: number; // refer to sql OFFSET
     /** handler for when item in list is clicked */
     onItemClick: (item: ListViewItem) => void;
+    /** height */
+    height: string;
+    /** width */
+    width?: string;
 }
 
 export interface InfiniteScrollListViewState {
-    error: string | boolean;
-    hasMoreData: boolean;
-    isLoading: boolean;
-    dataLimit: number; // refer to sql LIMIT (Amount to fetch)
     dataOffset: number; // refer to sql OFFSET
+    isLoading: boolean; // loading new data
+    hasNewData: boolean; // new data loaded -- determines if there are more data
+    error: string | boolean; // loading error
     data: ListViewItem[];
-    scrollYPos:
+    triggerScrollRegister: boolean; // toggle to trigger useEffect to register scroll event
 }

@@ -18,6 +18,11 @@ root/src/main
 └── resources                 
 ```
 
+## Usage
+
+- **Run this microservice**
+    - `./gradlew bootRun`
+
 ## References
 - [Spring Docs](HELP.md)
 - [[VIDEO] Rest API with spring boot](https://www.youtube.com/playlist?list=PLdW9lrB9HDw101ImXtR_xkvTe1HWx7Gc6)

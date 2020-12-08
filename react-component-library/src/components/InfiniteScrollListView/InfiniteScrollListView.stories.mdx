@@ -3,7 +3,7 @@ import InfiniteScrollListView from "./InfiniteScrollListView";
 
 <Meta title='Docs/InfiniteScrollListView' component={InfiniteScrollListView} />
 
-# Infinite Scrolling List View Component [DEPRECATED]
+# Infinite Scrolling List View Component
 
 This is a infinite scrolling list view that is meant to mimic how outlook email list. This project is made possible
 because of [joshtronic](https://www.digitalocean.com/community/tutorials/react-react-infinite-scroll). Check out his
@@ -31,10 +31,32 @@ To use this component, do the following:
 
 <ArgsTable of={InfiniteScrollListView} />
 
-### Data To Item Mapping
+### Data API
 
-As we are making this component dynamic, the data returned from api is different. Hence, `dataToItemMapping` variable
-will map the data retrieved from the api to the `ListViewItem` object. Below is an example scenario
+The component will be dynamically calling a rest api to provide it with data. Below are some of the format you should adhere to:
+
+#### 1. API end point
+
+You should expose an API end point in the following format `/any/api/url?limit=?&offset=?`. The component assumes that
+the end point is in the format above. Hence, a clearer picture of what the props in the properties table will be as
+follows:
+- dataApiUrl -- api url `eg. /any/api/url`
+- dataLimit -- amount of data to fetch (Refer to SQL)
+- dataOffset -- current position of data (Refer to SQL)
+
+#### 2. Data to Item Mapping
+This components accepts data in the following format:
+
+```
+{
+    id: string;
+    title: string;
+    message: string;
+}
+```
+
+Hence, we provided an `dataToItemMapping` prop for you to map the data which your api returns to the format accepted by
+the component. Below is an example scenario.
 
 - Fetch API returns the following object
     ```
@@ -56,15 +78,5 @@ will map the data retrieved from the api to the `ListViewItem` object. Below is 
         },
         ...
     />
-    ```
-
-
-
-
-
-
-
-
-
 
 

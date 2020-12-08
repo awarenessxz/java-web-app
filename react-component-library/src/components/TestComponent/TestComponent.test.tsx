@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 
 // Import Component
 import TestComponent from './TestComponent';
 import { TestComponentProps } from './TestComponent.types';
 
 // function to render Component before each test
-const renderComponent = (props = {}) => {
+const renderComponent = (props = {}): RenderResult => {
     const defaultProps: TestComponentProps = {
         theme: 'primary',
     };

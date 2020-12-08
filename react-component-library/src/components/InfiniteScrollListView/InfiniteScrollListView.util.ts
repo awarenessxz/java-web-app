@@ -1,22 +1,9 @@
-import * as React from 'react';
-import { Meta, Story } from '@storybook/react/types-6-0';
-import InfiniteScrollVirtualizedList from './InfiniteScrollVirtualizedList';
-import { InfiniteScrollVirtualizedListProps, ListViewItem } from './InfiniteScrollVirtualizedList.types';
+/*
+ * Probably can delete
+ */
+import { ListViewItem } from './InfiniteScrollListView.types';
 
-export default {
-    title: 'Components/InfiniteScrollVirtualizedList',
-    component: InfiniteScrollVirtualizedList,
-    excludeStories: /.*Data$/,
-} as Meta;
-
-// create a template
-const Template: Story<InfiniteScrollVirtualizedListProps> = (args) => <InfiniteScrollVirtualizedList {...args} />;
-
-/** *************************************************
- * Data
- ************************************************** */
-
-const fakeData: ListViewItem[] = [
+export const fakeData: ListViewItem[] = [
     {
         id: '1',
         title: 'Alan1',
@@ -119,45 +106,27 @@ const fakeData: ListViewItem[] = [
     },
 ];
 
-const mockFetchRequest = (limit: number, offset: number): Promise<Response> => {
-    return new Promise<Response>((resolve, reject) => {
-        const results: ListViewItem[] = [];
-        if (offset < fakeData.length) {
-            let i;
-            for (i = 0; i < limit; i += 1) {
-                const idx = offset + i;
-                if (idx < fakeData.length) {
-                    results.push(fakeData[idx]);
-                } else {
-                    break;
-                }
+export const getFakeData = (limit: number, offset: number): ListViewItem[] => {
+    const results: ListViewItem[] = [];
+    if (offset < fakeData.length) {
+        let i;
+        for (i = 0; i < limit; i += 1) {
+            const idx = offset + i;
+            if (idx < fakeData.length) {
+                results.push(fakeData[idx]);
+            } else {
+                break;
             }
         }
+    }
+    return results;
+};
+
+export const mockFetchRequest = (limit: number, offset: number): Promise<Response> => {
+    return new Promise<Response>((resolve, reject) => {
+        const results = getFakeData(limit, offset);
         const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
         const init = { status: 200, statusText: 'Super!' };
         resolve(new Response(blob, init));
     });
 };
-
-const sampleArgs: InfiniteScrollVirtualizedListProps = {
-    onLoadMoreData: mockFetchRequest,
-    onItemClick: (item) => {
-        console.log(`${item.title} CLicked`);
-    },
-    dataToItemMapping: {
-        id: 'id',
-        title: 'title',
-        message: 'message',
-    },
-    totalAmountOfData: fakeData.length,
-    dataFetchAmount: 5,
-    dataOffset: 0,
-};
-
-/** *************************************************
- * Stories
- ************************************************** */
-
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-export const Basic: Story = Template.bind({});
-Basic.args = { ...sampleArgs };

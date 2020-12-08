@@ -4,17 +4,24 @@ Using Mongo Docker to create a simple mongo db cluster
 
 ## Usage
 
-1. Run container in background
+1. Clear data inside `mongodata` folder **[OPTIONAL]**
+    - If you are starting a fresh copy of mongo db, make sure you delete everything except `.gitkeep` inside `mongodata` 
+    folder. **Reason for doing so:** We are using `mongodata` folder as a mount folder to persist the data inside our 
+    mongodb. Hence, if the folder have stuff, the init scripts inside `mongo` folder will not run.
+        - `cd mongodata`
+        - `rm -rf *`
+
+2. Run container in background
     - `docker-compose up -d`
     - `docker ps -a` -- check if container is created
     - `docker logs <CONTAINER_NAME>` -- check logs of running instance
 
-2. Access the container
+3. Access the container
     - `docker exec -it <CONTAINER_NAME> bash`
     - Access Mongo
         - `mongo -u root -p 1234`
 
-3. Shut down Container
+4. Shut down Container
     - `docker-compose down -v`
     - `docker volume ls` -- check that volume is taken down as well
         
