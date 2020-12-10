@@ -13,10 +13,10 @@ import { getFakeData } from './InfiniteScrollListView.util';
 const server = setupServer(
     rest.get('/test/infinitescrolllistview/fakedata', (req, res, ctx) => {
         const data = getFakeData(1, 0);
-        return res(ctx.json({ data }));
+        return res(ctx.json(data));
     }),
     rest.get('/test/infinitescrolllistview/empty', (req, res, ctx) => {
-        return res(ctx.json({ data: [] }));
+        return res(ctx.json([]));
     }),
 );
 beforeAll(() => server.listen());
@@ -26,10 +26,7 @@ afterAll(() => server.close());
 // function to render Component before each test
 const renderComponent = (props = {}): RenderResult => {
     const defaultProps: InfiniteScrollListViewProps = {
-        onItemClick: (item) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions
-            alert(`${item.title} Clicked`);
-        },
+        onItemClick: (item) => jest.fn(),
         dataToItemMapping: {
             id: 'id',
             title: 'title',
@@ -82,10 +79,28 @@ describe('Testing API Fetch Logic', () => {
     });
 });
 
-// 3. Test Scrolling -- NOT WORKING, seems to have limitation for such testing
+// 3. Event Listener
+describe('Testing OnClick Events', () => {
+    it('Event triggered when List Item is clicked', async () => {
+        const mockClickHandler = jest.fn();
+        renderComponent({
+            dataApiUrl: '/test/infinitescrolllistview/fakedata',
+            dataLimit: 1,
+            dataOffset: 0,
+            onItemClick: mockClickHandler,
+        });
+        await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+        const listItem1 = screen.getByTestId('islv_1');
+        fireEvent.click(listItem1);
+        expect(mockClickHandler).toBeCalled();
+    });
+});
+
+// 4. Test Scrolling -- NOT WORKING, seems to have limitation for such testing
 // https://github.com/testing-library/react-testing-library/issues/671
 // https://github.com/testing-library/react-testing-library/issues/353
 describe('Testing API Fetch Logic', () => {
+    /*
     const originalOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight');
     const originalOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth');
 
@@ -107,6 +122,11 @@ describe('Testing API Fetch Logic', () => {
         renderComponent({ dataApiUrl: '/test/infinitescrolllistview/fakedata', dataLimit: 2, dataOffset: 0 });
         await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
         const div = screen.getByTestId('islv_rootDiv');
+        console.log(div.clientHeight, div.scrollHeight, div.scrollTop);
+        div.clientHeight = 500;
         fireEvent.scroll(div, { target: { scrollY: 800 } });
+        console.log(div.clientHeight, div.scrollHeight, div.scrollTop);
+        screen.debug();
     });
+     */
 });

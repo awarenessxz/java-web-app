@@ -3,15 +3,16 @@
 exports[`Testing if component renders properly Snapshot Testing 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-1"
+    class="islvRoot"
     data-testid="islv_rootDiv"
     style="height: 400px;"
   >
     <ul
-      class="MuiList-root makeStyles-listContent-2 MuiList-padding"
+      class="MuiList-root makeStyles-listContent-1 MuiList-padding"
     >
       <li
-        class="MuiListItem-root MuiListItem-gutters MuiListItem-alignItemsFlexStart"
+        class="MuiListItem-root makeStyles-listItem-2 MuiListItem-gutters MuiListItem-alignItemsFlexStart"
+        data-testid="islv_1"
       >
         <div
           class="MuiListItemText-root MuiListItemText-multiline"
@@ -24,7 +25,16 @@ exports[`Testing if component renders properly Snapshot Testing 1`] = `
           <p
             class="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
           >
-            this is just a preview
+            this is just a previewthis is just a previewthis is just a preview this is just a preview this is just a preview this is just a preview this is just a preview
+          </p>
+        </div>
+        <div
+          class="MuiListItemText-root makeStyles-listRightContent-3"
+        >
+          <p
+            class="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+          >
+            Last Friday
           </p>
         </div>
       </li>

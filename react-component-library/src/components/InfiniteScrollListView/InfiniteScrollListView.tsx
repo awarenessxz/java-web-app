@@ -158,6 +158,7 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                     alignItems="flex-start"
                     onClick={(): void => props.onItemClick(item.originalData)}
                     className={classes.listItem}
+                    data-testid={`islv_${item.id}`}
                 >
                     <ListItemText primary={item.title} secondary={item.message} />
                     <ListItemText secondary={item.displayDateTime} className={classes.listRightContent} />
