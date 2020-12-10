@@ -60,7 +60,7 @@ root
     - **9090** -- API Gateway
 - **API Endpoints**
     - **Admin Service**
-        - **/announcements** -- Announcements related 
+        - [**announcements**](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
 
 ## Running the Project in Development
 

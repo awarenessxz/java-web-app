@@ -37,4 +37,9 @@ data class Announcement(
         lastModifiedDate = now
         activeFlag = now.isBefore(endDate) && now.isAfter(startDate)
     }
+
+    fun isActive(): Boolean {
+        val now = ZonedDateTime.now()
+        return now.isBefore(endDate) && now.isAfter(startDate)
+    }
 }

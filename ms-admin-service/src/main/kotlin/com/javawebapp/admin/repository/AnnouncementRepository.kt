@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AnnouncementRepository : MongoRepository<Announcement, String> {
-
+    fun findAnnouncementByActiveFlag(activeFlag: Boolean): List<Announcement>
 }

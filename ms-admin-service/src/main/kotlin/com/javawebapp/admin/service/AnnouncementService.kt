@@ -5,6 +5,7 @@ import com.javawebapp.admin.exception.ApiException
 import com.javawebapp.admin.exception.ErrorTypes
 import com.javawebapp.admin.repository.AnnouncementRepository
 import org.springframework.data.domain.PageRequest
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
 @Service
@@ -42,5 +43,18 @@ class AnnouncementService(
     fun updateAnnouncementById(announcement: Announcement) {
         announcement.updateAnnouncementMetadata()
         announcementRepository.save(announcement)
+    }
+
+    @Scheduled(fixedDelay = 5000L)
+    fun cleanUpAnnouncementActiveFlag() {
+        System.out.println("Schedule Job to clean up announcement active flag is running...")
+        val announcements = announcementRepository.findAnnouncementByActiveFlag(true)
+        for (announcement in announcements) {
+            if (!announcement.isActive()) {
+                announcement.activeFlag = false
+                announcementRepository.save(announcement)
+            }
+        }
+        System.out.println(announcements);
     }
 }
