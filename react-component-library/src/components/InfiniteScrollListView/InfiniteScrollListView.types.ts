@@ -2,6 +2,8 @@ export interface ListViewItem {
     id: string;
     title: string;
     message: string;
+    displayDateTime: string;
+    originalData?: any;
 }
 
 export type DataToItemMapping = ListViewItem;
@@ -11,12 +13,16 @@ export interface InfiniteScrollListViewProps {
     dataToItemMapping: DataToItemMapping;
     /** Data API URL eg. /api/something (Refer to Documentation) */
     dataApiUrl: string;
-    /** Amount of data to fetch per load -- refer to sql LIMIT */
-    dataLimit: number; // refer to sql LIMIT (Amount to fetch)
-    /** data fetch position -- refer to sql OFFSET */
-    dataOffset: number; // refer to sql OFFSET
+    /** Amount of data to fetch per load -- refer to sql LIMIT or Spring Pagination PAGE_SIZE */
+    dataLimit: number;
+    /** data fetch position -- refer to sql OFFSET or Spring Pagination PAGE_NO */
+    dataOffset: number;
+    /** data offset increment amount -- refer to sql OFFSET increment or Spring Pagination PAGE_NO increment */
+    dataOffsetIncrement: number;
+    /** message for user when there is no data retrieved from api */
+    noDataMsg?: string;
     /** handler for when item in list is clicked */
-    onItemClick: (item: ListViewItem) => void;
+    onItemClick: (item: any) => void;
     /** height */
     height: string;
     /** width */

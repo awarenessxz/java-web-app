@@ -27,16 +27,19 @@ afterAll(() => server.close());
 const renderComponent = (props = {}): RenderResult => {
     const defaultProps: InfiniteScrollListViewProps = {
         onItemClick: (item) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions
             alert(`${item.title} Clicked`);
         },
         dataToItemMapping: {
             id: 'id',
             title: 'title',
             message: 'message',
+            displayDateTime: 'displayDateTime',
         },
         dataApiUrl: '/test/infinitescrolllistview/fakedata',
-        dataLimit: 5,
+        dataLimit: 4,
         dataOffset: 0,
+        dataOffsetIncrement: 4,
         height: '400px',
     };
     const merged = { ...defaultProps, ...props };

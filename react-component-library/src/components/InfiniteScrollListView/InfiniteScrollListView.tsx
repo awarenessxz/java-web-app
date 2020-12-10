@@ -1,22 +1,28 @@
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import { InfiniteScrollListViewProps, InfiniteScrollListViewState, ListViewItem } from './InfiniteScrollListView.types';
+import { getDateFromDateTime } from '../../utils/time-formatter';
+import styles from './InfiniteScrollListView.module.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            overflowY: 'scroll',
-            width: '100%',
-            maxWidth: '36ch',
-        },
         listContent: {
             width: '100%',
             backgroundColor: theme.palette.background.paper,
+        },
+        listItem: {
+            cursor: 'pointer',
+        },
+        listRightContent: {
+            textAlign: 'right',
+            flex: '0 0 60px',
+            paddingTop: '10px',
         },
         inline: {
             display: 'inline',
@@ -55,7 +61,6 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
     };
 
     const loadData = debounce(() => {
-        console.log('loading more data');
         setLocalState({ ...localState, hasNewData: false, isLoading: true });
     }, 100);
 
@@ -67,14 +72,20 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                 .then((newData) => {
                     // map the data to item
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-                    const nextData: ListViewItem[] = newData.data.map((item: any) => ({
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
-                        id: item[props.dataToItemMapping.id],
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
-                        title: item[props.dataToItemMapping.title],
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
-                        message: item[props.dataToItemMapping.message],
-                    }));
+                    const nextData: ListViewItem[] = newData.map((item: any) => {
+                        return {
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+                            id: item[props.dataToItemMapping.id],
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+                            title: item[props.dataToItemMapping.title],
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+                            message: item[props.dataToItemMapping.message],
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+                            displayDateTime: getDateFromDateTime(item[props.dataToItemMapping.displayDateTime]),
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                            originalData: item,
+                        };
+                    });
 
                     // Merges the next data into our existing data
                     setLocalState({
@@ -82,7 +93,7 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                         hasNewData: nextData.length > 0,
                         isLoading: false,
-                        dataOffset: localState.dataOffset + props.dataLimit,
+                        dataOffset: localState.dataOffset + props.dataOffsetIncrement,
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         data: [...localState.data, ...nextData],
                         triggerScrollRegister: !localState.triggerScrollRegister,
@@ -140,21 +151,42 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [localState.triggerScrollRegister]);
 
+    const ListContentItem = (item: ListViewItem): JSX.Element => {
+        return (
+            <Fragment>
+                <ListItem
+                    alignItems="flex-start"
+                    onClick={(): void => props.onItemClick(item.originalData)}
+                    className={classes.listItem}
+                >
+                    <ListItemText primary={item.title} secondary={item.message} />
+                    <ListItemText secondary={item.displayDateTime} className={classes.listRightContent} />
+                </ListItem>
+                <Divider component="li" />
+            </Fragment>
+        );
+    };
+
     const ListContent = (): JSX.Element => {
         return (
             <Fragment>
-                <List className={classes.listContent}>
-                    {localState.data.map((item, idx) => (
-                        <Fragment key={idx}>
-                            <ListItem alignItems="flex-start" onClick={(): void => props.onItemClick(item)}>
-                                <ListItemText primary={item.title} secondary={item.message} />
-                            </ListItem>
-                            <Divider component="li" />
-                        </Fragment>
-                    ))}
-                </List>
+                {localState.data.length > 0 ? (
+                    <List className={classes.listContent}>
+                        {localState.data.map((item, idx) => (
+                            <ListContentItem key={idx} {...item} />
+                        ))}
+                    </List>
+                ) : (
+                    <Alert data-testid="islv_emptyDiv" severity="success">
+                        No Data Available
+                    </Alert>
+                )}
                 {localState.isLoading && <div data-testid="islv_isLoadingDiv">Loading...</div>}
-                {!localState.hasNewData && <div data-testid="islv_endDiv"> --- End of List --- </div>}
+                {!localState.hasNewData && (
+                    <Alert data-testid="islv_endDiv" severity="info">
+                        --- End of List ---
+                    </Alert>
+                )}
             </Fragment>
         );
     };
@@ -162,14 +194,14 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
     return (
         <div
             data-testid="islv_rootDiv"
-            className={classes.root}
+            className={styles.islvRoot}
             style={{ height: props.height, width: props.width }}
             ref={componentRef}
         >
             {localState.error ? (
-                <div data-testid="islv_errorDiv" style={{ color: '#900' }}>
-                    --- {localState.error} ---
-                </div>
+                <Alert data-testid="islv_errorDiv" severity="error">
+                    {localState.error}
+                </Alert>
             ) : (
                 <ListContent />
             )}

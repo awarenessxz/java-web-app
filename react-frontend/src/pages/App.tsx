@@ -10,7 +10,8 @@ import SearchTemplateList from './Search/SearchTemplateList';
 import ToolsAndServices from './ToolsAndServices/ToolsAndServices';
 import DemoCompLibrary from './ToolsAndServices/DemoCompLibrary';
 import DemoMicroFrontend from './ToolsAndServices/DemoMicroFrontend';
-import AnnouncementPage from "./General/AnnouncementPage";
+import AnnouncementPage from './General/AnnouncementPage';
+import ToastHandler from '../utils/app/ToastHandler';
 import { RootState } from '../redux/root-reducer';
 import { initBaseApplication } from '../redux/app/app-action';
 
@@ -46,6 +47,7 @@ const App = (): JSX.Element => {
                     <Route exact path="/admin/announcements" component={AnnouncementsConsole} />
                     <Route exact path="/announcements" component={AnnouncementPage} />
                 </Switch>
+                <ToastHandler />
             </Router>
         );
     }

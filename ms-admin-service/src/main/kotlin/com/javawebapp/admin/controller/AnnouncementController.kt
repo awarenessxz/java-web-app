@@ -17,18 +17,15 @@ class AnnouncementController(
     }
 
     @GetMapping("/all")
-    fun getAllAnnouncements(@RequestParam(required = false, name = "limit") limit: String?, @RequestParam(required = false, name = "offset") offset: String?): ResponseEntity<List<Announcement>> {
-        return if (limit !== null && offset !== null) {
-            // partial fetch based on limit (amount) & offset (position)
-            System.out.println("Announcements partial")
-            val announcements = announcementService.getAllAnnouncements()
-            ResponseEntity(announcements, HttpStatus.OK)
-        } else {
-            // full fetch
-            System.out.println("Announcements full")
-            val announcements = announcementService.getAllAnnouncements()
-            ResponseEntity(announcements, HttpStatus.OK)
-        }
+    fun getAllAnnouncements(): ResponseEntity<List<Announcement>> {
+        val announcements = announcementService.getAllAnnouncements()
+        return ResponseEntity(announcements, HttpStatus.OK)
+    }
+
+    @GetMapping("/all/page")
+    fun getAllAnnouncementByPage(@RequestParam(name = "limit") limit: String, @RequestParam(name = "offset") offset: String): ResponseEntity<List<Announcement>> {
+        val announcements = announcementService.getAnnouncementsByPagination(limit.toInt(), offset.toInt())
+        return ResponseEntity(announcements, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -51,7 +48,6 @@ class AnnouncementController(
 
     @PostMapping("/new")
     fun createNewAnnouncement(@RequestBody announcement: Announcement): ResponseEntity<Void> {
-        System.out.println("received ==> $announcement");
         announcementService.createNewAnnouncement(announcement)
         return ResponseEntity.noContent().build() // returns HTTP Status Code: 204
     }

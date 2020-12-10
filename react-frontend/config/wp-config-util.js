@@ -4,22 +4,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extracts CSS
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // optimize and minimize css assets
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-const path = require('path');
 
 const CSSModuleLoader = {
     loader: 'css-loader',
     options: {
         modules: {
-            compileType: 'module',
-            mode: 'local',
             auto: true,
-            exportGlobals: true,
-            localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            localIdentContext: path.resolve(__dirname, 'src'),
-            localIdentHashPrefix: 'my-custom-hash',
-            namedExport: true,
-            exportLocalsConvention: 'camelCase',
-            exportOnlyLocals: false,
         },
         importLoaders: 2,
         sourceMap: false // turned off since this causes delays

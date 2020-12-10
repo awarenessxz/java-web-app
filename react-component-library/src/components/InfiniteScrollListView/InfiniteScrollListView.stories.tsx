@@ -20,16 +20,19 @@ const Template: Story<InfiniteScrollListViewProps> = (args) => {
 
 const sampleArgs: InfiniteScrollListViewProps = {
     onItemClick: (item) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions
         alert(`${item.title} Clicked`);
     },
     dataToItemMapping: {
         id: 'id',
         title: 'title',
         message: 'message',
+        displayDateTime: 'displayDateTime',
     },
     dataApiUrl: '/api/infinitescrolllistview/fakedata',
-    dataLimit: 1,
+    dataLimit: 4,
     dataOffset: 0,
+    dataOffsetIncrement: 4,
     height: '400px',
 };
 

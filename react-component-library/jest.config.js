@@ -3,11 +3,7 @@ module.exports = {
     setupFilesAfterEnv: ['./setup/jest.setup.ts'],
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     collectCoverage: true,
-    collectCoverageFrom: [
-        '<rootDir>/src/components/**/*.{ts,tsx}',
-        '!<rootDir>/src/components/**/*.stories.{ts,tsx}',
-        '!<rootDir>/src/components/**/*.util.{ts,tsx}'
-    ],
+    collectCoverageFrom: ['<rootDir>/src/components/**/*.{ts,tsx}', '!<rootDir>/src/components/**/*.stories.{ts,tsx}'],
     coverageDirectory: './coverage',
     testPathIgnorePatterns: ['node_modules/'],
     transform: {

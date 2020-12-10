@@ -14,7 +14,7 @@ const expressMiddleWare = router => {
     // general api end point which returns empty array
     router.get('/api/emptydata', (request, response) => {
         if (request.query.limit && request.query.offset) {
-            response.send({ data: [] });
+            response.send([]);
         } else {
             response.status(500).send("API Server Error");
         }
@@ -26,7 +26,7 @@ const expressMiddleWare = router => {
             const limit = parseInt(request.query.limit);
             const offset = parseInt(request.query.offset);
             const data = infiniteScrollListViewUtil.getFakeData(limit, offset);
-            response.send({ data });
+            response.send(data);
         } else {
             response.status(500).send("API Server Error");
         }

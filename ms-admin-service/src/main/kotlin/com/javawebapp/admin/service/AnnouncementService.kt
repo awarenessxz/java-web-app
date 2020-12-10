@@ -4,6 +4,7 @@ import com.javawebapp.admin.entity.Announcement
 import com.javawebapp.admin.exception.ApiException
 import com.javawebapp.admin.exception.ErrorTypes
 import com.javawebapp.admin.repository.AnnouncementRepository
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,6 +13,12 @@ class AnnouncementService(
 ) {
     fun getAllAnnouncements(): List<Announcement> {
         return announcementRepository.findAll()
+    }
+
+    fun getAnnouncementsByPagination(limit: Int, offset: Int): List<Announcement> {
+        val page = PageRequest.of(offset, limit)
+        val pageResults = announcementRepository.findAll(page)
+        return pageResults.content
     }
 
     fun getAnnouncementById(id: String): Announcement? {

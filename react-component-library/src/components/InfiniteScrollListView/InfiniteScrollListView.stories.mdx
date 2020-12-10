@@ -52,6 +52,7 @@ This components accepts data in the following format:
     id: string;
     title: string;
     message: string;
+    displayDateTime: string; // obtained via moment(). Eg. 2020-12-08T04:53:51.822Z
 }
 ```
 
@@ -63,7 +64,8 @@ the component. Below is an example scenario.
     {
         id: 123123
         header: something,
-        result: asdasdasd
+        result: asdasdasd,
+        displayDateTime: '2020-12-08T04:53:51.822Z',  // obtained via moment()
     }
     ```
 

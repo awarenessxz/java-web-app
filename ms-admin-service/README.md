@@ -9,7 +9,7 @@ root/src/main
 ├── kotlin
     └── com.javawebapp.admin
         ├── config              # custom configurations
-        ├── controller*         # [ENTRYPOINT] HTTP requests are handled by a REST controller
+        ├── controller*         # REST controller
         ├── entity              # Database related
         ├── exception           # Custom Exceptions (start point = ApiExceptionHandler.kt)
         ├── repository          # Database related
@@ -22,6 +22,10 @@ root/src/main
 
 - **Run this microservice**
     - `./gradlew bootRun`
+
+## Implementation
+
+- [Announcement Feature](doc/ANNOUNCEMENT_FEATURE.md)
 
 ## References
 - [Spring Docs](HELP.md)
