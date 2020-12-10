@@ -11,7 +11,7 @@ import ToolsAndServices from './ToolsAndServices/ToolsAndServices';
 import DemoCompLibrary from './ToolsAndServices/DemoCompLibrary';
 import DemoMicroFrontend from './ToolsAndServices/DemoMicroFrontend';
 import AnnouncementPage from './General/AnnouncementPage';
-import ToastHandler from '../utils/app/ToastHandler';
+import ToastHandler from '../utils/ToastHandler';
 import { RootState } from '../redux/root-reducer';
 import { initBaseApplication } from '../redux/app/app-action';
 

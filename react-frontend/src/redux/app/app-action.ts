@@ -8,7 +8,7 @@ import {
 import { RootThunkResult } from '../root-action';
 import { MenuItem } from '../../utils/routing/app-menu-item';
 import { generateMenuItemMapping, getCurrentRoute, MenuItemMap } from '../../utils/routing/navigation-utils';
-import { checkUserAccess } from '../../utils/app/access-control';
+import { checkUserAccess } from '../../utils/access-control';
 
 /* ***************************************************************************************
  * Action Creators (Standard Redux Actions)

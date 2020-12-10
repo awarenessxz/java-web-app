@@ -3,6 +3,7 @@ export interface ListViewItem {
     title: string;
     message: string;
     displayDateTime: string;
+    highlightItem: string;
     originalData?: any;
 }
 

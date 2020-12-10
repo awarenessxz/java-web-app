@@ -12,7 +12,7 @@ Experimenting with a Java Web Application built with the following components
     - **Message Queues**
     - **Databases**
 
-![Architecture](doc/architecture.png)
+![Architecture](doc/images/architecture.png)
 
 ## Folder Structure
 
@@ -28,32 +28,9 @@ root
 └── ws-fake-api*                # Web Service (Node)
 ```
 
-## Useful commands
+## Apps & API
 
-1. Gradle
-    - Inside Root Directory: `gradlew projects` --> list all projects
-    - `gradlew tasks --all` --> show all tasks available
-
-## Project Set up
-
-### Environment Setup
-
-1. [Install Gradle](https://gradle.org/install/#manually)
-2. [Install IntelliJ](https://www.jetbrains.com/help/idea/installation-guide.html#toolbox)
-3. [Install Node-12](https://github.com/nodejs/help/wiki/Installation)
-4. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-5. [Install Java JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-6. [Install Docker](https://docs.docker.com/get-docker/)
-7. [Install Docker-Compose](https://docs.docker.com/compose/install/)
-
-### IntelliJ Setup
-
-1. Import project into IntelliJ (select `build.gradle.kts` in the root directory)
-2. Follow Instruction on how to setup configuration for Javascript projects
-
-### Apps & API
-
-- **Hosts**
+- **Apps**
     - **6006** -- Storybook (React Component Library)
     - **7001** -- Microservice (Admin Service)
     - **8080** -- React Frontend
@@ -62,7 +39,17 @@ root
     - **Admin Service**
         - [**announcements**](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
 
-## Running the Project in Development
+## Quick Start
+
+Before you can run this project, please follow the instructions on how to [set up your project environment](doc/PROJECT_SETUP.md).
+
+### Backend
+
+1. Start API Gateway
+
+2. Start Config Server
+
+3. Start Microservices
 
 ### Frontend
 
@@ -80,14 +67,6 @@ root
     - `cd react-frontend`
     - `yarn install`
     - `yarn start`
-    
-### Backend
-
-1. Start API Gateway
-
-2. Start Config Server
-
-3. Start Microservices
 
 ## Contributions
 
@@ -98,7 +77,14 @@ If you are keen on making contributions. Please adhere to the following rules:
 
 ## Documentations
 
-- [Setting up Gradle for Multi Project](doc/CreateProject.md)
+### Relevant Materials
+
+- [Writing Test using react-testing-library](react-component-library/doc/TESTING_USING_REACT_TESTING_LIBRARY.md)
+- [Webpack Configuration](react-frontend/doc/WEBPACK.md)
+
+### Misc / Just for Knowledge
+
+- [IntelliJ set up](doc/PROJECT_SETUP.md)
+- [Setting up Gradle for Multi Project](doc/GRADLE_TIPS.md)
 - [Create custom reusable React component Library](react-component-library)
 - [React MicroFrontend Experiments](https://github.com/awarenessxz/react-micro-frontend)
-- [Writing Test using react-testing-library](react-component-library/doc/TESTING_USING_REACT_TESTING_LIBRARY.md)

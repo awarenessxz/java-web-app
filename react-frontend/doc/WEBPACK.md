@@ -1,11 +1,11 @@
 # Overview on webpack configuration
 
 ## Configuration Files
-- `tsconfig.json`: config for type checking (Note that we will be using babel for code transpilation although we can do it here too)
-- `.babelrc`: config for code transpilation
-- `wepack.config.js`: config for webpack to bundle javascript files
-- `.eslintrc`: config for lint
-- `package.json`: npm dependency manager
+- `tsconfig.json` - config for type checking (Note that we will be using babel for code transpilation although we can do it here too)
+- `.babelrc` - config for code transpilation
+- `wepack.config.js` - config for webpack to bundle javascript files
+- `.eslintrc` - config for lint
+- `package.json` - npm dependency manager
 
 ## Dependencies
 
@@ -22,15 +22,10 @@
     - `@babel/preset-typescript` - enables Babel to transform Typescript code into Javascript
 
 ### Assets
-- `css-loader` - load and bundle css into one file
-- `style-loader` - add all the styles inside the style tag to the document
-<<<<<<< HEAD
-=======
-
-### React
-- `react-hot-loader` - works with webpack dev server hot module replacement (HMR). Tells dev server how to hot reload react codes
-    - Note: can safely install react-hot-loader as a regular dependency instead of a dev dependency as it automatically ensures it is not executed in production and the footprint is minimal
->>>>>>> 2e8bc4a79f9eff9c64f8aea24aba30a35eba0d29
+- `css-loader` - load and bundle css into one file. Interprets @import and @url() and resolves them. For example, if you reference some images like .jpg in css, you need this to resolve it.
+- `style-loader` - injects our styles into our DOM. This will put styles into the HTML file, so no separate stylesheet.
+- `sass-loader` - is a loader for Webpack for compiling SCSS/Sass files.
+- `mini-css-extract-plugin` - extracts our CSS from the main.js JavaScript bundle into a separate file, essential for production builds.
 
 ## Eslint
 - `eslint` - core Eslint library

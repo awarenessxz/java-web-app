@@ -1,4 +1,5 @@
-# react-frontend
+# React Frontend (Main App)
+
 Simple React Web Application Template built with typescript,webpack,react
 
 ## Technology Stack
