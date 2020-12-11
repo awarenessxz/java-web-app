@@ -12,6 +12,7 @@ rootProject.name = "java-web-app"
 // order does matters
 include("ms-admin-service")
 include("ms-config-service")
+include("ms-notification-service")
 include("react-component-library")
 include("react-frontend")
 include("react-micro-frontend")

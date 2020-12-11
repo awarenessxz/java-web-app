@@ -1043,6 +1043,11 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@stomp/stompjs@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@stomp/stompjs/-/stompjs-6.0.0.tgz#707f54032984bf74a1956abf1e5421d7b5bb8e19"
+  integrity sha512-mMTltM/I9MkoOQip89jh/8P53IC50I4T87/chSxJDX4aNInRSpKxSZ/f7umjWPvYfrqcRTpFmKa7Z4cp2iojng==
+
 "@tinymce/tinymce-react@^3.8.1":
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.8.1.tgz#7549bf8c06487b0b21b5b8c86c66c376dbbf5270"

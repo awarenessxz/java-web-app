@@ -21,6 +21,7 @@ Experimenting with a Java Web Application built with the following components
 ```
 root    
 ├── ms-admin-service            # Micro-service (centralized admin services)
+├── ms-notification-service     # Micro-service (websocket server)
 ├── react-component-library     # Custom React Reusable Component Library
 ├── react-frontend              # Main Frontend App
 ├── react-micro-frontend        # Sub Frontend that is consumes by main frontend app  
@@ -50,6 +51,12 @@ Before you can run this project, please follow the instructions on how to [set u
 2. Start Config Server
 
 3. Start Microservices
+    - Admin Service
+        - `cd ms-admin-service`
+        - `./gradlew bootRun`
+    - Notification Service
+        - `cd ms-notification-service`
+        - `./gradlew bootRun`
 
 ### Frontend
 

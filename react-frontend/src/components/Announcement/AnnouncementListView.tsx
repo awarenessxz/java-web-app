@@ -31,7 +31,9 @@ const AnnouncementListView = (): JSX.Element => {
                         title: 'announcementType',
                         message: 'title',
                         displayDateTime: 'creationDate',
+                        isFlagged: 'activeFlag',
                     }}
+                    dataIsFlaggedReadList={[]}
                     height="650px"
                 />
             </EuiPageSideBar>

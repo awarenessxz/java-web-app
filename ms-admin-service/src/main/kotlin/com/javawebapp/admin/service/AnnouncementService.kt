@@ -5,6 +5,7 @@ import com.javawebapp.admin.exception.ApiException
 import com.javawebapp.admin.exception.ErrorTypes
 import com.javawebapp.admin.repository.AnnouncementRepository
 import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
@@ -13,11 +14,11 @@ class AnnouncementService(
         private val announcementRepository: AnnouncementRepository
 ) {
     fun getAllAnnouncements(): List<Announcement> {
-        return announcementRepository.findAll()
+        return announcementRepository.findByOrderByCreationDateDesc()
     }
 
     fun getAnnouncementsByPagination(limit: Int, offset: Int): List<Announcement> {
-        val page = PageRequest.of(offset, limit)
+        val page = PageRequest.of(offset, limit, Sort.by(Sort.Direction.DESC, "creationDate"))
         val pageResults = announcementRepository.findAll(page)
         return pageResults.content
     }
@@ -45,7 +46,7 @@ class AnnouncementService(
         announcementRepository.save(announcement)
     }
 
-    @Scheduled(fixedDelay = 5000L)
+    @Scheduled(fixedDelay = 500000L)
     fun cleanUpAnnouncementActiveFlag() {
         System.out.println("Schedule Job to clean up announcement active flag is running...")
         val announcements = announcementRepository.findAnnouncementByActiveFlag(true)

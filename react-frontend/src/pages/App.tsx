@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
+import { Client, Frame, Message } from '@stomp/stompjs';
 import loadingGif from '../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
 import AnnouncementsConsole from './Admin/AnnouncementsConsole';
@@ -21,11 +22,35 @@ const App = (): JSX.Element => {
 
     // initial load (load base application state)
     useEffect(() => {
+        let stompClient: Client;
+
         // sleep for 2 seconds to show the loading component
         setTimeout(() => {
             // initialize base application state
             dispatch(initBaseApplication());
+
+            // connect web socket
+            const stompConfig = {
+                brokerURL: 'ws://localhost:7002/stomp',
+                onConnect: (frame: Frame): void => {
+                    console.log('Connected?');
+
+                    stompClient.subscribe('/topic/announcements', (message: Message) => {
+                        console.log(message);
+                    });
+                },
+                onStompError: (frame: Frame): void => {
+                    console.log(`Broker reported error: ${frame.headers.message}`);
+                    console.log(`Additional Details: ${frame.body}`);
+                },
+            };
+            stompClient = new Client(stompConfig);
+            stompClient.activate();
         }, 2000);
+
+        return () => {
+            stompClient.deactivate();
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
