@@ -8,6 +8,7 @@ export const fakeData: ListViewItem[] = [
             'this is just a previewthis is just a previewthis is just a preview this is just a preview ' +
             'this is just a preview this is just a preview this is just a preview',
         displayDateTime: '2020-12-04T04:53:51.822Z',
+        isFlagged: true,
     },
     {
         id: '2',
@@ -16,6 +17,7 @@ export const fakeData: ListViewItem[] = [
             'this is just a preview this is just a preview this is just a preview this is just a preview t' +
             'his is just a preview this is just a preview this is just a preview',
         displayDateTime: '2020-12-04T04:53:51.822Z',
+        isFlagged: true,
     },
     {
         id: '3',

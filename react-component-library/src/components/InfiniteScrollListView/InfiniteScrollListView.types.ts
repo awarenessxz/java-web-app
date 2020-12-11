@@ -3,6 +3,7 @@ export interface ListViewItem {
     title: string;
     message: string;
     displayDateTime: string;
+    isFlagged?: string | boolean;
     originalData?: any;
 }
 
@@ -19,6 +20,8 @@ export interface InfiniteScrollListViewProps {
     dataOffset: number;
     /** data offset increment amount -- refer to sql OFFSET increment or Spring Pagination PAGE_NO increment */
     dataOffsetIncrement: number;
+    /** [OPTIONAL] list of data id which indicates if isFlag should be disabled (typically for read/unread behaviour) */
+    dataIsFlaggedReadList?: string[];
     /** message for user when there is no data retrieved from api */
     noDataMsg?: string;
     /** handler for when item in list is clicked */

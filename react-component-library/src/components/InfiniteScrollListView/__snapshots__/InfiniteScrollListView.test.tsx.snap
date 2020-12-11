@@ -11,7 +11,7 @@ exports[`Testing if component renders properly Snapshot Testing 1`] = `
       class="MuiList-root makeStyles-listContent-1 MuiList-padding"
     >
       <li
-        class="MuiListItem-root makeStyles-listItem-2 MuiListItem-gutters MuiListItem-alignItemsFlexStart"
+        class="MuiListItem-root makeStyles-listItem-2 islvIsNotFlagged MuiListItem-gutters MuiListItem-alignItemsFlexStart"
         data-testid="islv_1"
       >
         <div
@@ -29,12 +29,12 @@ exports[`Testing if component renders properly Snapshot Testing 1`] = `
           </p>
         </div>
         <div
-          class="MuiListItemText-root makeStyles-listRightContent-3"
+          class="MuiListItemText-root makeStyles-listRightContent-4"
         >
           <p
             class="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
           >
-            Last Friday
+            04/12/2020
           </p>
         </div>
       </li>

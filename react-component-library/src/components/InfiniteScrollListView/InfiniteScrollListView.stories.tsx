@@ -51,3 +51,16 @@ EmptyList.args = { ...Basic.args, dataApiUrl: '/api/emptydata' };
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const InvalidAPIEndPoint: Story = Template.bind({});
 InvalidAPIEndPoint.args = { ...Basic.args, dataApiUrl: '/api/invalid' };
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const ListWithFlag: Story = Template.bind({});
+ListWithFlag.args = {
+    ...sampleArgs,
+    dataToItemMapping: {
+        id: 'id',
+        title: 'title',
+        message: 'message',
+        displayDateTime: 'displayDateTime',
+        isFlagged: 'isFlagged',
+    },
+};

@@ -7,3 +7,11 @@
   border: 1px solid #000000;
   padding: 1px;
 }
+
+.islvIsFlagged {
+  border-left: 6px solid #a64452;
+}
+
+.islvIsNotFlagged {
+  border-left: 6px solid transparent;
+}

@@ -45,14 +45,16 @@ follows:
 - dataOffset -- current position of data (Refer to SQL)
 
 #### 2. Data to Item Mapping
-This components accepts data in the following format:
+
+This components accepts data retrieved from API in the following format:
 
 ```
 {
     id: string;
     title: string;
     message: string;
-    displayDateTime: string; // obtained via moment(). Eg. 2020-12-08T04:53:51.822Z
+    displayDateTime: string;        # obtained via moment(). Eg. 2020-12-08T04:53:51.822Z
+    isFlagged: boolean              # [Optional] -- default = false
 }
 ```
 
@@ -62,10 +64,11 @@ the component. Below is an example scenario.
 - Fetch API returns the following object
     ```
     {
-        id: 123123
-        header: something,
-        result: asdasdasd,
-        displayDateTime: '2020-12-08T04:53:51.822Z',  // obtained via moment()
+        id: '123123'                               # (string)
+        header: 'something',                       # (string)
+        result: 'asdasdasd',                       # (string)
+        creationDate: '2020-12-08T04:53:51.822Z',  # obtained via moment() -- (string)
+        isActive: true                             # indicator whether to show a flag -- (boolean)
     }
     ```
 
@@ -74,11 +77,21 @@ the component. Below is an example scenario.
     <InfiniteScrollListView
         ...
         dataToItemMapping: {
-            id: 'id',                   # maps id to id
-            title: 'header',            # maps header to title
-            message: 'result',          # maps result to message
+            id: 'id',                       # maps id to id (string)
+            title: 'header',                # maps header to title (string)
+            message: 'result',              # maps result to message (string)
+            displayDateTime: 'creationDate' # maps creationDate to displayDateTime (string)
+            isFlagged: 'isActive'           # maps isActive to isFlagged (boolean)
         },
         ...
     />
 
+#### 3. onItemClick callback
 
+OnItemClick callback will be called when the an item in the scroll list is clicked. The original data which was retrieved
+from the rest API would be returned. Important things to note:
+
+- For props `dataIsFlaggedReadList`, the component will keep a state of the "id" inside `dataIsFlaggedReadList`. Whenever
+there are any item clicks, the component will update the **state inside the component** and **NOT the list** which was
+passed into the component via `dataIsFlaggedReadList`. Hence, if you want to update the list which you pass into the props,
+please handle the logic on your own.

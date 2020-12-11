@@ -4,8 +4,8 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import { InfiniteScrollListViewProps, InfiniteScrollListViewState, ListViewItem } from './InfiniteScrollListView.types';
 import { getDateFromDateTime } from '../../utils/time-formatter';
 import styles from './InfiniteScrollListView.module.scss';
@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         listItem: {
             cursor: 'pointer',
+        },
+        listIcon: {
+            paddingTop: '10px',
         },
         listRightContent: {
             textAlign: 'right',
@@ -43,6 +46,7 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
         data: [],
         triggerScrollRegister: false,
     });
+    const [isDataFlagReadList, setIsDataFlagReadList] = useState<string[]>(props.dataIsFlaggedReadList || []);
     const componentRef = useRef<HTMLDivElement>(null);
 
     // https://www.geeksforgeeks.org/check-whether-html-element-has-scrollbars-using-javascript/
@@ -73,6 +77,7 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                     // map the data to item
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
                     const nextData: ListViewItem[] = newData.map((item: any) => {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                         return {
                             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
                             id: item[props.dataToItemMapping.id],
@@ -82,6 +87,11 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                             message: item[props.dataToItemMapping.message],
                             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
                             displayDateTime: getDateFromDateTime(item[props.dataToItemMapping.displayDateTime]),
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                            isFlagged: props.dataToItemMapping.isFlagged
+                                ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                  item[props.dataToItemMapping.isFlagged as string]
+                                : false,
                             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             originalData: item,
                         };
@@ -156,8 +166,16 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
             <Fragment>
                 <ListItem
                     alignItems="flex-start"
-                    onClick={(): void => props.onItemClick(item.originalData)}
-                    className={classes.listItem}
+                    onClick={(): void => {
+                        // update isDataReadList
+                        setIsDataFlagReadList([...isDataFlagReadList, item.id]);
+                        props.onItemClick(item.originalData);
+                    }}
+                    className={`${classes.listItem} ${
+                        item.isFlagged && !isDataFlagReadList.includes(item.id)
+                            ? styles.islvIsFlagged
+                            : styles.islvIsNotFlagged
+                    }`}
                     data-testid={`islv_${item.id}`}
                 >
                     <ListItemText primary={item.title} secondary={item.message} />
