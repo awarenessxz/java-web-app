@@ -5,7 +5,7 @@ const fs = require('fs');
 const registry = require('./registry.json');
 const router = express.Router();
 
-router.all('/:apiName/:path', (req, res) => {
+router.all('/rest/:apiName/:path', (req, res) => {
     const api = registry.services[req.params.apiName];
     if (api) {
         axios({

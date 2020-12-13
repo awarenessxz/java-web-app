@@ -14,6 +14,6 @@ class SchedulingConfig(
 
     @Scheduled(fixedDelay = 5000)
     fun sendAdhocMessages() {
-        template.convertAndSend("/topic/announcement", Testing("Scheduled Message"))
+        template.convertAndSend("/topic/announcements", Testing("Scheduled Message"))
     }
 }

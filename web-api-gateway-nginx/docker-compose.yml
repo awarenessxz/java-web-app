@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  apigateway:
+    image: nginx:latest
+    container_name: apigateway
+    hostname: apigateway
+    #network_mode: host
+    ports:
+    - 9090:80
+    #- 443:443
+    volumes:
+    - ./reverse_proxy/config:/etc/nginx
+    # - ./reverse_proxy/certs:/etc/ssl/private

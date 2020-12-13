@@ -31,9 +31,12 @@ const App = (): JSX.Element => {
 
             // connect web socket
             const stompConfig = {
-                brokerURL: 'ws://localhost:7002/stomp',
+                brokerURL: 'ws://localhost:7002/websocket',
+                debug: (str: string): void => {
+                    console.log(str);
+                },
                 onConnect: (frame: Frame): void => {
-                    console.log('Connected?');
+                    console.log('Web Socket Connected');
 
                     stompClient.subscribe('/topic/announcements', (message: Message) => {
                         console.log(message);
@@ -43,13 +46,20 @@ const App = (): JSX.Element => {
                     console.log(`Broker reported error: ${frame.headers.message}`);
                     console.log(`Additional Details: ${frame.body}`);
                 },
+                reconnectDelay: 10000,
+                heartbeatIncoming: 4000,
+                heartbeatOutgoing: 4000,
             };
             stompClient = new Client(stompConfig);
             stompClient.activate();
         }, 2000);
 
-        return () => {
-            stompClient.deactivate();
+        return (): void => {
+            if (stompClient) {
+                // eslint-disable-next-line no-void
+                void stompClient.deactivate();
+                console.log('Web Socket Connection is Closed');
+            }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

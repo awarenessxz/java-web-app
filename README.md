@@ -32,13 +32,14 @@ root
 ## Apps & API
 
 - **Apps**
-    - **6006** -- Storybook (React Component Library)
-    - **7001** -- Microservice (Admin Service)
-    - **8080** -- React Frontend
+    - **6006** -- Storybook ([React Component Library](react-component-library/README.md))
+    - **7001** -- Microservice ([Admin Service](ms-admin-service/README.md))
+    - **7002** -- Microservice ([Notification Service - WebSocket](ms-notification-service/README.md))
+    - **8080** -- [React Frontend](react-frontend/README.md)
     - **9090** -- API Gateway
 - **API Endpoints**
     - **Admin Service**
-        - [**announcements**](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
+        - [**Announcements**](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
 
 ## Quick Start
 

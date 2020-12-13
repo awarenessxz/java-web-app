@@ -29,7 +29,7 @@ const buildDevelopmentConfig = baseConfig => {
                     },
                     '/rest/*': {     // route all rest api call to api-gateway
                         target: 'http://localhost:9090', // path of the targeted external server that house the external api
-                        pathRewrite: {'^/rest' : ''},
+                        // pathRewrite: {'^/rest' : ''},
                         secure: false,
                         prependPath: false,
                     }
