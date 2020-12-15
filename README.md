@@ -6,7 +6,7 @@ This is a full stack java application built with multiple technology stack.
 | --- | --- |
 | React Frontend | React Application coded in typescript and bundled using webpack. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using Cypress. |
 | Component Library | Custom React Reusable Component Library coded in typescript and bundled using rollup. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using React Testing Library. |
-| Micro Frontend | React Application coded in typescript and bundled using webpack. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposes from this application. |
+| Micro Frontend | React Application coded in typescript and bundled using webpack. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposed from this application. |
 | Config Server | Spring Cloud Config Server |
 | Microservices | Bunch of Microservices coded using Spring Boot. Refer to documentation below for more details... |
 | API Gateway | Api Gateway deployed on Nginx |
@@ -21,11 +21,12 @@ This is a full stack java application built with multiple technology stack.
 ### In Depth Design Concepts
 
 1. [Frontend](react-frontend/doc/FRONTEND_DESIGN.md) 
-2. [API Gateway](web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
-3. [Client (Frontend) to Server Communication via websocket](ms-notification-service/doc/WEBSOCKET_DESIGN.md)
-4. Message Queue
-5. Logging
-6. Authentication
+2. [Microservice Backend](doc/MICROSERVICE_DESIGN.md)
+3. [API Gateway](web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
+4. [Client (Frontend) to Server Communication via websocket](ms-notification-service/doc/WEBSOCKET_DESIGN.md)
+5. Message Queue
+6. Logging
+7. Authentication
 
 ## Folder Structure
 
@@ -33,8 +34,8 @@ This is a full stack java application built with multiple technology stack.
 
 ```
 root
-├── ms-admin-service            # Micro-service (centralized admin services)
 ├── ms-notification-service     # Micro-service (websocket server)
+├── ms-web-service              # Micro-service (backend web service)
 ├── react-component-library     # Custom React Reusable Component Library
 ├── react-frontend              # Main Frontend App
 ├── react-micro-frontend        # Sub Frontend that is consumes by main frontend app  
@@ -47,14 +48,14 @@ root
 
 - **Apps / Services**
     - **6006** -- Storybook ([React Component Library](react-component-library/README.md))
-    - **7001** -- Microservice ([Admin Service](ms-admin-service/README.md))
+    - **7001** -- Microservice ([Web Service](ms-web-service/README.md))
     - **7002** -- Microservice ([Notification Service - WebSocket](ms-notification-service/README.md))
         - [WebSocket Topics](ms-notification-service/doc/TOPICS.md)
     - **8080** -- [React Frontend](react-frontend/README.md)
     - **9090** -- [API Gateway](web-api-gateway-nginx/README.md)
 - **API Endpoints**
-    - **Admin Service**
-        - [Announcements](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
+    - **Web Service**
+        - [Announcements](ms-web-service/doc/ANNOUNCEMENT_SERVICE.md)
 
 ## Quick Start
 
@@ -78,8 +79,8 @@ Before you can run this project, please follow the instructions on how to [set u
 3. Start Config Server
 
 4. Start Microservices
-    - Admin Service
-        - `cd ms-admin-service`
+    - Web Service
+        - `cd ms-web-service`
         - `./gradlew bootRun`
     - Notification Service
         - `cd ms-notification-service`
