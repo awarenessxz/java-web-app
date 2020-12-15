@@ -72,7 +72,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
 
     const deleteAnnouncement = (): void => {
         if (announcementInput && announcementInput.id) {
-            fetchBasic(`/announcements/${announcementInput.id}`, 'DELETE')
+            fetchBasic(`/api/announcements/${announcementInput.id}`, 'DELETE')
                 .then(() => {
                     setActionResult({ message: 'Announcement Deleted!', isError: false });
                     resetEditorValues();
@@ -96,7 +96,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
                 startDate: aStartDate,
                 endDate: aEndDate,
             };
-            fetchWithJsonBody(`/announcements/${announcementInput.id}`, 'PUT', reqBody)
+            fetchWithJsonBody(`/api/announcements/${announcementInput.id}`, 'PUT', reqBody)
                 .then(() => {
                     setActionResult({ message: 'Announcement Modified!', isError: false });
                     resetEditorValues();
@@ -118,7 +118,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
             startDate: aStartDate,
             endDate: aEndDate,
         };
-        fetchWithJsonBody('/announcements/new', 'POST', reqBody)
+        fetchWithJsonBody('/api/announcements/new', 'POST', reqBody)
             .then(() => {
                 setActionResult({ message: 'Announcement created!', isError: false });
                 resetEditorValues();

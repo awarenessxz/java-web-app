@@ -2,14 +2,17 @@
 
 This is a micro-service which primary handles web socket connection with the frontend
 
+Refer to the documentation for all the [pub/sub topics](doc/TOPICS.md).
+
 ## Folder Structure
 
 ```
 root/src/main
 ├── kotlin
     └── com.javawebapp.notification
-        ├── config              # custom configurations
-        └── util                # utility / helper functions
+        ├── config        # custom configurations
+        ├── controller    # broker message controller
+        └── model         # data structure
 └── resources                 
 ```
 
@@ -21,8 +24,6 @@ root/src/main
 ## Future Works
 
 - Security Implementation
-- API Gateway
-
 
 ## References
 - [Spring Docs](HELP.md)

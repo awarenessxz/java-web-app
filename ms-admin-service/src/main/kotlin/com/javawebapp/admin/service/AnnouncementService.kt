@@ -6,8 +6,12 @@ import com.javawebapp.admin.exception.ErrorTypes
 import com.javawebapp.admin.repository.AnnouncementRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
+import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
+import java.time.ZonedDateTime
 
 @Service
 class AnnouncementService(
@@ -21,6 +25,10 @@ class AnnouncementService(
         val page = PageRequest.of(offset, limit, Sort.by(Sort.Direction.DESC, "creationDate"))
         val pageResults = announcementRepository.findAll(page)
         return pageResults.content
+    }
+
+    fun getLatestAnnouncements(): List<Announcement> {
+        return announcementRepository.findAnnouncementByActiveFlag(true)
     }
 
     fun getAnnouncementById(id: String): Announcement? {
@@ -57,5 +65,15 @@ class AnnouncementService(
             }
         }
         System.out.println(announcements);
+    }
+
+    @Scheduled(fixedDelay = 5000L)
+    fun sendMessageToWebSocket() {
+        System.out.println("Sending Message")
+        val restTemplate = RestTemplate()
+        val headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+        val announcement = Announcement("asdasd", "stastsa", "asdasdas", "asdasdasd", "asdasda", ZonedDateTime.now(), ZonedDateTime.now(), ZonedDateTime.now(), null, null, true)
+        restTemplate.postForEntity('/')
     }
 }

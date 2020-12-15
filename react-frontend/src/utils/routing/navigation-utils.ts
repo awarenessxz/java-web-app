@@ -38,3 +38,13 @@ export const getCurrentRoute = (): string => {
     }
     return route;
 };
+
+// get broker url -- https://github.com/stomp-js/ng2-stompjs/issues/129
+export const getBrokerUrl = (path: string): string => {
+    // eg. http://localhost:8080/
+    const currentPath = `${window.location.origin + window.location.pathname}`;
+    const url = new URL(path, currentPath);
+    // convert protocol http -> ws and https -> wss
+    url.protocol = url.protocol.replace('http', 'ws');
+    return url.href;
+};

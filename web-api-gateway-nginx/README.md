@@ -11,12 +11,17 @@ balancing, caching, request shaping and management, and static response handling
     - `sudo docker build -t apigateway_image .`
 
 2. Run an instance of the docker image
-    - `sudo docker run --name apigateway --add-host localnode:$(ifconfig enp0s3 | grep inet | grep -v inet6 | awk '{print $2}') -p 9090:80 -d apigateway_image`
+    - `sudo docker run --name apigateway --net=host -d apigateway_image`
     - **Notes:**
-        - In order for the nginx docker to communication with localhost, use the following command to get the 
-        ip address of localhost: 
-            - `ifconfig enp0s3 | grep inet | grep -v inet6 | awk '{print $2}'`
-            - Inside nginx.conf `proxy_pass`, replace `localhost` with `localnode`
+        - Network Mode = `host` -- is meant for linking machine's localhost to docker localhost
+
+### Delete API Gateway / Reverse Proxy
+
+1. Delete the Container
+    - `sudo docker rm -f apigateway`
+
+2. Delete the Docker image
+    - `sudo docker rmi apigateway_image`
         
 ### Other useful commands
 
@@ -35,3 +40,4 @@ balancing, caching, request shaping and management, and static response handling
 - [Bad Request for Nginx Docker](https://stackoverflow.com/questions/38346847/nginx-docker-container-502-bad-gateway-response)
 - [Deploying Nginx Docker](https://www.nginx.com/blog/deploying-nginx-nginx-plus-docker/)
 - [How to access server on localhost with nginx docker container](https://stackoverflow.com/questions/27810076/how-do-i-access-a-server-on-localhost-with-nginx-docker-container)
+- [How to configure Nginx for websocket](https://www.serverlab.ca/tutorials/linux/web-servers-linux/how-to-configure-nginx-for-websockets/)

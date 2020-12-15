@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import { Client, Frame, Message } from '@stomp/stompjs';
+import { Message } from '@stomp/stompjs';
 import loadingGif from '../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
 import AnnouncementsConsole from './Admin/AnnouncementsConsole';
@@ -13,56 +13,35 @@ import DemoCompLibrary from './ToolsAndServices/DemoCompLibrary';
 import DemoMicroFrontend from './ToolsAndServices/DemoMicroFrontend';
 import AnnouncementPage from './General/AnnouncementPage';
 import ToastHandler from '../utils/ToastHandler';
+import { getBrokerUrl } from '../utils/routing/navigation-utils';
+import useWebSocket from '../utils/hooks/UseWebSocket';
 import { RootState } from '../redux/root-reducer';
 import { initBaseApplication } from '../redux/app/app-action';
 
 const App = (): JSX.Element => {
     const isSiteReady = useSelector((state: RootState) => state.app.isSiteReady);
     const dispatch = useDispatch();
+    const [stompClient, isWebSocketConnected] = useWebSocket(getBrokerUrl('/websocket'));
 
     // initial load (load base application state)
     useEffect(() => {
-        let stompClient: Client;
-
         // sleep for 2 seconds to show the loading component
         setTimeout(() => {
             // initialize base application state
             dispatch(initBaseApplication());
-
-            // connect web socket
-            const stompConfig = {
-                brokerURL: 'ws://localhost:7002/websocket',
-                debug: (str: string): void => {
-                    console.log(str);
-                },
-                onConnect: (frame: Frame): void => {
-                    console.log('Web Socket Connected');
-
-                    stompClient.subscribe('/topic/announcements', (message: Message) => {
-                        console.log(message);
-                    });
-                },
-                onStompError: (frame: Frame): void => {
-                    console.log(`Broker reported error: ${frame.headers.message}`);
-                    console.log(`Additional Details: ${frame.body}`);
-                },
-                reconnectDelay: 10000,
-                heartbeatIncoming: 4000,
-                heartbeatOutgoing: 4000,
-            };
-            stompClient = new Client(stompConfig);
-            stompClient.activate();
         }, 2000);
-
-        return (): void => {
-            if (stompClient) {
-                // eslint-disable-next-line no-void
-                void stompClient.deactivate();
-                console.log('Web Socket Connection is Closed');
-            }
-        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // connect websocket
+    useEffect(() => {
+        if (isWebSocketConnected && stompClient !== null) {
+            stompClient.subscribe('/topic/announcements', (message: Message) => {
+                console.log(message);
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isWebSocketConnected]);
 
     if (isSiteReady) {
         return (

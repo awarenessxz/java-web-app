@@ -22,16 +22,15 @@ const buildDevelopmentConfig = baseConfig => {
                 open: true,
                 port: 8080,
                 proxy: {
-                    '/announcements/*': {     // route all rest api call to api-gateway
-                        target: 'http://localhost:7001', // path of the targeted external server that house the external api
-                        secure: false,
-                        prependPath: false,
-                    },
-                    '/rest/*': {     // route all rest api call to api-gateway
+                    '/api/*': {     // route all rest api call to api-gateway
                         target: 'http://localhost:9090', // path of the targeted external server that house the external api
                         // pathRewrite: {'^/rest' : ''},
                         secure: false,
                         prependPath: false,
+                    },
+                    '/websocket': {
+                        target: 'ws://localhost:9090',
+                        ws: true,
                     }
                 },
                 publicPath: '/',

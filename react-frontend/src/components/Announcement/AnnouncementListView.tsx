@@ -21,7 +21,7 @@ const AnnouncementListView = (): JSX.Element => {
         <EuiPage style={{ padding: 0 }}>
             <EuiPageSideBar style={{ minWidth: '250px' }}>
                 <InfiniteScrollListView
-                    dataApiUrl="/announcements/all/page"
+                    dataApiUrl="/api/announcements/all/page"
                     dataLimit={5}
                     dataOffset={0}
                     dataOffsetIncrement={1}

@@ -10,6 +10,7 @@ import {
 const initialState: AppStateTypes = {
     isAdminUser: false,
     showAnnouncement: false,
+    announcements: [],
     selectedMenuItem: undefined,
     menuItemsMapping: {},
     isSiteReady: false,
@@ -21,6 +22,12 @@ const appReducer = (state: AppStateTypes = initialState, action: AppActionTypes)
             return {
                 ...state,
                 isAdminUser: action.payload.isAdminUser,
+            };
+        case 'SET_ACTIVE_ANNOUNCEMENTS':
+            return {
+                ...state,
+                announcements: action.payload.announcements,
+                showAnnouncement: action.payload.showAnnouncement,
             };
         case SET_SHOW_ANNOUNCEMENT:
             return {
@@ -37,7 +44,6 @@ const appReducer = (state: AppStateTypes = initialState, action: AppActionTypes)
                 ...state,
                 selectedMenuItem: action.payload.selectedMenuItem,
                 menuItemsMapping: action.payload.menuItemsMapping,
-                showAnnouncement: action.payload.showAnnouncement,
                 isAdminUser: action.payload.isAdminUser,
                 isSiteReady: action.payload.isSiteReady,
             };

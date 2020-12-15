@@ -1,3 +1,4 @@
+/*
 package com.javawebapp.notification.config
 
 import com.javawebapp.notification.model.Testing
@@ -17,3 +18,4 @@ class SchedulingConfig(
         template.convertAndSend("/topic/announcements", Testing("Scheduled Message"))
     }
 }
+*/

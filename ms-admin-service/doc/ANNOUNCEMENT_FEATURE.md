@@ -1,6 +1,6 @@
 # Announcement Feature
 
-This is 
+This is the Rest API for Announcement Service.
 
 ## Rest API
 
@@ -12,6 +12,7 @@ This is
 | /announcements/{id} | DELETE | Delete announcement by ID |
 | /announcements/{id} | PUT | Update announcement by ID |
 | /announcements/new | POST | request body json = {Announcement Object}. Create a new announcement and store in database |
+| /announcements/latest | GET | Get all active announcements |
 
 ## Schedule Jobs
 

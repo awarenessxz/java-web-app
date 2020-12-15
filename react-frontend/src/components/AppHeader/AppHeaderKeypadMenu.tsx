@@ -30,7 +30,7 @@ const AppHeaderKeypadMenu = (): JSX.Element => {
             endDate: moment(),
         };
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        fetch('/announcements/new', {
+        fetch('/api/announcements/new', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

@@ -19,14 +19,15 @@ Experimenting with a Java Web Application built with the following components
 **Note: Do ignore folders with asterisk as they are just experimental projects!!**
 
 ```
-root    
+root
 ├── ms-admin-service            # Micro-service (centralized admin services)
 ├── ms-notification-service     # Micro-service (websocket server)
 ├── react-component-library     # Custom React Reusable Component Library
 ├── react-frontend              # Main Frontend App
 ├── react-micro-frontend        # Sub Frontend that is consumes by main frontend app  
-├── web-api-gateway-node*       # API Gateway (Node)
-└── ws-fake-api*                # Web Service (Node)
+├── web-api-gateway-nginx       # API Gateway (Nginx)
+├── web-api-gateway-node**      # API Gateway (Node)
+└── ws-fake-api**               # Web Service (Node)
 ```
 
 ## Apps & API
@@ -35,11 +36,12 @@ root
     - **6006** -- Storybook ([React Component Library](react-component-library/README.md))
     - **7001** -- Microservice ([Admin Service](ms-admin-service/README.md))
     - **7002** -- Microservice ([Notification Service - WebSocket](ms-notification-service/README.md))
+        - [WebSocket Topics](ms-notification-service/doc/TOPICS.md)
     - **8080** -- [React Frontend](react-frontend/README.md)
-    - **9090** -- API Gateway
+    - **9090** -- [API Gateway](web-api-gateway-nginx/README.md)
 - **API Endpoints**
     - **Admin Service**
-        - [**Announcements**](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
+        - [Announcements](ms-admin-service/doc/ANNOUNCEMENT_FEATURE.md)
 
 ## Quick Start
 
@@ -47,11 +49,22 @@ Before you can run this project, please follow the instructions on how to [set u
 
 ### Backend
 
-1. Start API Gateway
+1. Start the databases
+    - Mongo (Fresh)
+        - `cd database`
+        - `cd mongodata`
+        - `rm -rf *`
+        - `cd ..`
+        - `sudo docker-compose up -d`
 
-2. Start Config Server
+2. Start API Gateway
+    - `cd web-api-gateway-nginx`
+    - `sudo docker build -t apigateway_image .`
+    - `sudo docker run --name apigateway --net=host -d apigateway_image`
 
-3. Start Microservices
+3. Start Config Server
+
+4. Start Microservices
     - Admin Service
         - `cd ms-admin-service`
         - `./gradlew bootRun`

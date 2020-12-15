@@ -12,8 +12,9 @@ class AnnouncementController(
         private val announcementService: AnnouncementService
 ) {
     @GetMapping("/latest")
-    fun getLatestAnnouncement(): String {
-        return "Latest"
+    fun getLatestAnnouncement(): ResponseEntity<List<Announcement>> {
+        val announcements = announcementService.getLatestAnnouncements()
+        return ResponseEntity(announcements, HttpStatus.OK)
     }
 
     @GetMapping("/all")
