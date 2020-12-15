@@ -1,18 +1,31 @@
 # java-web-app
 
-Experimenting with a Java Web Application built with the following components
-- **Frontend**
-    - **React Frontend** (Main Frontend App)
-    - **Custom React Reusable Component Library**
-    - **Micro Frontend** (to be loaded into main frontend)
-- **Backend**
-    - **Config Server as a Microservice** (with feature toggle)
-    - **Microservices**
-- **Infrastructure**
-    - **Message Queues**
-    - **Databases**
+This is a full stack java application built with multiple technology stack.
+
+| Component | Descriptions |
+| --- | --- |
+| React Frontend | React Application coded in typescript and bundled using webpack. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using Cypress. |
+| Component Library | Custom React Reusable Component Library coded in typescript and bundled using rollup. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using React Testing Library. |
+| Micro Frontend | React Application coded in typescript and bundled using webpack. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposes from this application. |
+| Config Server | Spring Cloud Config Server |
+| Microservices | Bunch of Microservices coded using Spring Boot. Refer to documentation below for more details... |
+| API Gateway | Api Gateway deployed on Nginx |
+| Mongo DB | database for storing data |
+
+## Architecture
+
+### High Level Overview
 
 ![Architecture](doc/images/architecture.png)
+
+### In Depth Design Concepts
+
+1. [Frontend](react-frontend/doc/FRONTEND_DESIGN.md) 
+2. [API Gateway](web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
+3. [Client (Frontend) to Server Communication via websocket](ms-notification-service/doc/WEBSOCKET_DESIGN.md)
+4. Message Queue
+5. Logging
+6. Authentication
 
 ## Folder Structure
 
@@ -30,9 +43,9 @@ root
 └── ws-fake-api**               # Web Service (Node)
 ```
 
-## Apps & API
+## Apps / Services / API
 
-- **Apps**
+- **Apps / Services**
     - **6006** -- Storybook ([React Component Library](react-component-library/README.md))
     - **7001** -- Microservice ([Admin Service](ms-admin-service/README.md))
     - **7002** -- Microservice ([Notification Service - WebSocket](ms-notification-service/README.md))
@@ -108,4 +121,4 @@ If you are keen on making contributions. Please adhere to the following rules:
 - [IntelliJ set up](doc/PROJECT_SETUP.md)
 - [Setting up Gradle for Multi Project](doc/GRADLE_TIPS.md)
 - [Create custom reusable React component Library](react-component-library)
-- [React MicroFrontend Experiments](https://github.com/awarenessxz/react-micro-frontend)
+- [React Micro Frontend Experiments](https://github.com/awarenessxz/react-micro-frontend)
