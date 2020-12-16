@@ -6,8 +6,6 @@ import com.javawebapp.web.exception.ErrorTypes
 import com.javawebapp.web.repository.AnnouncementRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
@@ -15,7 +13,8 @@ import java.time.ZonedDateTime
 
 @Service
 class AnnouncementService(
-        private val announcementRepository: AnnouncementRepository
+        private val announcementRepository: AnnouncementRepository,
+        private val restTemplate: RestTemplate
 ) {
     fun getAllAnnouncements(): List<Announcement> {
         return announcementRepository.findByOrderByCreationDateDesc()
@@ -46,7 +45,10 @@ class AnnouncementService(
 
     fun createNewAnnouncement(announcement: Announcement) {
         announcement.initAnnouncementMetadata()
+        // add announcement to database
         announcementRepository.insert(announcement)
+        // publish announcement to client via websocket
+        restTemplate.postForEntity("http://notificationService/publish/announcement", announcement, Announcement::class.java)
     }
 
     fun updateAnnouncementById(announcement: Announcement) {
@@ -65,15 +67,5 @@ class AnnouncementService(
             }
         }
         System.out.println(announcements);
-    }
-
-    @Scheduled(fixedDelay = 5000L)
-    fun sendMessageToWebSocket() {
-        System.out.println("Sending Message")
-        val restTemplate = RestTemplate()
-        val headers = HttpHeaders()
-        headers.contentType = MediaType.APPLICATION_JSON
-        val announcement = Announcement("asdasd", "stastsa", "asdasdas", "asdasdasd", "asdasda", ZonedDateTime.now(), ZonedDateTime.now(), ZonedDateTime.now(), null, null, true)
-        restTemplate.postForEntity('/')
     }
 }

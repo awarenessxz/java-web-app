@@ -5,14 +5,41 @@
 server:
   port: 7001
 
+spring:
+  profiles:
+    active: dev
+  application:
+    name: webService
+
+---
+
 ###############################################################################################
 # Mongo DB Configuration
 ###############################################################################################
 
 spring:
-  profiles:
-    active: dev
   data:
     mongodb:
       uri: mongodb://user:123@localhost:27017/exampleDB
       authentication-database: exampleDB
+
+---
+
+###############################################################################################
+# Spring Cloud Consul Service Discovery
+###############################################################################################
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        healthCheckInterval: 1s
+        healthCheckPath: /actuator/health
+        instance-id: ${spring.application.name}:${random.value}
+    loadbalancer:
+      cache:
+        ttl: 1s # client caches target services & refreshes them every 1 second
+      ribbon:
+        enabled: false # deprecated. Hence disabled to use spring-cloud-load-balancer

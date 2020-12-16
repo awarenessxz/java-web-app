@@ -17,6 +17,7 @@ import { getBrokerUrl } from '../utils/routing/navigation-utils';
 import useWebSocket from '../utils/hooks/UseWebSocket';
 import { RootState } from '../redux/root-reducer';
 import { initBaseApplication } from '../redux/app/app-action';
+import {AnnouncementEntity} from "../types/api/announcement-api.types";
 
 const App = (): JSX.Element => {
     const isSiteReady = useSelector((state: RootState) => state.app.isSiteReady);
@@ -36,8 +37,11 @@ const App = (): JSX.Element => {
     // connect websocket
     useEffect(() => {
         if (isWebSocketConnected && stompClient !== null) {
-            stompClient.subscribe('/topic/announcements', (message: Message) => {
-                console.log(message);
+            stompClient.subscribe('/topic/announcement/new', (message: Message) => {
+                if (message.body) {
+                    const announcement: AnnouncementEntity = JSON.parse(message.body);
+                    dispatch()
+                }
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

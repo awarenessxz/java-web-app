@@ -1,7 +1,11 @@
 # API Gateway Design
 
-1. Reverse Proxy
-2. Websocket Proxy
-3. Service Discovery
-4. Authentication
-5. Load Balancing
+## Reverse Proxy
+
+## Service Discovery
+
+Refer to [**Service Registry**](SERVICE_REGISTRY.md) for list of services
+
+## Authentication
+
+## Load Balancing

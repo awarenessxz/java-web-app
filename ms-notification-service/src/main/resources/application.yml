@@ -5,6 +5,35 @@
 server:
   port: 7002
 
+spring:
+  profiles:
+    active: dev
+  application:
+    name: notificationService
+
+---
+
+###############################################################################################
+# Spring Cloud Consul Service Discovery
+###############################################################################################
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        healthCheckInterval: 1s
+        healthCheckPath: /actuator/health
+        instance-id: ${spring.application.name}:${random.value}
+    loadbalancer:
+      cache:
+        ttl: 1s # client caches target services & refreshes them every 1 second
+      ribbon:
+        enabled: false # deprecated. Hence disabled to use spring-cloud-load-balancer
+
+---
+
 ###############################################################################################
 # Spring Security Configuration
 ###############################################################################################

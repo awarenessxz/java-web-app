@@ -43,6 +43,8 @@ export const setSelectedMenuItem = (menuItem: MenuItem | undefined): AppActionTy
  * Thunk Action (for supporting async/wait)
  *************************************************************************************** */
 
+const receiveNewAnnouncement = (): RootThunkResult<void> => (dispatch, getState): void => {};
+
 const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): void => {
     fetchBasic('/api/announcements/latest', 'GET')
         .then((res) => res.json())

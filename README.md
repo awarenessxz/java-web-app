@@ -4,24 +4,25 @@ This is a full stack java application built with multiple technology stack.
 
 | Component | Descriptions |
 | --- | --- |
-| React Frontend | React Application coded in typescript and bundled using webpack. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using Cypress. |
-| Component Library | Custom React Reusable Component Library coded in typescript and bundled using rollup. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using React Testing Library. |
-| Micro Frontend | React Application coded in typescript and bundled using webpack. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposed from this application. |
-| Config Server | Spring Cloud Config Server |
-| Microservices | Bunch of Microservices coded using Spring Boot. Refer to documentation below for more details... |
-| API Gateway | Api Gateway deployed on Nginx |
+| React Frontend | React Application coded in **typescript** and bundled using **webpack**. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using **Cypress**. |
+| Component Library | Custom React Reusable Component Library coded in **typescript** and bundled using **rollup**. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using **React Testing Library**. Components can be viewed on **storybook** |
+| Micro Frontend | React Application coded in **typescript** and bundled using **webpack**. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposed from this application. |
+| Config Server | **Spring Cloud Config Server** |
+| Microservices | Bunch of Microservices coded using **Spring Boot** coded in **Kotlin**. Refer to documentation below for more details... |
+| API Gateway | Api Gateway deployed on **Nginx** |
+| Consul | Service Discovery |
 | Mongo DB | database for storing data |
 
 ## Architecture
 
 ### High Level Overview
 
-![Architecture](doc/images/architecture.png)
+![Architecture](doc/images/architecture)
 
 ### In Depth Design Concepts
 
 1. [Frontend](react-frontend/doc/FRONTEND_DESIGN.md) 
-2. [Microservice Backend](doc/MICROSERVICE_DESIGN.md)
+2. [Microservice Backend](#apps--services--api)
 3. [API Gateway](web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
 4. [Client (Frontend) to Server Communication via websocket](ms-notification-service/doc/WEBSOCKET_DESIGN.md)
 5. Message Queue
@@ -34,6 +35,7 @@ This is a full stack java application built with multiple technology stack.
 
 ```
 root
+├── database                    # MongoDB
 ├── ms-notification-service     # Micro-service (websocket server)
 ├── ms-web-service              # Micro-service (backend web service)
 ├── react-component-library     # Custom React Reusable Component Library
@@ -52,7 +54,10 @@ root
     - **7002** -- Microservice ([Notification Service - WebSocket](ms-notification-service/README.md))
         - [WebSocket Topics](ms-notification-service/doc/TOPICS.md)
     - **8080** -- [React Frontend](react-frontend/README.md)
+    - **8500** -- [Service Discovery - Consul](web-api-gateway-nginx/README.md)
+    - **8888** -- [Cloud Config Server](ms-config-server/README.md)
     - **9090** -- [API Gateway](web-api-gateway-nginx/README.md)
+        - [Service Registry](web-api-gateway-nginx/doc/SERVICE_REGISTRY.md)
 - **API Endpoints**
     - **Web Service**
         - [Announcements](ms-web-service/doc/ANNOUNCEMENT_SERVICE.md)

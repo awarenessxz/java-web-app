@@ -1,9 +1,20 @@
-# Web API Gateway (using Nginx)
+# Web API Gateway (using Nginx + Consul)
 
 Simple API Gateway to enable request rerouting. Possible responsibilities includes **authentication, monitoring, load
 balancing, caching, request shaping and management, and static response handling**
 
+Refer to the documentation on the [API Gateway design](doc/API_GATEWAY_DESIGN.md)
+    - Refer to [Service Registry](doc/SERVICE_REGISTRY.md) for list of services registered to consul server
+    - Refer to [API End Points](../README.md#apps--services--api) for list of all rest api
+
 ## Getting Started
+
+### Start the Service Discovery
+
+1. `cd service-discovery`
+2. `ifconfig` -- get your network interface and change the interface name accordingly for the command below
+2. `sudo docker run --net=host --name consul_server -e CONSUL_BIND_INTERFACE=enp0s3 -e CONSUL_CLIENT_INTERFACE=enp0s3 -d consul agent -ui -server -bootstrap-expect=1 -client=0.0.0.0`
+3. Go to `http://localhost:8500` to see all services registered to the consul server
 
 ### Start API Gateway / Reverse Proxy
 
@@ -30,7 +41,7 @@ balancing, caching, request shaping and management, and static response handling
 - `sudo docker ps` -- show active running instances
 - `sudo docker ps -a` -- show all instances
 - `sudo docker rm <CONTAINER_ID>` -- delete container instance
-- `sudo docker run -p 9090:80 --name apigateway -d nginx` -- Run default config for Nginx Image
+- `sudo docker run -p 9090:80 --name apigateway --net=host -d nginx` -- Run default config for Nginx Image
 
 ## References
 
@@ -41,3 +52,9 @@ balancing, caching, request shaping and management, and static response handling
 - [Deploying Nginx Docker](https://www.nginx.com/blog/deploying-nginx-nginx-plus-docker/)
 - [How to access server on localhost with nginx docker container](https://stackoverflow.com/questions/27810076/how-do-i-access-a-server-on-localhost-with-nginx-docker-container)
 - [How to configure Nginx for websocket](https://www.serverlab.ca/tutorials/linux/web-servers-linux/how-to-configure-nginx-for-websockets/)
+- [Spring Boot Microservice + Consul + Nginx Api Gateway](https://medium.com/swlh/lets-build-microservices-part-iii-20e9e5c780a0)
+- [[VIDEO] Intro to Consul](https://www.youtube.com/watch?v=mxeMdl0KvBI)
+- [How to run consul using Docker](https://linuxhint.com/run_consul_server_docker/)
+- [Microservice with Spring boot cloud gateway and consul cluster](https://piotrminkowski.com/2019/11/06/microservices-with-spring-boot-spring-cloud-gateway-and-consul-cluster/)
+- [New Era of Spring Cloud](https://piotrminkowski.com/2020/05/01/a-new-era-of-spring-cloud/)
+- [A Detailed Guide to Spring Cloud Consul](http://progressivecoder.com/a-detailed-guide-to-spring-cloud-consul/)

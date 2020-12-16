@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.4.0"
+	id("org.springframework.boot") version "2.4.1"
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
-	kotlin("jvm") version "1.4.10"
-	kotlin("plugin.spring") version "1.4.10"
+	kotlin("jvm") version "1.4.21"
+	kotlin("plugin.spring") version "1.4.21"
 }
 
 group = "com.javawebapp"
@@ -19,16 +19,10 @@ repositories {
 extra["springCloudVersion"] = "2020.0.0-RC1"
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-actuator") // Enable Health End Point
-	implementation("org.springframework.boot:spring-boot-starter-websocket") // Web Socket
-	implementation("org.springframework.boot:spring-boot-starter-web") // Web
-	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")// Service Discovery
-	//implementation("org.springframework.boot:spring-boot-starter-security")
-	//implementation("org.springframework.security:spring-security-messaging")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.springframework.cloud:spring-cloud-config-server")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	//testImplementation("org.springframework.security:spring-security-test")
 }
 
 dependencyManagement {

@@ -10,12 +10,6 @@
 rootProject.name = "java-web-app"
 
 // order does matters
-include("ms-config-service")
+include("ms-config-server")
 include("ms-notification-service")
 include("ms-web-service")
-include("react-component-library")
-include("react-frontend")
-include("react-micro-frontend")
-include("web-api-gateway-nginx")
-include("web-api-gateway-node")
-include("ws-fake-api")
