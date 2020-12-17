@@ -32,11 +32,19 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 
 ## Usage
 
+### LocalHost
+
 1. Install dependency
     - `yarn install`
 
 2. Start the web
     - `yarn run start`
+
+### Docker
+
+1. `sudo docker build -t webfrontend_image .`
+
+2. `sudo docker run --name webfrontend -d webfrontend_image`
 
 ## Development
 
@@ -56,6 +64,7 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 - [Using Elastic with React-Router](https://github.com/elastic/eui/blob/master/wiki/react-router.md)
 - [React loading screen tactics](https://medium.com/front-end-weekly/react-loading-screen-tactics-improving-user-experience-9452f183c00b)
 - [Typescript for redux-thunk](https://github.com/reduxjs/redux-thunk/blob/master/test/typescript.ts)
+- [Dockerizing Modern Web Apps](https://medium.com/@hendrikwallbaum/dockerizing-spas-9f72b7867e41)
 
 ## Credits
 - [Loading.gif designed by Jane Sorkin](https://medium.com/better-programming/a-quick-and-easy-react-js-loading-screen-with-hooks-940feccd553f)

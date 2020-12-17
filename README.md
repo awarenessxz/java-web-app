@@ -21,8 +21,8 @@ This is a full stack java application built with multiple technology stack.
 
 ### In Depth Design Concepts
 
-1. [Frontend](react-frontend/doc/FRONTEND_DESIGN.md) 
-2. [Microservice Backend](#apps--services--api)
+1. [Frontend](app-frontend-react/README.md) 
+2. [Microservice Backend](app-backend/README.md)
 3. [API Gateway](web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
 4. [Client (Frontend) to Server Communication via websocket](ms-notification-service/doc/WEBSOCKET_DESIGN.md)
 5. Message Queue
@@ -35,7 +35,8 @@ This is a full stack java application built with multiple technology stack.
 
 ```
 root
-├── database                    # MongoDB
+├── infra-database              # MongoDB
+├── infra-database              # MongoDB
 ├── ms-notification-service     # Micro-service (websocket server)
 ├── ms-web-service              # Micro-service (backend web service)
 ├── react-component-library     # Custom React Reusable Component Library

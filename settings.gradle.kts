@@ -10,6 +10,6 @@
 rootProject.name = "java-web-app"
 
 // order does matters
-include("ms-config-server")
-include("ms-notification-service")
-include("ms-web-service")
+include("app-backend:ms-config-server")
+include("app-backend:ms-notification-service")
+include("app-backend:ms-web-service")

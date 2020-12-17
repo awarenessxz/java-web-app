@@ -2,10 +2,10 @@
 const chalk = require('chalk');
 
 // internal configuration
-const commonConfig = require('./config/webpack.base');
-const devConfig = require('./config/webpack.dev');
-const prodConfig = require('./config/webpack.prod');
-const statsConfig = require('./config/webpack.stats');
+const commonConfig = require('./config/webpack/webpack.base');
+const devConfig = require('./config/webpack/webpack.dev');
+const prodConfig = require('./config/webpack/webpack.prod');
+const statsConfig = require('./config/webpack/webpack.stats');
 
 // final export
 module.exports = ({ env }) => {

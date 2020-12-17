@@ -1,5 +1,5 @@
 {
-  "name": "react-frontend",
+  "name": "react-base-app",
   "version": "1.0.0",
   "description": "Simple React Web Application",
   "main": "index.js",
