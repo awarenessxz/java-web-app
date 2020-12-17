@@ -11,6 +11,7 @@ import { MenuItem } from '../../utils/routing/app-menu-item';
 import { generateMenuItemMapping, getCurrentRoute } from '../../utils/routing/navigation-utils';
 import { checkUserAccess } from '../../utils/access-control';
 import { fetchBasic } from '../../utils/fetch-util';
+import { AnnouncementEntity } from '../../types/api/announcement-api.types';
 
 /* ***************************************************************************************
  * Action Creators (Standard Redux Actions)
@@ -43,7 +44,19 @@ export const setSelectedMenuItem = (menuItem: MenuItem | undefined): AppActionTy
  * Thunk Action (for supporting async/wait)
  *************************************************************************************** */
 
-const receiveNewAnnouncement = (): RootThunkResult<void> => (dispatch, getState): void => {};
+export const receiveNewAnnouncement = (announcement: AnnouncementEntity): RootThunkResult<void> => (
+    dispatch,
+    getState,
+): void => {
+    const announcements = [...getState().app.announcements, announcement];
+    dispatch({
+        type: SET_ACTIVE_ANNOUNCEMENTS,
+        payload: {
+            announcements,
+            showAnnouncement: true,
+        },
+    });
+};
 
 const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): void => {
     fetchBasic('/api/announcements/latest', 'GET')
@@ -62,7 +75,7 @@ const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): voi
             }
         })
         .catch((err) => {
-            console.log(err);
+            console.log('announcement fetch error!');
         });
 };
 

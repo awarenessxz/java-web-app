@@ -16,8 +16,8 @@ import ToastHandler from '../utils/ToastHandler';
 import { getBrokerUrl } from '../utils/routing/navigation-utils';
 import useWebSocket from '../utils/hooks/UseWebSocket';
 import { RootState } from '../redux/root-reducer';
-import { initBaseApplication } from '../redux/app/app-action';
-import {AnnouncementEntity} from "../types/api/announcement-api.types";
+import { initBaseApplication, receiveNewAnnouncement } from '../redux/app/app-action';
+import { AnnouncementEntity } from '../types/api/announcement-api.types';
 
 const App = (): JSX.Element => {
     const isSiteReady = useSelector((state: RootState) => state.app.isSiteReady);
@@ -39,8 +39,9 @@ const App = (): JSX.Element => {
         if (isWebSocketConnected && stompClient !== null) {
             stompClient.subscribe('/topic/announcement/new', (message: Message) => {
                 if (message.body) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     const announcement: AnnouncementEntity = JSON.parse(message.body);
-                    dispatch()
+                    dispatch(receiveNewAnnouncement(announcement));
                 }
             });
         }
