@@ -1,6 +1,6 @@
 # Frontend / Web Interface (React)
 
-The web application is coded primarily using React as the base web framework. Additional technology stack includes the 
+The web application is coded primarily using **React** as the base web framework. Additional technology stack includes the 
 following:
 
 - Typescript
@@ -22,6 +22,21 @@ root
 ## Usage
 
 ### Localhost
+
+1. Build React Component Library
+    - `cd react-component-library`
+    - `yarn install --ignore-scripts`
+    - `yarn run build`
+
+2. Start React Micro Frontend
+    - `cd react-micro-frontend`
+    - `yarn install`
+    - `yarn start`
+
+3. Start the Main Frontend App
+    - `cd react-frontend`
+    - `yarn install`
+    - `yarn start`
 
 ### Docker
 
