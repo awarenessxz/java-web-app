@@ -9,8 +9,10 @@ import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.messaging.MessageChannel
+import org.springframework.messaging.support.MessageBuilder
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import java.time.ZonedDateTime
 
 @EnableBinding(NotificationBinding::class)
 @Service
@@ -50,7 +52,8 @@ class AnnouncementService(
         // add announcement to database
         announcementRepository.insert(announcement)
         // publish announcement to client via event
-        // newNotificationChannel.send(announcement)
+        val message = MessageBuilder.withPayload(announcement).build()
+        newNotificationChannel.send(message)
     }
 
     fun updateAnnouncementById(announcement: Announcement) {
@@ -69,5 +72,12 @@ class AnnouncementService(
             }
         }
         System.out.println(announcements);
+    }
+
+    @Scheduled(fixedDelay = 500000L)
+    fun testingWebSocket() {
+        System.out.println("Sending Message")
+        val announcement = Announcement("sdfasd", "asdasd", "asd", "asdasd", "asdasd", ZonedDateTime.now(), ZonedDateTime.now(), ZonedDateTime.now(), ZonedDateTime.now(), "asdasd", true)
+        createNewAnnouncement(announcement)
     }
 }
