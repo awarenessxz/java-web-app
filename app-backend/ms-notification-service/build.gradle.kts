@@ -22,7 +22,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator") // Enable Health End Point
 	implementation("org.springframework.boot:spring-boot-starter-websocket") // Web Socket
 	implementation("org.springframework.boot:spring-boot-starter-web") // Web
-	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")// Service Discovery
+	implementation("org.springframework.cloud:spring-cloud-starter-stream-rabbit") // Cloud Stream + RabbitMQ Binder
 	//implementation("org.springframework.boot:spring-boot-starter-security")
 	//implementation("org.springframework.security:spring-security-messaging")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")

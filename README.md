@@ -39,6 +39,7 @@ This is a full stack java application built with multiple technology stack.
     - **8080** -- [React Web App](app-frontend-react/react-base-app/README.md)
     - **8888** -- [Cloud Config Server](app-backend/ms-config-server/README.md)
     - **9090** -- [API Gateway](app-backend/web-api-gateway-nginx/README.md)
+    - **15672** -- [RabbitMQ](app-backend/rabbitmq/README.md)
 - **API Endpoints**
     - **Web Service**
         - [Announcements](app-backend/ms-web-service/doc/ANNOUNCEMENT_SERVICE.md)

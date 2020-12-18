@@ -1,20 +1,22 @@
 package com.javawebapp.web.service
 
 import com.javawebapp.web.entity.Announcement
+import com.javawebapp.web.event.NotificationBinding
 import com.javawebapp.web.exception.ApiException
 import com.javawebapp.web.exception.ErrorTypes
 import com.javawebapp.web.repository.AnnouncementRepository
+import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
+import org.springframework.messaging.MessageChannel
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import org.springframework.web.client.RestTemplate
-import java.time.ZonedDateTime
 
+@EnableBinding(NotificationBinding::class)
 @Service
 class AnnouncementService(
         private val announcementRepository: AnnouncementRepository,
-        private val restTemplate: RestTemplate
+        private val newNotificationChannel: MessageChannel
 ) {
     fun getAllAnnouncements(): List<Announcement> {
         return announcementRepository.findByOrderByCreationDateDesc()
@@ -47,8 +49,8 @@ class AnnouncementService(
         announcement.initAnnouncementMetadata()
         // add announcement to database
         announcementRepository.insert(announcement)
-        // publish announcement to client via websocket
-        restTemplate.postForEntity("http://notificationService/publish/announcement", announcement, Announcement::class.java)
+        // publish announcement to client via event
+        // newNotificationChannel.send(announcement)
     }
 
     fun updateAnnouncementById(announcement: Announcement) {

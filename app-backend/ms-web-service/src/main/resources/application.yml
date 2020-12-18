@@ -26,20 +26,13 @@ spring:
 ---
 
 ###############################################################################################
-# Spring Cloud Consul Service Discovery
+# Rabbit MQ Configuration
 ###############################################################################################
 
 spring:
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      discovery:
-        healthCheckInterval: 1s
-        healthCheckPath: /actuator/health
-        instance-id: ${spring.application.name}:${random.value}
-    loadbalancer:
-      cache:
-        ttl: 1s # client caches target services & refreshes them every 1 second
-      ribbon:
-        enabled: false # deprecated. Hence disabled to use spring-cloud-load-balancer
+  rabbitmq:
+    addresses: localhost:15672
+    username: admin
+    password: 123
+
+---

@@ -22,7 +22,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb") // Mongo Database
 	implementation("org.springframework.boot:spring-boot-starter-web") // Web
 	implementation("org.springframework.boot:spring-boot-starter-actuator") // Health End Points
-	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery") // Service Discovery
+	implementation("org.springframework.cloud:spring-cloud-stream") // cloud stream
+	implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit") // rabbitmq-binder
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
