@@ -3,7 +3,7 @@
 Here are some background context for announcement feature:
 1. There can be several active announcements
 2. Announcements are stored inside database
-3. There is an [**announcement service**](../../app-backend/ms-web-service/doc/ANNOUNCEMENT_SERVICE.md) inside [**web service**](../../app-backend/ms-web-service)
+3. There is an [**announcement service (API)**](../../app-backend/ms-web-service/doc/ANNOUNCEMENT_SERVICE.md) inside [**web microservice**](../../app-backend/ms-web-service)
 
 ## User View
 
