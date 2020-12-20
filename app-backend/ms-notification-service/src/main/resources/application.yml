@@ -19,10 +19,15 @@ spring:
 
 spring:
   rabbitmq:
-    addresses: localhost:15672
+    addresses: localhost:5672
     username: admin
     password: 123
-
+  cloud:
+    stream:
+      bindings:
+        newNotificationChannel:
+          destination: newNotificationExchange # mapping cloud stream channel to rabbitmq exchange
+          group: notification-group # only 1 consumer will receive the message
 ---
 
 ###############################################################################################

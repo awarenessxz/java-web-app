@@ -1,13 +1,33 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { EuiButtonIcon, EuiCollapsibleNavGroup, EuiText, EuiLink } from '@elastic/eui';
+import { useDispatch, useSelector } from 'react-redux';
+import { EuiButtonIcon, EuiCollapsibleNavGroup, EuiText } from '@elastic/eui';
 import { setShowAnnouncement } from '../../redux/app/app-action';
+import { RootState } from '../../redux/root-reducer';
+import EuiCustomLink from '../../utils/routing/EuiCustomLink';
+import useLocalStorageState from '../../utils/hooks/UseLocalStorageState';
 
 const AppSidebarAnnouncement = (): JSX.Element => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [readAnnouncementIds, setAnnouncementIdsInLocalStorage] = useLocalStorageState('readAnnouncementIds', '[]');
+    const announcements = useSelector((state: RootState) => state.app.announcements);
     const dispatch = useDispatch();
 
     const closeAnnouncement = (): void => {
         dispatch(setShowAnnouncement(false));
+    };
+
+    const loadAnnouncementText = (): JSX.Element => {
+        let readAnnouncementsCount = 0;
+        if (readAnnouncementIds) {
+            const readAnnouncementIdsArr: string[] = JSON.parse(readAnnouncementIds) as string[];
+            readAnnouncementsCount = readAnnouncementIdsArr.length;
+        }
+        const newAnnouncementCount = announcements.length - readAnnouncementsCount;
+        return (
+            <React.Fragment>
+                <b>{newAnnouncementCount}</b> new announcements!
+            </React.Fragment>
+        );
     };
 
     return (
@@ -27,11 +47,10 @@ const AppSidebarAnnouncement = (): JSX.Element => {
                 />
             }
         >
-            <EuiText size="s" color="subdued" style={{ padding: '0 8px 8px' }}>
+            <EuiText size="s" style={{ padding: '0 8px 8px' }}>
                 <p>
-                    Threat prevention, detection, and response with SIEM and endpoint security.
-                    <br />
-                    <EuiLink>Learn more</EuiLink>
+                    {loadAnnouncementText()}
+                    <EuiCustomLink to="/announcements"> Check it out!</EuiCustomLink>
                 </p>
             </EuiText>
         </EuiCollapsibleNavGroup>

@@ -1,8 +1,7 @@
 # Notification Service  (Microservice)
 
-This is a micro-service which primary handles web socket connection with the frontend
-
-Refer to the documentation for all the [pub/sub topics](doc/TOPICS.md).
+This is a micro-service which purpose is to manage websocket connection between frontend and backend. For more details 
+on the implementation as well as the list of available websocket topics, click [here](doc/NOTIFICATION_SERVICE.md).
 
 ## Folder Structure
 
@@ -11,7 +10,8 @@ root/src/main
 ├── kotlin
     └── com.javawebapp.notification
         ├── config        # custom configurations
-        ├── controller    # broker message controller
+        ├── controller    # websocket broker message controller
+        ├── event         # spring cloud stream + rabbitmq
         └── model         # data structure
 └── resources                 
 ```

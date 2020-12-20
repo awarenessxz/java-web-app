@@ -9,7 +9,7 @@ interface EuiCustomLinkProps extends EuiLinkButtonProps {
     to: string;
 }
 
-// Most of the content of this files are from https://github.com/elastic/eui/pull/1976.
+// Most of the content of this files are from https://github.com/elastic/eui/blob/master/wiki/react-router.md.
 const isModifiedEvent = (event: any): boolean => !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 const isLeftClickEvent = (event: any): boolean => event.button === 0;

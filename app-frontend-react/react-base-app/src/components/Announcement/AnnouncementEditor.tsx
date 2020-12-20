@@ -51,13 +51,16 @@ interface AnnouncementActionResult {
 
 const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX.Element => {
     const editorRef = useRef(null);
+    const [editMode, setEditMode] = useState<boolean>(!!announcementInput);
     const selectOptions = [
         { value: '[Advisory]', text: 'System Advisory' },
         { value: '[Upgrade/Maintenance]', text: 'System Upgrade / Maintenance' },
     ];
     const [aSelectedType, setSelectedType] = useState(selectOptions[0].value);
-    const [aStartDate, setStartDate] = useState<Moment>(announcementInput ? announcementInput.startDate : moment());
-    const [aEndDate, setEndDate] = useState<Moment>(announcementInput ? announcementInput.endDate : moment());
+    const [aStartDate, setStartDate] = useState<Moment>(
+        announcementInput ? moment(announcementInput.startDate) : moment(),
+    );
+    const [aEndDate, setEndDate] = useState<Moment>(announcementInput ? moment(announcementInput.endDate) : moment());
     const [aTitle, setTitle] = useState(announcementInput ? announcementInput.title : '');
     const [emptyTitleError, setEmptyTitleError] = useState(false);
     const [actionResult, setActionResult] = useState<AnnouncementActionResult>({ message: '', isError: false });
@@ -68,6 +71,14 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
         setEndDate(moment());
         setEmptyTitleError(false);
         setSelectedType(selectOptions[0].value);
+        setEditMode(false);
+        if (editorRef !== null && editorRef.current !== null) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            const { editor } = editorRef.current;
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+            editor.setContent('');
+        }
     };
 
     const deleteAnnouncement = (): void => {
@@ -86,7 +97,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
     };
 
     const updateAnnouncement = (content: string): void => {
-        if (announcementInput && announcementInput.id) {
+        if (editMode && announcementInput && announcementInput.id) {
             const reqBody: AnnouncementEntity = {
                 id: announcementInput.id,
                 content,
@@ -148,7 +159,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
         }
 
         if (isValid) {
-            if (announcementInput) {
+            if (editMode) {
                 // update
                 updateAnnouncement(content);
             } else {
@@ -172,15 +183,15 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
             <EuiFlexGroup>
                 <EuiFlexItem grow={1}>
                     <EuiButton
-                        title={`${announcementInput ? 'Modify' : 'Create'} Announcement`}
-                        aria-label={`${announcementInput ? 'Modify' : 'Create'} Announcement`}
+                        title={`${editMode ? 'Modify' : 'Create'} Announcement`}
+                        aria-label={`${editMode ? 'Modify' : 'Create'} Announcement`}
                         iconType="push"
                         onClick={submitAnnouncement}
                         style={{ height: '100%' }}
                     >
-                        {`${announcementInput ? 'Modify' : 'Create'} Announcement`}
+                        {`${editMode ? 'Modify' : 'Create'} Announcement`}
                     </EuiButton>
-                    {announcementInput && (
+                    {editMode && (
                         <Fragment>
                             <EuiSpacer size="l" />
                             <EuiButton
@@ -252,7 +263,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
             </EuiFlexGroup>
             <EuiSpacer size="l" />
             <Editor
-                initialValue={announcementInput ? announcementInput.content : ''}
+                initialValue={editMode && announcementInput ? announcementInput.content : ''}
                 init={{
                     height: 500,
                     menubar: false,

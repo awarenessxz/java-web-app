@@ -1,6 +1,8 @@
 # Backend Web Service  (Microservice)
 
-This is a micro-service which serves as a centralised service for all web related business logic.
+This is a micro-service which serves as a centralised service for all web related business logic. Refer to the following 
+documentations on the implementation details for all services within this web service.
+- [Announcement Service](doc/ANNOUNCEMENT_SERVICE.md)
 
 ## Folder Structure
 
@@ -9,8 +11,9 @@ root/src/main
 ├── kotlin
     └── com.javawebapp.web
         ├── config              # custom configurations
-        ├── controller*         # REST controller
+        ├── controller          # REST controller
         ├── entity              # Database related
+        ├── event               # spring cloud stream + rabbitmq
         ├── exception           # Custom Exceptions (start point = ApiExceptionHandler.kt)
         ├── repository          # Database related
         ├── service             # Contains all the business logic
@@ -22,10 +25,6 @@ root/src/main
 
 - **Run this microservice**
     - `./gradlew bootRun`
-
-## Implementation
-
-- [Announcement Service](doc/ANNOUNCEMENT_SERVICE.md)
 
 ## References
 - [Spring Docs](HELP.md)

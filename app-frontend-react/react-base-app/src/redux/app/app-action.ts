@@ -25,7 +25,6 @@ export const setIsAdminUser = (isAdminUser: boolean): AppActionTypes => ({
     },
 });
 
-// Temporary only (To Be Removed...)
 export const setShowAnnouncement = (showAnnouncement: boolean): AppActionTypes => ({
     type: SET_SHOW_ANNOUNCEMENT,
     payload: {
@@ -63,11 +62,25 @@ const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): voi
         .then((res) => res.json())
         .then((data) => {
             if (Array.isArray(data)) {
+                const readAnnouncementIds = localStorage.getItem('readAnnouncementIds');
+                let readAnnouncementsCount = 0;
+                if (readAnnouncementIds) {
+                    const readAnnouncementIdsArr: string[] = JSON.parse(readAnnouncementIds) as string[];
+                    const newReadAnnouncementIdsArr = data
+                        .filter((announcement: AnnouncementEntity) => {
+                            return announcement.id && readAnnouncementIdsArr.includes(announcement.id);
+                        })
+                        .map((filteredAnnouncement: AnnouncementEntity) => {
+                            return filteredAnnouncement.id;
+                        });
+                    localStorage.setItem('readAnnouncementIds', JSON.stringify(newReadAnnouncementIdsArr));
+                    readAnnouncementsCount = newReadAnnouncementIdsArr.length;
+                }
                 dispatch({
                     type: SET_ACTIVE_ANNOUNCEMENTS,
                     payload: {
                         announcements: data,
-                        showAnnouncement: data.length > 0,
+                        showAnnouncement: data.length - readAnnouncementsCount > 0,
                     },
                 });
             } else {
@@ -81,8 +94,8 @@ const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): voi
 
 export const initBaseApplication = (): RootThunkResult<void> => (dispatch, getState): void => {
     // initialize menu items
-    const menuItemMapping = generateMenuItemMapping();
-    const selectedMenuItem = menuItemMapping[getCurrentRoute()];
+    const menuItemsMapping = generateMenuItemMapping();
+    const selectedMenuItem = menuItemsMapping[getCurrentRoute()];
 
     // verify user details (temporary)
     // fetch user details
@@ -97,7 +110,7 @@ export const initBaseApplication = (): RootThunkResult<void> => (dispatch, getSt
         type: INIT_BASE_APP,
         payload: {
             selectedMenuItem,
-            menuItemMapping,
+            menuItemsMapping,
             isAdminUser,
             isSiteReady: true,
         },

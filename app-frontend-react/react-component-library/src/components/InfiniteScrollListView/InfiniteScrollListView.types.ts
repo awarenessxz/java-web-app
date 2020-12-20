@@ -1,3 +1,8 @@
+export interface ListContentItemProps {
+    item: ListViewItem;
+    idx: number;
+}
+
 export interface ListViewItem {
     id: string;
     title: string;
@@ -24,6 +29,10 @@ export interface InfiniteScrollListViewProps {
     dataIsFlaggedReadList?: string[];
     /** message for user when there is no data retrieved from api */
     noDataMsg?: string;
+    /** If this function is provided, a delete button will appear */
+    onDeleteBtnClick?: (item: any) => void;
+    /** If this function is provided, an edit button will appear */
+    onEditBtnClick?: (item: any) => void;
     /** handler for when item in list is clicked */
     onItemClick: (item: any) => void;
     /** height */

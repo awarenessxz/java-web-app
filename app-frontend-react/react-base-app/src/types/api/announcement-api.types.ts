@@ -11,4 +11,5 @@ export interface AnnouncementEntity {
     creationDate?: Moment;
     lastModifiedDate?: Moment;
     lastEditedBy?: string;
+    activeFlag?: boolean;
 }

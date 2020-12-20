@@ -38,8 +38,17 @@ root
     - `sudo docker run --name apigateway --net=host -d apigateway_image`
 
 3. Start Config Server
+    - `cd ms-config-server`
+    - `./gradlew bootRun`
 
-4. Start Microservices
+4. Start RabbitMQ
+    - `cd rabbitmq`
+    - `cd storage`
+    - `rm -rf *`
+    - `cd ..`
+    - `sudo docker-compose up -d`
+    
+5. Start Microservices
     - Web Service
         - `cd ms-web-service`
         - `./gradlew bootRun`

@@ -26,7 +26,7 @@
         "extensions": [".ts", ".tsx"]
       },
       "webpack": {
-        "config": "config/webpack.base.js"
+        "config": "config/webpack/webpack.base.js"
       }
     },
     "import/extensions": [".ts", ".tsx"],

@@ -19,6 +19,10 @@ root
 └── react-micro-frontend        # Sub web app that is consumes by main app  
 ```
 
+## Implementation
+
+- [Announcement](doc/ANNOUNCEMENT_IMPLEMENTATION.md)
+
 ## Usage
 
 ### Localhost

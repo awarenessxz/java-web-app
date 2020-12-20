@@ -29,13 +29,26 @@ exports[`Testing if component renders properly Snapshot Testing 1`] = `
           </p>
         </div>
         <div
-          class="MuiListItemText-root makeStyles-listRightContent-4"
+          class="makeStyles-listRightContent-4"
         >
-          <p
-            class="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1"
           >
-            04/12/2020
-          </p>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+              style="padding: 0px;"
+            >
+              <div
+                class="MuiListItemText-root"
+              >
+                <p
+                  class="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+                >
+                  04/12/2020
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </li>
       <li

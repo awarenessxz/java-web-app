@@ -41,7 +41,6 @@ interface SetIsAdminUserAction {
     };
 }
 
-// temporary -- to be removed
 interface SetShowAnnouncementAction {
     type: typeof SET_SHOW_ANNOUNCEMENT;
     payload: {

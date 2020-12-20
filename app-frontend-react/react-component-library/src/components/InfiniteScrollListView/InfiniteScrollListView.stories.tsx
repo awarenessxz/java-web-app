@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import InfiniteScrollListView from './InfiniteScrollListView';
-import { InfiniteScrollListViewProps } from './InfiniteScrollListView.types';
+import { InfiniteScrollListViewProps, ListViewItem } from './InfiniteScrollListView.types';
 
 export default {
     title: 'Components/InfiniteScrollListView',
@@ -19,7 +19,7 @@ const Template: Story<InfiniteScrollListViewProps> = (args) => {
  ************************************************** */
 
 const sampleArgs: InfiniteScrollListViewProps = {
-    onItemClick: (item) => {
+    onItemClick: (item: ListViewItem) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions
         alert(`${item.title} Clicked`);
     },
@@ -34,6 +34,8 @@ const sampleArgs: InfiniteScrollListViewProps = {
     dataOffset: 0,
     dataOffsetIncrement: 4,
     height: '400px',
+    onDeleteBtnClick: undefined, // have to manually undefined it because of storybook actions
+    onEditBtnClick: undefined, // have to manually undefined it because of storybook actions
 };
 
 /** *************************************************
@@ -62,5 +64,23 @@ ListWithFlag.args = {
         message: 'message',
         displayDateTime: 'displayDateTime',
         isFlagged: 'isFlagged',
+    },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const ListWithControls: Story = Template.bind({});
+ListWithControls.args = {
+    ...sampleArgs,
+    dataToItemMapping: {
+        id: 'id',
+        title: 'title',
+        message: 'message',
+        displayDateTime: 'displayDateTime',
+    },
+    onDeleteBtnClick: (item: ListViewItem): void => {
+        console.log(`${item.title} is deleted`);
+    },
+    onEditBtnClick: (item: ListViewItem): void => {
+        console.log(`${item.title} is edited`);
     },
 };

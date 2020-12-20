@@ -2,11 +2,20 @@ import React, { Fragment, useEffect, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import { InfiniteScrollListViewProps, InfiniteScrollListViewState, ListViewItem } from './InfiniteScrollListView.types';
+import {
+    InfiniteScrollListViewProps,
+    InfiniteScrollListViewState,
+    ListContentItemProps,
+    ListViewItem,
+} from './InfiniteScrollListView.types';
 import { getDateFromDateTime } from '../../utils/time-formatter';
 import styles from './InfiniteScrollListView.module.scss';
 
@@ -24,8 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         listRightContent: {
             textAlign: 'right',
-            flex: '0 0 60px',
-            paddingTop: '10px',
+            flex: '0 0 70px',
+            minWidth: '0',
+            marginTop: '10px',
+            marginBottom: '6px',
         },
         inline: {
             display: 'inline',
@@ -161,7 +172,25 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [localState.triggerScrollRegister]);
 
-    const ListContentItem = (item: ListViewItem): JSX.Element => {
+    const deleteItemFromList = (idx: number, item: ListViewItem): void => {
+        // update ui
+        localState.data.splice(idx, 1);
+        setLocalState({
+            ...localState,
+            data: localState.data,
+        });
+        // callback to update what's deleted
+        // eslint-disable-next-line react/prop-types
+        const { onDeleteBtnClick } = props;
+        if (onDeleteBtnClick) {
+            onDeleteBtnClick(item.originalData);
+        }
+    };
+
+    const ListContentItem = (listContentItemProps: ListContentItemProps): JSX.Element => {
+        // eslint-disable-next-line react/prop-types
+        const { onDeleteBtnClick, onEditBtnClick, onItemClick } = props;
+        const { item, idx } = listContentItemProps;
         return (
             <Fragment>
                 <ListItem
@@ -169,7 +198,7 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                     onClick={(): void => {
                         // update isDataReadList
                         setIsDataFlagReadList([...isDataFlagReadList, item.id]);
-                        props.onItemClick(item.originalData);
+                        onItemClick(item.originalData);
                     }}
                     className={`${classes.listItem} ${
                         item.isFlagged && !isDataFlagReadList.includes(item.id)
@@ -179,7 +208,43 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                     data-testid={`islv_${item.id}`}
                 >
                     <ListItemText primary={item.title} secondary={item.message} />
-                    <ListItemText secondary={item.displayDateTime} className={classes.listRightContent} />
+                    <div className={classes.listRightContent}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={12} style={{ padding: '0' }}>
+                                <ListItemText secondary={item.displayDateTime} />
+                            </Grid>
+                            {onEditBtnClick && (
+                                <Grid item xs={12} sm={6} style={{ padding: '0' }}>
+                                    <IconButton
+                                        data-testid={`editBtn${idx}`}
+                                        edge="end"
+                                        aria-label="edit"
+                                        onClick={(e): void => {
+                                            e.stopPropagation(); // prevent the listItem onClick to be triggered (Event Bubbling)
+                                            onEditBtnClick(item.originalData);
+                                        }}
+                                    >
+                                        <EditIcon />
+                                    </IconButton>
+                                </Grid>
+                            )}
+                            {onDeleteBtnClick && (
+                                <Grid item xs={12} sm={6} style={{ padding: '0' }}>
+                                    <IconButton
+                                        data-testid={`deleteBtn${idx}`}
+                                        aria-label="delete"
+                                        edge="end"
+                                        onClick={(e): void => {
+                                            e.stopPropagation(); // prevent the listItem onClick to be triggered (Event Bubbling)
+                                            deleteItemFromList(idx, item);
+                                        }}
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </Grid>
+                            )}
+                        </Grid>
+                    </div>
                 </ListItem>
                 <Divider component="li" />
             </Fragment>
@@ -192,7 +257,7 @@ const InfiniteScrollListView = (props: InfiniteScrollListViewProps): JSX.Element
                 {localState.data.length > 0 ? (
                     <List className={classes.listContent}>
                         {localState.data.map((item, idx) => (
-                            <ListContentItem key={idx} {...item} />
+                            <ListContentItem key={idx} item={item} idx={idx} />
                         ))}
                     </List>
                 ) : (

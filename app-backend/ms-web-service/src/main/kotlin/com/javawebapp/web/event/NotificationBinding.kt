@@ -5,6 +5,12 @@ import org.springframework.messaging.MessageChannel
 
 // create an exchange
 interface NotificationBinding {
-    @Output("newNotificationChannel")
-    fun newNotification(): MessageChannel
+
+    // publish message to channel (AKA exchange in rabbitMQ concept)
+    @Output(NEW_NOTIFICATION_CHANNEL)
+    fun outboundNotificationChannel(): MessageChannel
+
+    companion object {
+        const val NEW_NOTIFICATION_CHANNEL = "newNotificationChannel"
+    }
 }

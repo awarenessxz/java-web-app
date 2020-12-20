@@ -20,7 +20,7 @@ const useWebSocket = (brokerUrl: string): [Client | null, boolean] => {
                 console.log(`Broker reported error: ${frame.headers.message}`);
                 console.log(`Additional Details: ${frame.body}`);
             },
-            reconnectDelay: 100000,
+            reconnectDelay: 100000000,
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
         };

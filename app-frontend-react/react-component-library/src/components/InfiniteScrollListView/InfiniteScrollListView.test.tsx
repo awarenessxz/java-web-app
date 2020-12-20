@@ -51,6 +51,59 @@ describe('Testing if component renders properly', () => {
         await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
         expect(asFragment()).toMatchSnapshot();
     });
+
+    // Test that delete & edit icon pops out
+    describe('Optional Edit and Delete Button renders correctly', () => {
+        it('no buttons rendered', async () => {
+            // only renders the first data in the list
+            renderComponent({
+                dataApiUrl: '/test/infinitescrolllistview/fakedata',
+                dataLimit: 1,
+                dataOffset: 0,
+            });
+            await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+            expect(screen.queryByTestId('deleteBtn0')).toBeNull();
+            expect(screen.queryByTestId('editBtn0')).toBeNull();
+        });
+
+        it('Delete button renders', async () => {
+            // only renders the first data in the list
+            renderComponent({
+                dataApiUrl: '/test/infinitescrolllistview/fakedata',
+                dataLimit: 1,
+                dataOffset: 0,
+                onDeleteBtnClick: jest.fn(),
+            });
+            await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+            expect(screen.getByTestId('deleteBtn0')).toBeInTheDocument();
+        });
+
+        it('Edit button renders', async () => {
+            // only renders the first data in the list
+            renderComponent({
+                dataApiUrl: '/test/infinitescrolllistview/fakedata',
+                dataLimit: 1,
+                dataOffset: 0,
+                onEditBtnClick: jest.fn(),
+            });
+            await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+            expect(screen.getByTestId('editBtn0')).toBeInTheDocument();
+        });
+
+        it('Both buttons renders', async () => {
+            // only renders the first data in the list
+            renderComponent({
+                dataApiUrl: '/test/infinitescrolllistview/fakedata',
+                dataLimit: 1,
+                dataOffset: 0,
+                onDeleteBtnClick: jest.fn(),
+                onEditBtnClick: jest.fn(),
+            });
+            await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+            expect(screen.getByTestId('deleteBtn0')).toBeInTheDocument();
+            expect(screen.getByTestId('editBtn0')).toBeInTheDocument();
+        });
+    });
 });
 
 // 2. Test API
@@ -93,6 +146,34 @@ describe('Testing OnClick Events', () => {
         const listItem1 = screen.getByTestId('islv_1');
         fireEvent.click(listItem1);
         expect(mockClickHandler).toBeCalled();
+    });
+
+    it('Delete callback is triggered', async () => {
+        // only renders the first data in the list
+        const mockCallback = jest.fn();
+        renderComponent({
+            dataApiUrl: '/test/infinitescrolllistview/fakedata',
+            dataLimit: 1,
+            dataOffset: 0,
+            onDeleteBtnClick: mockCallback,
+        });
+        await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+        fireEvent.click(screen.getByTestId('deleteBtn0'));
+        expect(mockCallback).toBeCalled();
+    });
+
+    it('Edit callback is triggered', async () => {
+        // only renders the first data in the list
+        const mockCallback = jest.fn();
+        renderComponent({
+            dataApiUrl: '/test/infinitescrolllistview/fakedata',
+            dataLimit: 1,
+            dataOffset: 0,
+            onEditBtnClick: mockCallback,
+        });
+        await waitForElementToBeRemoved(screen.getByTestId('islv_isLoadingDiv'));
+        fireEvent.click(screen.getByTestId('editBtn0'));
+        expect(mockCallback).toBeCalled();
     });
 });
 

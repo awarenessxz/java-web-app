@@ -1,6 +1,6 @@
 # Announcement Service
 
-This is the Rest API for Announcement Service.
+Announcement Service basically handles all announcement related activities for the web app.
 
 ## Rest API
 
@@ -11,11 +11,11 @@ This is the Rest API for Announcement Service.
 | /announcements/{id} | GET | Get announcement by ID |
 | /announcements/{id} | DELETE | Delete announcement by ID |
 | /announcements/{id} | PUT | Update announcement by ID |
-| /announcements/new | POST | request body json = {Announcement Object}. Create a new announcement and store in database |
+| /announcements/new | POST | request body json = {Announcement Object}. Create a new announcement, store in database and notify web app of new announcement via websocket |
 | /announcements/latest | GET | Get all active announcements |
 
-## Schedule Jobs
+## Scheduled Jobs
 
-| Service | Method | Description |
-| --- | --- | --- |
-| AnnouncementService | cleanUpAnnouncementActiveFlag | periodically clean up announcements' active flag in database |
+| Method | Description |
+| --- | --- |
+| cleanUpAnnouncementActiveFlag | periodically clean up announcements' active flag in database |

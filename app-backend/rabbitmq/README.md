@@ -1,5 +1,7 @@
 # Rabbit MQ Cluster
 
+RabbitMQ is set up to enable microservices to communicate via "Events". 
+
 ## Usage
 
 1. Clear data inside `storage` folder **[OPTIONAL]**
@@ -24,3 +26,5 @@
 
 ## References
 - [Spring Cloud Stream + Rabbit MQ](https://stackabuse.com/spring-cloud-stream-with-rabbitmq-message-driven-microservices/)
+- [Intro to Cloud Stream](https://www.baeldung.com/spring-cloud-stream)
+- [Spring Cloud Stream RabbitMQ Binder Reference Guide](https://cloud.spring.io/spring-cloud-static/spring-cloud-stream-binder-rabbit/2.2.0.M1/spring-cloud-stream-binder-rabbit.html)
