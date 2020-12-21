@@ -4,6 +4,10 @@ This is the backend architecture for the java web app based on an **Event Driven
 
 ![Backend Design](doc/backend_architecture.png)
 
+Refer to the following documentation on the implementation of the various microservices:
+- [Notification Microservice](ms-notification-service/doc/NOTIFICATION_SERVICE.md)
+- [Web Microservice](ms-web-service)
+
 ## Folder Structure
 
 **Note: Do ignore folders with asterisk as they are just experimental projects!!**

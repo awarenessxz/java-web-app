@@ -20,8 +20,8 @@ This is a full stack java application built with multiple technology stack.
 
 ### In Depth Design Concepts
 
-1. [Frontend](app-frontend-react/README.md) 
-2. [Microservice Backend](app-backend/README.md)
+1. [Frontend](app-frontend-react) 
+2. [Microservice Backend](app-backend)
 3. [API Gateway](app-backend/web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
 4. [Websocket Implementation](app-backend/ms-notification-service/doc/NOTIFICATION_SERVICE.md#websocket-server-to-client-communication)
 5. Message Queue
@@ -32,14 +32,14 @@ This is a full stack java application built with multiple technology stack.
 ## Apps / Services / API
 
 - **Apps / Services**
-    - **6006** -- Storybook ([React Component Library](app-frontend-react/react-component-library/README.md))
-    - **7001** -- Microservice ([Web Service](app-backend/ms-web-service/README.md))
-    - **7002** -- Microservice ([Notification Service - WebSocket](app-backend/ms-notification-service/README.md))
+    - **6006** -- Storybook ([React Component Library](app-frontend-react/react-component-library))
+    - **7001** -- Microservice ([Web Service](app-backend/ms-web-service))
+    - **7002** -- Microservice ([Notification Service - WebSocket](app-backend/ms-notification-service))
         - [WebSocket Topics](app-backend/ms-notification-service/doc/NOTIFICATION_SERVICE.md#topics)
-    - **8080** -- [React Web App](app-frontend-react/react-base-app/README.md)
-    - **8888** -- [Cloud Config Server](app-backend/ms-config-server/README.md)
-    - **9090** -- [API Gateway](app-backend/web-api-gateway-nginx/README.md)
-    - **15672** -- [RabbitMQ](app-backend/rabbitmq/README.md)
+    - **8080** -- [React Web App](app-frontend-react/react-base-app)
+    - **8888** -- [Cloud Config Server](app-backend/ms-config-server)
+    - **9090** -- [API Gateway](app-backend/web-api-gateway-nginx)
+    - **15672** -- [RabbitMQ](app-backend/rabbitmq)
 - **API Endpoints**
     - **Web Service**
         - [Announcements](app-backend/ms-web-service/doc/ANNOUNCEMENT_SERVICE.md)

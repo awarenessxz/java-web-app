@@ -10,6 +10,10 @@ following:
 - SASS / CSS Modules
 - ElasticUI / MaterialUI
 
+Refer to these documentations for the implementation of some features in the web app:
+
+- [Announcement](doc/ANNOUNCEMENT_IMPLEMENTATION.md)
+
 ## Folder Structure
 
 ```
@@ -18,10 +22,6 @@ root
 ├── react-component-library     # Custom Reusable React Component Library
 └── react-micro-frontend        # Sub web app that is consumes by main app  
 ```
-
-## Implementation
-
-- [Announcement](doc/ANNOUNCEMENT_IMPLEMENTATION.md)
 
 ## Usage
 
