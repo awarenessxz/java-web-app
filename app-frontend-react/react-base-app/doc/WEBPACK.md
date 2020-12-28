@@ -22,6 +22,7 @@
     - `@babel/preset-typescript` - enables Babel to transform Typescript code into Javascript
 
 ### Assets
+- `node-sass` - provides binding for Node.js to LibSass, a Sass compiler
 - `css-loader` - load and bundle css into one file. Interprets @import and @url() and resolves them. For example, if you reference some images like .jpg in css, you need this to resolve it.
 - `style-loader` - injects our styles into our DOM. This will put styles into the HTML file, so no separate stylesheet.
 - `sass-loader` - is a loader for Webpack for compiling SCSS/Sass files.

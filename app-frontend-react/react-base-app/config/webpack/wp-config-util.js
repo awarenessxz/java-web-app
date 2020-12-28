@@ -97,12 +97,12 @@ module.exports = {
                             // shared global css files
                             test: /\.(sa|sc|c)ss$/,
                             exclude: /\.module\.(sa|sc|c)ss$/,
-                            use: ['style-loader', MiniCssExtractPlugin.loader, CSSLoader, PostCSSLoader, 'sass-loader'] // loader sequence is right to left
+                            use: [MiniCssExtractPlugin.loader, CSSLoader, PostCSSLoader, 'sass-loader'] // loader sequence is right to left
                         },
                         {
                             // css modules
                             test: /\.module\.(sa|sc|c)ss$/,
-                            use: ['style-loader', MiniCssExtractPlugin.loader, CSSModuleLoader, PostCSSLoader, 'sass-loader'] // loader sequence is right to left
+                            use: [MiniCssExtractPlugin.loader, CSSModuleLoader, PostCSSLoader, 'sass-loader'] // loader sequence is right to left
                         }
                     ]
                 }

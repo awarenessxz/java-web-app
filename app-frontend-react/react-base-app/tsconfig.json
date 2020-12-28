@@ -26,7 +26,9 @@
     // where to put compile codes
     "outDir": "./build",
     // where are out codes
-    "rootDir": "./src"
+    "rootDir": "./src",
+    // where to find the type definitions
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
   // files and folders for typescript to check
   "include": ["src"]

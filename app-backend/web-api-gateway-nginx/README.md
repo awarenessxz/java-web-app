@@ -1,20 +1,13 @@
 # Web API Gateway (using Nginx + Consul)
 
 Simple API Gateway to enable request rerouting. Possible responsibilities includes **authentication, monitoring, load
-balancing, caching, request shaping and management, and static response handling**
+balancing, caching, request shaping and management, and static response handling**.
 
-Refer to the documentation on the [API Gateway design](doc/API_GATEWAY_DESIGN.md)
-    - Refer to [Service Registry](doc/SERVICE_REGISTRY.md) for list of services registered to consul server
-    - Refer to [API End Points](../README.md#apps--services--api) for list of all rest api
+Refer to the documentation on the [API Gateway design](doc/API_GATEWAY_DESIGN.md).
+
+Refer to [API End Points](../README.md#apps--services--api) for list of all rest api.
 
 ## Getting Started
-
-### Start the Service Discovery
-
-1. `cd service-discovery`
-2. `ifconfig` -- get your network interface and change the interface name accordingly for the command below
-2. `sudo docker run --net=host --name consul_server -e CONSUL_BIND_INTERFACE=enp0s3 -e CONSUL_CLIENT_INTERFACE=enp0s3 -d consul agent -ui -server -bootstrap-expect=1 -client=0.0.0.0`
-3. Go to `http://localhost:8500` to see all services registered to the consul server
 
 ### Start API Gateway / Reverse Proxy
 

@@ -44,4 +44,15 @@ root
 
 ### Docker
 
+1. Build the webapp
+    - `sudo docker build -t webapp_image .`
+
+2. Run the webapp
+    - `sudo docker run --net=host -d --name webapp webapp_image`
+
 ### Kubernetes
+
+
+## References
+
+- [React is Docker built with multi stage docker builds including testing](https://medium.com/@tiangolo/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305)
