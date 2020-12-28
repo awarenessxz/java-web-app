@@ -25,6 +25,7 @@ Refer to this table for the list of topics implemented for server to client comm
 
 Notification Service is the main websocket server. Hence, for other microservices to communicate with the client, they 
 will have to pass their message through Notification Service. This is implemented based on **"Event Driven Microservice 
-Architecture"** using **Spring Cloud Stream** and **RabbitMQ**.
+Architecture"** using **Spring Cloud Stream** and **RabbitMQ** where other microservices publish their messages to a 
+rabbitmq queue which will be consumed by the notification microservice and forwarded to the client.
 
 ![Server to Server](ServerToServer.png)

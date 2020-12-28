@@ -1,4 +1,4 @@
-# Web API Gateway (using Nginx + Consul)
+# Web API Gateway (using Nginx)
 
 Simple API Gateway to enable request rerouting. Possible responsibilities includes **authentication, monitoring, load
 balancing, caching, request shaping and management, and static response handling**.
