@@ -7,8 +7,8 @@ import org.springframework.cloud.stream.annotation.EnableBinding
 
 @EnableBinding(NotificationBinding::class)
 @SpringBootApplication
-class AdminServiceApplication
+class WebServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<AdminServiceApplication>(*args)
+	runApplication<WebServiceApplication>(*args)
 }

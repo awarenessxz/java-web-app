@@ -1,3 +1,6 @@
+/*
+ * Menu Configuration for Tools and Services Cards in ToolAndServices.tsx
+ */
 import { EuiCardProps } from '@elastic/eui';
 
 export interface TnsCardDetail extends EuiCardProps {

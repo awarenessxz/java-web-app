@@ -49,7 +49,7 @@ This is a step by step guide on how to create a custom reusable react component 
               ├── TestComponent.tsx         # React Components
               ├── TestComponent.types.ts    # Type Definition 
               └── TestComponent.scss        # SCSS
-        └── index.ts                        # main entry file
+        └── index.js                        # main entry file
     ├── package.json                  
     ├── rollup.config.js                    
     └── tsconfig.json
@@ -97,7 +97,7 @@ This is a step by step guide on how to create a custom reusable react component 
       theme: "primary" | "secondary";
     }
     ```
-7. Inside `index.ts`, add the following
+7. Inside `index.js`, add the following
     ```
     import TestComponent from "./TestComponent/TestComponent";
     export { TestComponent };
@@ -127,7 +127,7 @@ This is a step by step guide on how to create a custom reusable react component 
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "types": "dist/index.d.ts",
-    "source": "src/index.ts",
+    "source": "src/index.js",
     "files": ["dist"],
     "scripts": {
         "build": "rollup -c"
@@ -145,7 +145,7 @@ This is a step by step guide on how to create a custom reusable react component 
     const packageJson = require("./package.json");
     
     export default {
-      input: "src/index.ts",
+      input: "src/index.js",
       output: [
         {
           file: packageJson.main,

@@ -13,7 +13,7 @@
     "ecmaFeatures": {
       "jsx": true // Allows for parsing of JSX
     },
-    "project": "./tsconfig.json"
+    "project": ["./tsconfig.json", "./cypress/tsconfig.json"]
   },
   "settings": {
     "react": {
@@ -78,6 +78,9 @@
     "@typescript-eslint/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
     "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/no-unused-expressions": "error"
+    "@typescript-eslint/no-unused-expressions": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unsafe-return": "warn",
+    "@typescript-eslint/no-unsafe-call": "warn"
   }
 }

@@ -1,3 +1,6 @@
+/*
+ * Utility file for dealing with url navigations
+ */
 import { adminConsoleMenuItems, defaultMenuItems, generalMenuItems, MenuItem } from './app-menu-item';
 
 export interface MenuItemMap {

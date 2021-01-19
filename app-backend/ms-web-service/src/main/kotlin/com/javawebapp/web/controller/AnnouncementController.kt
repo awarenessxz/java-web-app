@@ -1,6 +1,6 @@
 package com.javawebapp.web.controller
 
-import com.javawebapp.web.entity.Announcement
+import com.javawebapp.web.model.Announcement
 import com.javawebapp.web.service.AnnouncementService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

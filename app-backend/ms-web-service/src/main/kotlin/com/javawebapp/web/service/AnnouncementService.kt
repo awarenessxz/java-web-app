@@ -1,6 +1,6 @@
 package com.javawebapp.web.service
 
-import com.javawebapp.web.entity.Announcement
+import com.javawebapp.web.model.Announcement
 import com.javawebapp.web.event.EventPayloadModel
 import com.javawebapp.web.event.EventType
 import com.javawebapp.web.event.NotificationBinding

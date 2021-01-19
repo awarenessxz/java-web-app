@@ -5,6 +5,10 @@ stats.json
 # IntelliJ
 .idea
 
+# Cypress
+cypress/videos
+cypress/screenshots
+
 # Logs
 logs
 *.log

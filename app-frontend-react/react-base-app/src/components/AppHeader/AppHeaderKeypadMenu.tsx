@@ -4,7 +4,7 @@ import { EuiHeaderSectionItemButton, EuiIcon, EuiKeyPadMenu, EuiKeyPadMenuItem, 
 import moment from 'moment';
 import { RootState } from '../../redux/root-reducer';
 import { setIsAdminUser, setShowAnnouncement } from '../../redux/app/app-action';
-import { AnnouncementEntity } from '../../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../../api/announcement-api.types';
 
 const AppHeaderKeypadMenu = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);

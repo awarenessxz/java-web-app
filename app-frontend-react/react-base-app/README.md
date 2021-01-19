@@ -15,17 +15,22 @@ Simple React Web Application Template built with typescript,webpack,react
 
 ```bash
 root
-├── config                  # webpack configuration files
-├── doc                     # documentations
+├── assets              # images / css / javascript files
+├── config              
+    ├── nginx           # for deployment
+    └── utils           # webpack configuration files
+├── cypress             # testing via cypress
+├── doc                 # documentations
 └── src
-    ├── components          # components used by pages
-    ├── pages               # main web pages
-    ├── redux               # global variable (state management)
-    ├── styles              # css global style sheets (css modules with SASS)
-    └── utils               # helper functions
-        ├── hooks           # custom hooks 
-        ├── routing         # routing / menu / navigation related
-        └── ...             # etc...
+    ├── api             # api type definitions
+    ├── components      # components used by pages
+    ├── pages           # main web pages
+    ├── redux           # global variable (state management)
+    ├── styles          # css global style sheets (css modules with SASS)
+    └── utils           # helper functions
+        ├── hooks       # custom hooks 
+        ├── routing     # routing / menu / navigation related
+        └── ...         # etc...
 ```
 
 Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on how you should structure your codes
@@ -34,11 +39,13 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 
 ### LocalHost
 
-1. Install dependency
-    - `yarn install`
+- Running the application
+    1. Install dependencies -- `yarn install`
+    2. Start the web -- `yarn run start`
 
-2. Start the web
-    - `yarn run start`
+- Testing using Cypress
+    1. Pull Cypress Image -- `sudo docker pull cypress/included:3.4.0`
+    2. Run Cypress -- `sudo docker run -it --net=host -v $PWD:/cypress -w /cypress cypress/included:3.4.0`
 
 ### Docker
 
@@ -51,6 +58,7 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 - **TLDR**
     - [Folder Structure & Coding Conventions](doc/CODING_CONVENTIONS.md)
     - [Webpack configuration details](doc/WEBPACK.md)
+    - [End to End Testing using Cypress](cypress)
 - **Notes**
     - **React-Component-Library** : 
         - The custom reusable React component library is installed by `yarn add ../react-component-library` 
@@ -65,6 +73,7 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 - [React loading screen tactics](https://medium.com/front-end-weekly/react-loading-screen-tactics-improving-user-experience-9452f183c00b)
 - [Typescript for redux-thunk](https://github.com/reduxjs/redux-thunk/blob/master/test/typescript.ts)
 - [Dockerizing Modern Web Apps](https://medium.com/@hendrikwallbaum/dockerizing-spas-9f72b7867e41)
+- [React Router Dom - Protected Routes](https://www.tuckerblackwell.com/handle-auth-with-react-router-and-typescript/)
 
 ## Credits
 - [Loading.gif designed by Jane Sorkin](https://medium.com/better-programming/a-quick-and-easy-react-js-loading-screen-with-hooks-940feccd553f)

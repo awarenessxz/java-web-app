@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     container_name: apigateway
     hostname: apigateway
-    #network_mode: host
+    network_mode: host
     ports:
     - 9090:80
     #- 443:443

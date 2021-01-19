@@ -3,6 +3,7 @@
 This is a micro-service which serves as a centralised service for all web related business logic. Refer to the following 
 documentations on the implementation details for all services within this web service.
 - [Announcement Service](doc/ANNOUNCEMENT_SERVICE.md)
+- User Info
 
 ## Folder Structure
 
@@ -12,7 +13,7 @@ root/src/main
     └── com.javawebapp.web
         ├── config              # custom configurations
         ├── controller          # REST controller
-        ├── entity              # Database related
+        ├── models              # Contains data classes and entitity which are database related
         ├── event               # spring cloud stream + rabbitmq
         ├── exception           # Custom Exceptions (start point = ApiExceptionHandler.kt)
         ├── repository          # Database related

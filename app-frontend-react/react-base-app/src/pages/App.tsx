@@ -4,25 +4,21 @@ import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import { Message } from '@stomp/stompjs';
 import loadingGif from '../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
-import AnnouncementsConsole from './Admin/AnnouncementsConsole';
-import SearchForm from './Search/SearchForm';
-import SearchResults from './Search/SearchResults';
-import SearchTemplateList from './Search/SearchTemplateList';
-import ToolsAndServices from './ToolsAndServices/ToolsAndServices';
-import DemoCompLibrary from './ToolsAndServices/DemoCompLibrary';
-import DemoMicroFrontend from './ToolsAndServices/DemoMicroFrontend';
-import AnnouncementPage from './General/AnnouncementPage';
+import PageNotFound from './General/PageNotFound';
 import ToastHandler from '../utils/ToastHandler';
+import { routes as localRoutes } from '../utils/routing/routes';
 import { getBrokerUrl } from '../utils/routing/navigation-utils';
+import ProtectedRoute from '../utils/routing/ProtectedRoute';
 import useWebSocket from '../utils/hooks/UseWebSocket';
 import { RootState } from '../redux/root-reducer';
 import { initBaseApplication, receiveNewAnnouncement } from '../redux/app/app-action';
-import { AnnouncementEntity } from '../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../api/announcement-api.types';
 
 const App = (): JSX.Element => {
     const isSiteReady = useSelector((state: RootState) => state.app.isSiteReady);
     const dispatch = useDispatch();
     const [stompClient, isWebSocketConnected] = useWebSocket(getBrokerUrl('/websocket'));
+    const routes = [...localRoutes];
 
     // initial load (load base application state)
     useEffect(() => {
@@ -52,20 +48,18 @@ const App = (): JSX.Element => {
         return (
             <Router>
                 <AppHeader />
-                <Switch>
-                    <Route exact path="/" component={SearchForm} />
-                    <Route exact path="/templates" component={SearchTemplateList} />
-                    <Route
-                        path="/templates/:templateId"
-                        render={(props): JSX.Element => <SearchForm {...props} loadTemplate />}
-                    />
-                    <Route exact path="/searchResults" component={SearchResults} />
-                    <Route exact path="/tns" component={ToolsAndServices} />
-                    <Route exact path="/tns/componentLibrary" component={DemoCompLibrary} />
-                    <Route exact path="/tns/microFrontend" component={DemoMicroFrontend} />
-                    <Route exact path="/admin/announcements" component={AnnouncementsConsole} />
-                    <Route exact path="/announcements" component={AnnouncementPage} />
-                </Switch>
+                <React.Suspense fallback={<div>Loading Routes....</div>}>
+                    <Switch>
+                        {routes.map((route, idx) => {
+                            const { isAdminRoute, ...routerProps } = route;
+                            if (isAdminRoute) {
+                                return <ProtectedRoute key={idx} {...routerProps} />;
+                            }
+                            return <Route key={idx} {...routerProps} />;
+                        })}
+                        <Route path="*" component={PageNotFound} />
+                    </Switch>
+                </React.Suspense>
                 <ToastHandler />
             </Router>
         );

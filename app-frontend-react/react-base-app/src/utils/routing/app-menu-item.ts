@@ -1,3 +1,6 @@
+/*
+ * Sidebar Menu Configuration
+ */
 import { EuiListGroupItemProps } from '@elastic/eui';
 
 export interface MenuItem {

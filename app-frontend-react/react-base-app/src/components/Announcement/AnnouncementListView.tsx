@@ -15,7 +15,7 @@ import {
     EuiTitle,
 } from '@elastic/eui';
 import { Editor } from '@tinymce/tinymce-react';
-import { AnnouncementEntity } from '../../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../../api/announcement-api.types';
 import { fetchBasic } from '../../utils/fetch-util';
 import useLocalStorageState from '../../utils/hooks/UseLocalStorageState';
 import { setShowAnnouncement } from '../../redux/app/app-action';
@@ -56,7 +56,7 @@ const AnnouncementListView = ({ isAdminView = false, handleChangeTab }: Announce
 
     const deleteAnnouncement = (item: AnnouncementEntity): void => {
         if (item.id) {
-            fetchBasic(`/api/announcements/${item.id}`, 'DELETE').catch((e) => console.log(e));
+            fetchBasic(`/api/web/announcements/${item.id}`, 'DELETE').catch((e) => console.log(e));
         }
     };
 
@@ -70,7 +70,7 @@ const AnnouncementListView = ({ isAdminView = false, handleChangeTab }: Announce
         <EuiPage style={{ padding: 0 }}>
             <EuiPageSideBar style={{ minWidth: '250px' }}>
                 <InfiniteScrollListView
-                    dataApiUrl="/api/announcements/all/page"
+                    dataApiUrl="/api/web/announcements/all/page"
                     dataLimit={5}
                     dataOffset={0}
                     dataOffsetIncrement={1}

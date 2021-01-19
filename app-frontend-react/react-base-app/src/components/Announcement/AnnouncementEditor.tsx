@@ -37,7 +37,7 @@ import 'tinymce/plugins/paste';
 import 'tinymce/plugins/help';
 import 'tinymce/plugins/wordcount';
 
-import { AnnouncementEntity } from '../../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../../api/announcement-api.types';
 import { fetchBasic, fetchWithJsonBody } from '../../utils/fetch-util';
 
 interface AnnouncementEditorProps {
@@ -83,7 +83,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
 
     const deleteAnnouncement = (): void => {
         if (announcementInput && announcementInput.id) {
-            fetchBasic(`/api/announcements/${announcementInput.id}`, 'DELETE')
+            fetchBasic(`/api/web/announcements/${announcementInput.id}`, 'DELETE')
                 .then(() => {
                     setActionResult({ message: 'Announcement Deleted!', isError: false });
                     resetEditorValues();
@@ -107,7 +107,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
                 startDate: aStartDate,
                 endDate: aEndDate,
             };
-            fetchWithJsonBody(`/api/announcements/${announcementInput.id}`, 'PUT', reqBody)
+            fetchWithJsonBody(`/api/web/announcements/${announcementInput.id}`, 'PUT', reqBody)
                 .then(() => {
                     setActionResult({ message: 'Announcement Modified!', isError: false });
                     resetEditorValues();
@@ -129,7 +129,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
             startDate: aStartDate,
             endDate: aEndDate,
         };
-        fetchWithJsonBody('/api/announcements/new', 'POST', reqBody)
+        fetchWithJsonBody('/api/web/announcements/new', 'POST', reqBody)
             .then(() => {
                 setActionResult({ message: 'Announcement created!', isError: false });
                 resetEditorValues();

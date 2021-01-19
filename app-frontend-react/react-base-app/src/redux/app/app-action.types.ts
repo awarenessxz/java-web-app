@@ -1,6 +1,6 @@
 import { MenuItem } from '../../utils/routing/app-menu-item';
 import { MenuItemMap } from '../../utils/routing/navigation-utils';
-import { AnnouncementEntity } from '../../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../../api/announcement-api.types';
 
 /* ***************************************************************************************
  * Types Definition for other

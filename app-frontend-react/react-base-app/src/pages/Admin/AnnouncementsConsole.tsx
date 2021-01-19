@@ -3,7 +3,7 @@ import { EuiLoadingSpinner, EuiTabbedContent, EuiTabbedContentTab, EuiSpacer } f
 import AppContent from '../../components/AppContent/AppContent';
 import AnnouncementEditor from '../../components/Announcement/AnnouncementEditor';
 import AnnouncementListView from '../../components/Announcement/AnnouncementListView';
-import { AnnouncementEntity } from '../../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../../api/announcement-api.types';
 
 const AnnouncementsConsole = (): JSX.Element => {
     const [selectedTab, setSelectedTab] = useState<EuiTabbedContentTab | undefined>(undefined);

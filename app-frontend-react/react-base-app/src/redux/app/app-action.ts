@@ -9,9 +9,9 @@ import {
 import { RootThunkResult } from '../root-action';
 import { MenuItem } from '../../utils/routing/app-menu-item';
 import { generateMenuItemMapping, getCurrentRoute } from '../../utils/routing/navigation-utils';
-import { checkUserAccess } from '../../utils/access-control';
 import { fetchBasic } from '../../utils/fetch-util';
-import { AnnouncementEntity } from '../../types/api/announcement-api.types';
+import { AnnouncementEntity } from '../../api/announcement-api.types'
+import { UserInfo, UserRoles } from '../../api/userinfo-api.types';
 
 /* ***************************************************************************************
  * Action Creators (Standard Redux Actions)
@@ -58,7 +58,7 @@ export const receiveNewAnnouncement = (announcement: AnnouncementEntity): RootTh
 };
 
 const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): void => {
-    fetchBasic('/api/announcements/latest', 'GET')
+    fetchBasic('/api/web/announcements/latest', 'GET')
         .then((res) => res.json())
         .then((data) => {
             if (Array.isArray(data)) {
@@ -97,22 +97,28 @@ export const initBaseApplication = (): RootThunkResult<void> => (dispatch, getSt
     const menuItemsMapping = generateMenuItemMapping();
     const selectedMenuItem = menuItemsMapping[getCurrentRoute()];
 
-    // verify user details (temporary)
     // fetch user details
-    const userDetails = { userId: 'user123' };
-    const isAdminUser = checkUserAccess(userDetails.userId);
+    fetchBasic('/api/web/user/info', 'GET')
+        .then((res) => res.json())
+        .then((userInfo: UserInfo) => {
+            // fetch announcements
+            dispatch(initAnnouncements());
 
-    // fetch announcements
-    dispatch(initAnnouncements());
+            console.log(userInfo);
 
-    // dispatch to set base app
-    dispatch({
-        type: INIT_BASE_APP,
-        payload: {
-            selectedMenuItem,
-            menuItemsMapping,
-            isAdminUser,
-            isSiteReady: true,
-        },
-    });
+            // dispatch to set base app
+            const isAdminUser = userInfo.userRole === UserRoles.admin;
+            dispatch({
+                type: INIT_BASE_APP,
+                payload: {
+                    selectedMenuItem,
+                    menuItemsMapping,
+                    isAdminUser,
+                    isSiteReady: true,
+                },
+            });
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 };

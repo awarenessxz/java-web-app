@@ -1,6 +1,6 @@
 package com.javawebapp.web.repository
 
-import com.javawebapp.web.entity.Announcement
+import com.javawebapp.web.model.Announcement
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 
