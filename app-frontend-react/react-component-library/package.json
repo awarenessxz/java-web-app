@@ -21,7 +21,8 @@
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
         "lint": "eslint .",
-        "lint:format": "prettier --write ."
+        "lint:format": "prettier --write .",
+        "create-new-component": "node ./setup/create-new-component.js"
     },
     "engines": {
         "node": ">=10"

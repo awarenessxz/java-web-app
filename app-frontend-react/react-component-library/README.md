@@ -38,13 +38,13 @@ To use `react-component-libray` in your project, do the following:
         - `yarn run test`  
 - **TLDR**
     - [Testing Library Locally](doc/TESTING_COMPONENT_LOCALLY.md)
-    - [Writing New Component](doc/NEW_COMPONENT.md)
+    - [Writing Test cases](doc/WRITING_TEST_CASES.md)
+    - [Writing New Component](doc/WRITING_NEW_COMPONENT.md)
     - [Writing CSS Modules](doc/WRITING_CSS_MODULES.md)
     - [Publishing to NPM Artifactory](doc/PUBLISH_TO_NPM.md)
     - [How to create your own react-component-library](doc/CREATE_NEW_LIBRARY.md)
     - [Guide to fix Invalid Hook Error when yarn add ../react-component-library](doc/FIX_INVALID_HOOK_ERROR.md)
-    - [Writing Test using React-Testing-Library](doc/TESTING_USING_REACT_TESTING_LIBRARY.md)
-    - [Guide to mock api endpoints for fetch in Storybook](https://dev.to/mattc/how-to-mock-api-calls-in-storybook-1762)
+    - [Guide to mock api endpoints for fetch in Storybook](doc/MOCK_API_ENDPOINTS_FOR_STORYBOOK.md)
 - **Notes**
     - If coding using visual studio, read the documentation for `typescript-plugin-css-modules`
     - Because we are using `postinstall` to remove `node_modules` for `yarn add path/to/react-component-library` to work,

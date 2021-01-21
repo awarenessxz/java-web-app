@@ -64,7 +64,7 @@ If you are keen on making contributions. Please adhere to the following rules:
 
 ### Relevant Materials
 
-- [Writing Test using react-testing-library](app-frontend-react/react-component-library/doc/TESTING_USING_REACT_TESTING_LIBRARY.md)
+- [Writing Test using react-testing-library](app-frontend-react/react-component-library/doc/WRITING_TEST_CASES.md)
 - [End to End Testing for Frontend using Cypress](app-frontend-react/react-base-app/cypress)
 - [Webpack Configuration](app-frontend-react/react-base-app/doc/WEBPACK.md)
 

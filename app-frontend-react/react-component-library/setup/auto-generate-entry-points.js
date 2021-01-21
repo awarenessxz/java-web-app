@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * Rollup accepts multiple entry points for code-splitting but these have to be
  * specified manually. This utility function takes in 'src/index.js' file and

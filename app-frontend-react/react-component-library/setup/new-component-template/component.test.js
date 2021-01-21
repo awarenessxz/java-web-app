@@ -1,0 +1,30 @@
+/* eslint-disable */
+module.exports = (componentName) => ({
+    content: `import * as React from 'react';
+import { render, RenderResult } from '@testing-library/react';
+
+// Import Component
+import ${componentName} from './${componentName}';
+import { ${componentName}Props } from './${componentName}.types';
+
+// function to render Component before each test
+const renderComponent = (props = {}): RenderResult => {
+    const defaultProps: ${componentName}Props = {
+        title: '${componentName}',
+    };
+    const merged = { ...defaultProps, ...props };
+    return render(<${componentName} {...merged} />);
+};
+
+// 1. Testing if component renders properly
+describe('Testing if component renders properly', () => {
+    // Snapshot Testing
+    it('Snapshot Testing', () => {
+        const { asFragment } = renderComponent();
+        expect(asFragment()).toMatchSnapshot();
+    });
+});
+
+`,
+    extension: `.test.tsx`,
+});
