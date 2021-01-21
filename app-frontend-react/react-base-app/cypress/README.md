@@ -45,15 +45,36 @@ some of the important things to take note:
 
 All the tests should be written inside the **integration** folder. 
 
-- **Basic Commands**
+```
+it("Writing your first test case", () => {
+    // Arrange - setup initial app state
+       - visit a web page
+       - query for an element    
+    // Act - take an action
+       - interact with that element
+    // Assert - make an assertion
+       - make an assertion about page content
+});
+```
+
+### Tips
+
+- **Arrange**
     - Visit a website --> `cy.visit("http://localhost:8080/");`
-    - Query for an element --> `cy.contains('value');`
-    - Click an element --> `cy.contains('type').click();`
-    - Make an assertion using [.should()](https://docs.cypress.io/api/commands/should.html#Arguments) --> `cy.url().should('include', '/commands/actions');`
+    - Query for route
+        - `cy.url()`
+    - Query for an element
+        - `cy.getByDataTestId()` --> Custom Command that queries for `data-testid` attribute in component
+        - `cy.find()`
+        - `cy.get()`
+
+- **Act**    
+    - Click an element --> `cy.get('type').click();`
+    - Type into input element -> `cy.get('.input_component').type('something@gmail.com');`
 
 - **Assertions**
-    - Implicit Subjects --> `.should()` or `.and()`
-    - Explicit Subject --> `expect`
+    - Implicit Subjects --> `.should()` or `.and()` or `cy.contains()`
+    - Explicit Subject --> `expect()`
 
 - **Seeding Data**
     - Run system commands --> `cy.exec()` 

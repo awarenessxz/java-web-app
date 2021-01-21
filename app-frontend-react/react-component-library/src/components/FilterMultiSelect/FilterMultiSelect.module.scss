@@ -1,0 +1,95 @@
+.text_secondary {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+}
+
+.card {
+    overflow: hidden;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #fff;
+
+    & .card_header {
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+
+        & .header_checkbox {
+            flex: 0 0 auto;
+            margin-right: 16px;
+        }
+
+        & .header_content {
+            flex: 1 1 auto;
+
+            & span {
+                display:block;
+            }
+        }
+    }
+
+    & .divider {
+        border: none;
+        height: 1px;
+        margin: 0;
+        flex-shrink: 0;
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    & .card_content {
+        width: 100%;
+        min-width: 200px;
+        overflow: auto;
+        background-color: #fff;
+        margin: 0;
+        position: relative;
+        list-style: none;
+
+        & .content_form_control {
+            width: 100%;
+            box-sizing: border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing: border-box;
+            text-transform: none;
+            margin: 0;
+            display: block;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-image: none;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+
+            &:disabled {
+                background: #d3d3d3;
+            }
+
+            &:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #80bdff;
+                outline: 0;
+                -webkit-box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+                box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            }
+        }
+
+        & select {
+            width: 100%;
+        }
+    }
+}

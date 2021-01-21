@@ -1,43 +1,43 @@
 /**
- *
  * Testing Announcement Feature
- *
  */
 
 describe('Testing Announcement Feature', () => {
-    /*
     describe('Testing Announcement Page', () => {
+        beforeEach(() => {
+            cy.visit('/#/announcements');
+        });
+
 
     });
-     */
 
-    describe('Testing Announcement Console for Admin Users', () => {
+    describe('Testing Announcement Console', () => {
         beforeEach(() => {
             cy.visit('/#/admin/announcements');
-            cy.intercept('GET', '/api/web/user/info', {
-                fixture: 'login_as_admin.json',
+        });
+
+        describe('Admin User', () => {
+            beforeEach(() => {
+                cy.intercept('GET', '/api/web/user/info', {
+                    fixture: 'login_as_admin.json',
+                });
+            });
+
+            it('Announcement Console should load for admin user', () => {
+                cy.contains('h2', 'Admin Announcement Console');
             });
         });
 
-        it('Announcement Console should load for admin user', () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        describe('Normal User', () => {
+            beforeEach(() => {
+                cy.intercept('GET', '/api/web/user/info', {
+                    fixture: 'login_as_user.json',
+                });
+            });
 
-        });
-    });
-
-    /*
-    describe('Testing Announcement Console for Normal Users', () => {
-        beforeEach(() => {
-            cy.visit('/#/admin/announcements');
-            cy.intercept('GET', '/api/web/user/info', {
-                fixture: 'login_as_user.json',
+            it("Non-Admin Users shouldn't be able to access", () => {
+                cy.getByDataTestId('pageNotFound').contains('h2', '404 - Page Not Found');
             });
         });
-
-        it("Non-Admin Users shouldn't be able to access", () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            cy.getByDataTestId('pageNotFound')
-        });
     });
-    */
 });
