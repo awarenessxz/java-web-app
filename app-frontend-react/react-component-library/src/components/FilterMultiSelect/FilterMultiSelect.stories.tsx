@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import FilterMultiSelect from './FilterMultiSelect';
-import { FilterMultiSelectProps } from './FilterMultiSelect.types';
+import { FilterMultiSelectProps, SelectOption } from './FilterMultiSelect.types';
 
 export default {
     title: 'Components/FilterMultiSelect',
@@ -47,10 +47,9 @@ const sampleArgs: FilterMultiSelectProps = {
             value: 'Test 4',
         },
     ],
-    onMultiSelectChange: () => {
-        console.log('Selected!!');
+    onMultiSelectChange: (selected: SelectOption[]) => {
+        console.log('List of selected --> ', selected.map((option) => option.key).toString());
     },
-    showFilter: true,
 };
 
 /** *************************************************

@@ -15,3 +15,4 @@ Please do try to incorporate test cases in all components that you create.
 - [[VIDEO] Mock API Calls with msw.js](https://www.youtube.com/watch?v=v77fjkKQTH0)
 - [[VIDEO] How to test component that is using fetch](https://www.youtube.com/watch?v=yTZ-txdrHdY)
 - [How to snapshot test a component that does async loading](https://stackoverflow.com/questions/64802563/how-to-snapshot-test-a-component-that-does-async-data-loading-using-react-testin)
+- [5 tips to perfect react-testing-library queries](https://medium.com/javascript-in-plain-english/5-tips-to-perfect-react-testing-library-queries-ae4e49f27858)

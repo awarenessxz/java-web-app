@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { FilterMultiSelectProps, SelectOption } from './FilterMultiSelect.types';
+import { FilterMultiSelectProps, SelectOption, SelectedOptions } from './FilterMultiSelect.types';
 import { filterOptions, processSelectedOptions } from './FilterMultiSelect.util';
 import styles from './FilterMultiSelect.module.scss';
 
@@ -13,13 +13,15 @@ const FilterMultiSelect = ({
     title = undefined,
     defaultFilter = '',
     filterPlaceHolder = 'type to filter',
-    showFilter = false,
+    showFilter = true,
     disabled = false,
 }: FilterMultiSelectProps): JSX.Element => {
     const [mFilter, setmFilter] = useState(defaultFilter);
     const [mFilteredOptions, setmFilteredOptions] = useState<SelectOption[]>([]); // keeps track of current visible options
-    const [mSelectedOptions, setmSelectedOptions] = useState<SelectOption[]>([]); // keeps track of current visible selected options
-    const [mHiddenSelectedOptions, setmHiddenSelectedOptions] = useState<SelectOption[]>([]); // keeps track of selected options that are filtered away
+    const [mSelectedOptions, setmSelectedOptions] = useState<SelectedOptions>({
+        visible: [], // keeps track of current visible selected options
+        hidden: [], // keeps track of selected options that are hidden away due to filter
+    });
     const checkboxAllRef = useRef<HTMLInputElement>(null);
     const selectRef = useRef<HTMLSelectElement>(null);
 
@@ -28,24 +30,28 @@ const FilterMultiSelect = ({
         const filteredOptions = filterOptions(defaultFilter, options);
         const { visible, hidden } = processSelectedOptions(selectedOptions, filteredOptions);
         setmFilteredOptions(filteredOptions);
-        setmSelectedOptions(visible);
-        setmHiddenSelectedOptions(hidden);
+        setmSelectedOptions({ visible, hidden });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // callback for selection change
-    const handleSelectChangeCallback = (): void => {
-        const totalSelectedOptions = [...mSelectedOptions, ...mHiddenSelectedOptions];
-        onMultiSelectChange(totalSelectedOptions);
-    };
 
     // update checkbox ui check state
     const updateCheckboxState = (): void => {
         if (checkboxAllRef && checkboxAllRef.current) {
-            checkboxAllRef.current.checked = mSelectedOptions.length + mHiddenSelectedOptions.length === options.length;
+            const selectedLength = mSelectedOptions.visible.length + mSelectedOptions.hidden.length;
+            checkboxAllRef.current.checked = selectedLength === options.length;
         }
     };
 
+    // trigger this whenever selected options is updated
+    useEffect(() => {
+        // callback when selection change
+        const totalSelectedOptions = [...mSelectedOptions.visible, ...mSelectedOptions.hidden];
+        onMultiSelectChange(totalSelectedOptions);
+        updateCheckboxState();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mSelectedOptions]);
+
+    // handle selection changes
     const onSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {
         const newSelectedOptions: SelectOption[] = [];
         Array.from(e.target.selectedOptions, (option) => {
@@ -56,12 +62,11 @@ const FilterMultiSelect = ({
             return option.value; // not used
         });
 
-        // update state
-        setmSelectedOptions(newSelectedOptions);
-        updateCheckboxState();
-        handleSelectChangeCallback();
+        // update state (trigger effect)
+        setmSelectedOptions({ ...mSelectedOptions, visible: newSelectedOptions });
     };
 
+    // handle checkbox changes
     const onCheckAllToggle = (e: ChangeEvent<HTMLInputElement>): void => {
         const { checked } = e.target;
         if (checked) {
@@ -76,38 +81,44 @@ const FilterMultiSelect = ({
                         });
                     }
                 }
-                setmSelectedOptions([...mSelectedOptions, ...newSelectedOptions]);
-                handleSelectChangeCallback();
+                // update state (trigger effect)
+                setmSelectedOptions({
+                    ...mSelectedOptions,
+                    visible: [...mSelectedOptions.visible, ...newSelectedOptions],
+                });
             }
         } else {
-            // remove all selected options
-            setmSelectedOptions([]);
-            handleSelectChangeCallback();
+            // remove all selected options, update state (trigger effect)
+            setmSelectedOptions({ ...mSelectedOptions, visible: [] });
         }
     };
 
     const onFilterChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const filter = e.target.value;
         const filteredOptions = filterOptions(filter, options);
-        const allSelectedOptions = [...mSelectedOptions, ...mHiddenSelectedOptions];
+        const allSelectedOptions = [...mSelectedOptions.visible, ...mSelectedOptions.hidden];
         const { visible, hidden } = processSelectedOptions(allSelectedOptions, filteredOptions);
         setmFilter(filter);
         setmFilteredOptions(filteredOptions);
-        setmSelectedOptions(visible);
-        setmHiddenSelectedOptions(hidden);
-        updateCheckboxState();
+        setmSelectedOptions({ visible, hidden });
     };
 
     return (
         <div className={styles.card}>
             <div className={styles.card_header}>
                 <div className={styles.header_checkbox}>
-                    <input ref={checkboxAllRef} type="checkbox" onChange={onCheckAllToggle} disabled={disabled} />
+                    <input
+                        ref={checkboxAllRef}
+                        data-testid="input-checkbox"
+                        type="checkbox"
+                        onChange={onCheckAllToggle}
+                        disabled={disabled}
+                    />
                 </div>
                 <div className={styles.header_content}>
                     <span>{title}</span>
                     <span className={styles.text_secondary}>
-                        {mSelectedOptions.length + mHiddenSelectedOptions.length}/{options.length} selected
+                        {mSelectedOptions.visible.length + mSelectedOptions.hidden.length}/{options.length} selected
                     </span>
                 </div>
             </div>
@@ -116,6 +127,7 @@ const FilterMultiSelect = ({
                 {showFilter && (
                     <input
                         type="text"
+                        data-testid="input-filter"
                         placeholder={filterPlaceHolder}
                         className={styles.content_form_control}
                         onChange={onFilterChange}
@@ -126,15 +138,16 @@ const FilterMultiSelect = ({
                 <select
                     multiple
                     ref={selectRef}
+                    data-testid="select-multiple"
                     className={styles.content_form_control}
                     onChange={onSelectChange}
                     size={mFilteredOptions.length}
-                    value={mSelectedOptions.map((option) => option.key)}
+                    value={mSelectedOptions.visible.map((option) => option.key)}
                     disabled={disabled}
                 >
                     {mFilteredOptions.map((option) => {
                         return (
-                            <option key={option.key} value={option.key}>
+                            <option data-testid="select-multiple-option" key={option.key} value={option.key}>
                                 {option.value}
                             </option>
                         );

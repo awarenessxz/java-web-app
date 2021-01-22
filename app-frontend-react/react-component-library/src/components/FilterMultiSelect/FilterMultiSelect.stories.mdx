@@ -5,3 +5,54 @@ import FilterMultiSelect from './FilterMultiSelect';
 
 # FilterMultiSelect
 
+This component is built on top of html `select` and largely referenced from [react-filtered-multiselect](https://github.com/insin/react-filtered-multiselect).
+
+<Story id="components-filtermultiselect--basic" />
+
+# Usage
+
+To use this component, do the following:
+
+1. Add the library as dependency
+    - `yarn add react-component-library`
+2. Import the component
+    ```javascript
+    import React, { useState } from 'react';
+    import { FilterMultiSelect, SelectOption } from 'react-component-library';
+
+    ...
+    const options = [
+        { key: '1', value: 'text1' },
+        { key: '2', value: 'text2' },
+    ];
+    const [selected, setSelected] = useState<SelectOption[]>([]);
+
+    const handleMultiSelectChange = (selection: SelectOption[]): void => {
+        console.log(selection);
+        setSelected(selection);
+    };
+
+    return (
+        <FilterMultiSelect
+            options
+            selectedOptions: selected
+            onMultiSelectChange: handleMultiSelectChange
+        />
+    );
+    ...
+    ```
+
+# Properties
+
+<ArgsTable of={FilterMultiSelect} />
+
+# Typescript Types
+
+```
+interface SelectOption {
+    key: string;
+    value: string;
+}
+```
+
+

@@ -25,3 +25,8 @@ export interface FilterMultiSelectProps {
     /** disable component */
     disabled?: boolean;
 }
+
+export interface SelectedOptions {
+    visible: SelectOption[];
+    hidden: SelectOption[];
+}

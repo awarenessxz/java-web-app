@@ -1,4 +1,4 @@
-import { IHash, SelectOption } from './FilterMultiSelect.types';
+import { IHash, SelectOption, SelectedOptions } from './FilterMultiSelect.types';
 
 // filter options by filter text
 export const filterOptions = (filter: string, options: SelectOption[]): SelectOption[] => {
@@ -12,16 +12,11 @@ export const filterOptions = (filter: string, options: SelectOption[]): SelectOp
     return mFilteredOptions;
 };
 
-interface ProcessSelectedOptionsResult {
-    visible: SelectOption[];
-    hidden: SelectOption[];
-}
-
 // split selected options into hidden selected options and visible selected options
 export const processSelectedOptions = (
     selectedOptions: SelectOption[],
     filteredOptions: SelectOption[],
-): ProcessSelectedOptionsResult => {
+): SelectedOptions => {
     const visibleSelectedOptions: SelectOption[] = [];
     const hiddenSelectedOptions: SelectOption[] = [];
     selectedOptions.forEach((option) => {
@@ -39,15 +34,4 @@ export const processSelectedOptions = (
         }
     });
     return { visible: visibleSelectedOptions, hidden: hiddenSelectedOptions };
-};
-
-// get hash map of selected Options
-export const convertSelectedOptionsToHashmap = (options: SelectOption[]): IHash =>
-    Object.assign({}, ...options.map((option) => ({ [option.key]: option.value }))) as IHash;
-
-// check if selected options is updated
-export const isSelectedOptionsUpdated = (original: SelectOption[], newOptions: SelectOption[]): boolean => {
-    const keysA = original.map((option) => option.key);
-    const keysB = newOptions.map((option) => option.key);
-    return String(keysA) !== String(keysB);
 };

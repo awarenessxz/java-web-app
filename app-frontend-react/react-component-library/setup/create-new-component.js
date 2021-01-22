@@ -38,4 +38,9 @@ generatedTemplates.forEach(template => {
     );
 });
 
+// 4. append component to index.ts
+const indexFilePath = './src/index.ts';
+fs.appendFileSync(indexFilePath, `export { default as ${componentName} } from './components/${componentName}/${componentName}';`);
+
+// 5. print success
 console.info('\x1b[32m%s\x1b[0m', 'Successfully created component under: ', componentDirectory);
