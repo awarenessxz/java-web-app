@@ -1,3 +1,7 @@
+export interface IHash {
+    [key: string]: string;
+}
+
 export interface SelectOption {
     key: string;
     value: string;
@@ -9,7 +13,7 @@ export interface FilterMultiSelectProps {
     /** Selected options in list */
     selectedOptions: SelectOption[];
     /** callback function when selected options changes */
-    onSelectChange: (selected: SelectOption[]) => void;
+    onMultiSelectChange: (selected: SelectOption[]) => void;
     /** Title */
     title?: string;
     /** default filter for select */

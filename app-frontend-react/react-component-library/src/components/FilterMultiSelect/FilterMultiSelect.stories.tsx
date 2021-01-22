@@ -29,25 +29,25 @@ const sampleArgs: FilterMultiSelectProps = {
             value: 'Value 2',
         },
         {
-            key: 'value3',
-            value: 'Value 3',
+            key: 'test3',
+            value: 'Test 3',
         },
         {
-            key: 'value4',
-            value: 'Value 4',
+            key: 'test4',
+            value: 'Test 4',
         },
         {
-            key: 'value5',
-            value: 'Value 5',
+            key: 'test5',
+            value: 'Test 5',
         },
     ],
     selectedOptions: [
         {
-            key: 'value4',
-            value: 'Value 4',
+            key: 'test4',
+            value: 'Test 4',
         },
     ],
-    onSelected: () => {
+    onMultiSelectChange: () => {
         console.log('Selected!!');
     },
     showFilter: true,
@@ -60,3 +60,7 @@ const sampleArgs: FilterMultiSelectProps = {
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const Basic: Story = Template.bind({});
 Basic.args = { ...sampleArgs };
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const NoFilter: Story = Template.bind({});
+NoFilter.args = { ...sampleArgs, showFilter: false };
