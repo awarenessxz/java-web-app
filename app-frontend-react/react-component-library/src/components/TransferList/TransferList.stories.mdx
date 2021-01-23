@@ -1,13 +1,13 @@
 import { Meta, Story, ArgsTable } from '@storybook/addon-docs/blocks';
-import FilterMultiSelect from './FilterMultiSelect';
+import TransferList from './TransferList';
 
-<Meta title='Docs/FilterMultiSelect' component={FilterMultiSelect} />
+<Meta title='Docs/TransferList' component={TransferList} />
 
-# FilterMultiSelect
+# TransferList
 
-This component is built on top of html `select` and largely referenced from [react-filtered-multiselect](https://github.com/insin/react-filtered-multiselect).
+This component is built using [FilterMultiSelect](?path=/story/docs-filtermultiselect--page).
 
-<Story id="components-filtermultiselect--basic" />
+<Story id="components-transferlist--basic" />
 
 # Usage
 
@@ -18,7 +18,7 @@ To use this component, do the following:
 2. Import the component
     ```javascript
     import React, { useState } from 'react';
-    import { FilterMultiSelect, SelectOption } from 'react-component-library';
+    import { TransferList, SelectOption } from 'react-component-library';
 
     ...
     const options = [
@@ -27,16 +27,16 @@ To use this component, do the following:
     ];
     const [selected, setSelected] = useState<SelectOption[]>([]);
 
-    const handleMultiSelectChange = (selection: SelectOption[]): void => {
-        console.log(selection);
-        setSelected(selection);
+    const handleTransferChange = (srcList: SelectOption[], destList: SelectOption[]): void => {
+        console.log(srcList, destList);
+        setSelected(destList);
     };
 
     return (
-        <FilterMultiSelect
+        <TransferList
             options={options}
             selectedOptions={selected}
-            onMultiSelectChange={handleMultiSelectChange}
+            onTransfer={handleTransferChange}
         />
     );
     ...
@@ -44,7 +44,7 @@ To use this component, do the following:
 
 # Properties
 
-<ArgsTable of={FilterMultiSelect} />
+<ArgsTable of={TransferList} />
 
 # Typescript Types
 
@@ -54,5 +54,3 @@ interface SelectOption {
     value: string;
 }
 ```
-
-

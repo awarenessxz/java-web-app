@@ -1,4 +1,4 @@
-import { IHash, SelectOption, SelectedOptions } from './FilterMultiSelect.types';
+import { SelectOption, SelectedOptions } from './FilterMultiSelect.types';
 
 // filter options by filter text
 export const filterOptions = (filter: string, options: SelectOption[]): SelectOption[] => {

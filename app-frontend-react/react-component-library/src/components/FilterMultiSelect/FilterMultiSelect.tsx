@@ -15,6 +15,7 @@ const FilterMultiSelect = ({
     filterPlaceHolder = 'type to filter',
     showFilter = true,
     disabled = false,
+    ...props
 }: FilterMultiSelectProps): JSX.Element => {
     const [mFilter, setmFilter] = useState(defaultFilter);
     const [mFilteredOptions, setmFilteredOptions] = useState<SelectOption[]>([]); // keeps track of current visible options
@@ -24,6 +25,7 @@ const FilterMultiSelect = ({
     });
     const checkboxAllRef = useRef<HTMLInputElement>(null);
     const selectRef = useRef<HTMLSelectElement>(null);
+    const triggerMultiChange = useRef(false);
 
     // init on first load
     useEffect(() => {
@@ -44,9 +46,13 @@ const FilterMultiSelect = ({
 
     // trigger this whenever selected options is updated
     useEffect(() => {
-        // callback when selection change
-        const totalSelectedOptions = [...mSelectedOptions.visible, ...mSelectedOptions.hidden];
-        onMultiSelectChange(totalSelectedOptions);
+        // only useEffect when the component have been init
+        if (triggerMultiChange.current) {
+            // callback when selection change
+            const totalSelectedOptions = [...mSelectedOptions.visible, ...mSelectedOptions.hidden];
+            onMultiSelectChange(totalSelectedOptions);
+            triggerMultiChange.current = false;
+        }
         updateCheckboxState();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mSelectedOptions]);
@@ -63,6 +69,7 @@ const FilterMultiSelect = ({
         });
 
         // update state (trigger effect)
+        triggerMultiChange.current = true;
         setmSelectedOptions({ ...mSelectedOptions, visible: newSelectedOptions });
     };
 
@@ -82,6 +89,7 @@ const FilterMultiSelect = ({
                     }
                 }
                 // update state (trigger effect)
+                triggerMultiChange.current = true;
                 setmSelectedOptions({
                     ...mSelectedOptions,
                     visible: [...mSelectedOptions.visible, ...newSelectedOptions],
@@ -89,6 +97,7 @@ const FilterMultiSelect = ({
             }
         } else {
             // remove all selected options, update state (trigger effect)
+            triggerMultiChange.current = true;
             setmSelectedOptions({ ...mSelectedOptions, visible: [] });
         }
     };
@@ -104,7 +113,7 @@ const FilterMultiSelect = ({
     };
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card} {...props}>
             <div className={styles.card_header}>
                 <div className={styles.header_checkbox}>
                     <input

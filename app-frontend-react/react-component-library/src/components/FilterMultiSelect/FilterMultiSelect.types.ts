@@ -1,7 +1,3 @@
-export interface IHash {
-    [key: string]: string;
-}
-
 export interface SelectOption {
     key: string;
     value: string;
@@ -20,7 +16,7 @@ export interface FilterMultiSelectProps {
     defaultFilter?: string;
     /** text in filter place holder */
     filterPlaceHolder?: string;
-    /** enable filtering of select -- default = false */
+    /** enable filtering of select -- default = true */
     showFilter?: boolean;
     /** disable component */
     disabled?: boolean;
