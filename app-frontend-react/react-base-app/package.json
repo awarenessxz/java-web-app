@@ -100,7 +100,7 @@
     "core-js": "^3.7.0",
     "moment": "^2.29.1",
     "react": "^16.13.1",
-    "react-component-library": "../react-component-library",
+    "react-component-library": "../react-component-library/",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

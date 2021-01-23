@@ -1,0 +1,26 @@
+[
+    {
+        "id": "test123",
+        "content": "This is a test content 1",
+        "author": "admin123",
+        "title": "Test Announcement 1",
+        "announcementType": "[Advisory]",
+        "startDate": "2021-01-23T19:02:39.904Z",
+        "endDate": "2021-01-23T19:02:39.905Z",
+        "creationDate": "2021-01-23T19:02:49.211Z",
+        "lastEditedBy": "admin123",
+        "activeFlag": true
+    },
+    {
+        "id": "test222",
+        "content": "This is a test content 2",
+        "author": "admin123",
+        "title": "Test Announcement 2",
+        "announcementType": "[Advisory]",
+        "startDate": "2021-01-23T19:02:39.904Z",
+        "endDate": "2021-01-23T19:02:39.905Z",
+        "creationDate": "2021-01-23T19:02:49.211Z",
+        "lastEditedBy": "admin123",
+        "activeFlag": false
+    }
+]

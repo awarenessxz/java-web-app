@@ -7,5 +7,6 @@
 describe('Home Page (Search)', () => {
     it('successfully loads', () => {
         cy.visit('/'); // refer to cypress.json for baseUrl
+        cy.url().should('include', '/#/');
     });
 });
