@@ -7,7 +7,8 @@ import { AgGridWrapperProps } from './AgGridWrapper.types';
 
 // function to render component before each test
 type PartialAgGridWrapperProps = Partial<AgGridWrapperProps>;
-const renderComponent = ({ columnDefs, rowData, ...props }: PartialAgGridWrapperProps = {}): RenderResult => {
+const renderComponent = ({ ...props }: PartialAgGridWrapperProps = {}): RenderResult => {
+    console.error = jest.fn(); // suppress missing license key error message
     const defaultProps: AgGridWrapperProps = {
         columnDefs: [
             { headerName: 'Test 1', field: 'test1' },
@@ -41,6 +42,11 @@ describe('Testing if component renders properly', () => {
     it('Snapshot Testing', () => {
         const { asFragment } = renderComponent();
         expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('Column Definition = undefined --> will show error', () => {
+        renderComponent({ columnDefs: undefined });
+        expect(screen.getByTestId('error-msg')).toHaveTextContent('Column Definition must be specified!!');
     });
 
     // Testing Dom Elements: check if renders with correct value (Note the usage of data-testid in component)

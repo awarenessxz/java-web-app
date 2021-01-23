@@ -357,7 +357,7 @@ const AgGridWrapper = ({
                     </Fragment>
                 )
             ) : (
-                <div data-testId="errorMsg" className={styles.error}>
+                <div data-testId="error-msg" className={styles.error}>
                     {error}
                 </div>
             )}
