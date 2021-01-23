@@ -7,7 +7,8 @@ import ToolButton from './ToolButton';
 import { ToolButtonProps, ToolButtonTypes } from './ToolButton.types';
 
 // function to render component before each test
-const renderComponent = (props = {}): RenderResult => {
+type PartialToolButtonProps = Partial<ToolButtonProps>;
+const renderComponent = ({ ...props }: PartialToolButtonProps = {}): RenderResult => {
     const defaultProps: ToolButtonProps = {
         tooltipMsg: 'Tooltip Message',
         icon: <GetApp />, // for mocking only (just a random icon in material-ui)

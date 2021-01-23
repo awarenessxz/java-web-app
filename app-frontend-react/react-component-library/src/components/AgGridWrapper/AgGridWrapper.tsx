@@ -61,7 +61,6 @@ const AgGridWrapper = ({
 
     // init properties on first load
     useEffect(() => {
-        console.log('useEffect is running');
         let initSuccess = true;
 
         // init Toolbar -- merged the toolbar properties with user defined ones [might have better way of handling this...]

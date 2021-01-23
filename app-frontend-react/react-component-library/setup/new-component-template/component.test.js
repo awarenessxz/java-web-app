@@ -8,7 +8,8 @@ import ${componentName} from './${componentName}';
 import { ${componentName}Props } from './${componentName}.types';
 
 // function to render Component before each test
-const renderComponent = (props = {}): RenderResult => {
+type Partial${componentName}Props = Partial<${componentName}>;
+const renderComponent = ({ ...props }: Partial${componentName}Props = {}): RenderResult => {
     const defaultProps: ${componentName}Props = {
         title: '${componentName}',
     };

@@ -6,7 +6,8 @@ import FilterMultiSelect from './FilterMultiSelect';
 import { FilterMultiSelectProps } from './FilterMultiSelect.types';
 
 // function to render Component before each test
-const renderComponent = (props = {}): RenderResult => {
+type PartialFilterMultiSelectProps = Partial<FilterMultiSelectProps>;
+const renderComponent = ({ ...props }: PartialFilterMultiSelectProps = {}): RenderResult => {
     const defaultProps: FilterMultiSelectProps = {
         onMultiSelectChange: jest.fn(),
         selectedOptions: [],

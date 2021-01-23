@@ -24,7 +24,8 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 // function to render Component before each test
-const renderComponent = (props = {}): RenderResult => {
+type PartialInfiniteScrollListViewProps = Partial<InfiniteScrollListViewProps>;
+const renderComponent = ({ ...props }: PartialInfiniteScrollListViewProps = {}): RenderResult => {
     const defaultProps: InfiniteScrollListViewProps = {
         onItemClick: (item) => jest.fn(),
         dataToItemMapping: {

@@ -6,7 +6,8 @@ import TransferList from './TransferList';
 import { TransferListProps } from './TransferList.types';
 
 // function to render Component before each test
-const renderComponent = (props = {}): RenderResult => {
+type PartialTransferListProps = Partial<TransferListProps>;
+const renderComponent = ({ ...props }: PartialTransferListProps = {}): RenderResult => {
     const defaultProps: TransferListProps = {
         onTransfer: jest.fn(),
         selectedOptions: [],

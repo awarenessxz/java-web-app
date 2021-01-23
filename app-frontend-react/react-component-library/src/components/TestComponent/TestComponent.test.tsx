@@ -6,7 +6,8 @@ import TestComponent from './TestComponent';
 import { TestComponentProps } from './TestComponent.types';
 
 // function to render Component before each test
-const renderComponent = (props = {}): RenderResult => {
+type PartialTestComponentProps = Partial<TestComponentProps>;
+const renderComponent = ({ ...props }: PartialTestComponentProps = {}): RenderResult => {
     const defaultProps: TestComponentProps = {
         theme: 'primary',
     };
