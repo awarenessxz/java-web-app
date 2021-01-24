@@ -115,6 +115,7 @@ const AnnouncementListView = ({ isAdminView = false, handleChangeTab }: Announce
                     </EuiPageContentHeader>
                     <EuiPageContentBody>
                         <Editor
+                            id="tinymceEditor"
                             initialValue=""
                             init={{
                                 height: '550px',
@@ -123,6 +124,15 @@ const AnnouncementListView = ({ isAdminView = false, handleChangeTab }: Announce
                                 statusbar: false,
                                 skins: false,
                                 readonly: true,
+                                setup: (ed): void => {
+                                    // https://github.com/tracim/tracim/blob/develop/frontend/src/util/tinymceInit.js
+                                    // this is a hack to allow cypress testing for tinymce as tinymce is not loaded in time for the test
+                                    ed.on('init', (args) => {
+                                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                                        const event = new CustomEvent('tinymceLoaded', { detail: {} });
+                                        document.dispatchEvent(event);
+                                    });
+                                },
                             }}
                             disabled={true}
                             ref={editorRef}

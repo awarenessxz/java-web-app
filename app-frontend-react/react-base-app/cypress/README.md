@@ -5,8 +5,8 @@ Cypress is a javascript End to End Testing Framework.
 Guide on End to End Testing using Cypress
 - [Folder Structure](#folder-structure)
 - [Configuring Cypress](#configuring-cypress)
-- [How to write test cases](#how-to-write-test-cases)
 - [Run End-to-End Test](#run-end-to-end-test)
+- [How to write test cases](#how-to-write-test-cases)
 - [References](#references)
 
 ## Folder Structure
@@ -41,6 +41,18 @@ some of the important things to take note:
     - We tell Cypress to pre-process our test files with webpack and our webpack config via `preprocess.js` inside the
     plugin directory.
 
+## Run End-to-End Test
+
+### Development Testing
+
+1. **Start the web application**
+2. **Run Cypress** -- (cypress is installed via npm install)
+    - `yarn run cypress`
+3. **Open the Project inside Cypress**
+4. **Run the Test inside Cypress**
+
+### CI/CD Testing
+
 ## How to write test cases
 
 All the tests should be written inside the **integration** folder. 
@@ -73,7 +85,7 @@ it("Writing your first test case", () => {
     - Type into input element -> `cy.get('.input_component').type('something@gmail.com');`
 
 - **Assertions**
-    - Implicit Subjects --> `.should()` or `.and()` or `cy.contains()`
+    - Implicit Subjects --> `.should()` or `.contains()`
     - Explicit Subject --> `expect()`
 
 - **Seeding Data**
@@ -81,17 +93,72 @@ it("Writing your first test case", () => {
     - Run code in Node via the plugins file --> `cy.task()`
     - Make HTTP requests --> `cy.request()`
 
-## Run End-to-End Test
-
-### Development Testing
-
-1. **Install Cypress**
-2. **Run Cypress**
-    - `cypress run`
-3. **Open the Project inside Cypress**
-4. **Run the Test inside Cypress**
-
-### CI/CD Testing
+- **More about .get()**
+    - **selector strategy**
+        1. `cy.get('#id');`
+        2. `cy.getByDataTestId('id')'` --> custom command to get `data-testid` attribute
+        3. `cy.get('.className');`
+        4. `cy.get('input[name='value']');` --> element name + attribute value
+    - **command behaviour**
+        ```javascript
+            // html codes
+            <div>
+                <div id="group">
+                    <input type="text id='name' />
+                    <input type="text" />
+                </div>  
+                <input type="text" />
+            </div>
+          
+            // nested element
+            cy.get('#group).get('input'); --> you will expect it to return 2 inputs but this will return 3 inputs.
+          
+            // Reason being: .get() will always get from the entire document. Below are some ways to query nestede elements:
+            // option 1
+            cy.get('#group').within(() => {
+                cy.get('input');
+            });
+            // option 2
+            cy.get('#group').then((elem) => {
+                cy.get('input', {
+                    withinSubject: elem,
+                });
+            });
+           ```
+    - **working with alias**
+        ```javascript
+        // working with alias (mocha-context)
+        cy.get('#name').as('userName');
+        cy.get('@userName').type('typing into input');
+        ```    
+ 
+- **For Loop Behaviour**
+    - cypress goes through the test and puts all commands in a queue. Once all commands are in a queue, it will execute
+    them sequentially. Hence, commands in a loop will not be executing the way you expected. Example: 
+    ```
+    for(let i=0; i <2; i++) {
+        log('-', i);
+        cy.then(() => log('*', i));
+    }
+  
+    // you will expect the result to be
+    - 0
+    * 0
+    - 1
+    * 1
+  
+    // but result will be
+    - 0
+    - 1
+    * 0
+    * 1
+  
+    // reason being
+    for(let i=0; i <2; i++) {
+        log('-', i);                    <-- executed first
+        cy.then(() => log('*', i));     <-- added into queue and executed after for loop ended
+    }
+    ```
 
 ## References
 - [The No Tears Cypress Setup](https://medium.com/swlh/https-medium-com-daseybold-the-no-tears-cypress-setup-6a8cfc6fbaac?source=post_internal_links---------5------------------)

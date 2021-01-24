@@ -6,6 +6,7 @@
   "scripts": {
     "analyze": "webpack-bundle-analyzer --port 4200 stats.json",
     "build": "webpack --env env=production",
+    "cypress": "./node_modules/.bin/cypress open",
     "start": "webpack serve --env env=development",
     "stats": "webpack --env production --mode production --profile --json | sed '1,2d' > stats.json && yarn run analyze",
     "lint:js": "eslint */**/*.{ts,tsx} --quiet",
@@ -57,7 +58,7 @@
     "css-loader": "^5.0.1",
     "css-minimizer-webpack-plugin": "^1.1.5",
     "cssnano": "^4.1.10",
-    "cypress": "^6.2.1",
+    "cypress": "^6.3.0",
     "eslint": "^7.9.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-airbnb-typescript": "^10.0.0",

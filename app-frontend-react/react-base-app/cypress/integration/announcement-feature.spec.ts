@@ -30,18 +30,25 @@ describe('Testing Announcement Feature', () => {
         });
 
         it('click on announcement to view content', () => {
+            // arrange
             cy.intercept('GET', '/api/web/announcements/all/page?limit=5&offset=0', {
                 fixture: 'announcement_list.json',
             });
             cy.intercept('GET', '/api/web/announcements/all/page?limit=5&offset=1', []);
-            cy.getByDataTestId('islv_rootDiv').within(() => {
-                cy.get('li').first().click(); // click on first announcement
+            cy.waitForTinyMCELoaded().then(() => {
+                // act
+                cy.getByDataTestId('islv_rootDiv').within(() => {
+                    cy.get('li').first().click(); // click on first announcement
+                });
+                // assert
+                cy.contains('[Advisory] Test Announcement 1'); // should display announcement title
+                cy.getTinyMceContent('tinymceEditor').then(($content) => {
+                    expect($content).to.have.string('This is a test content 1'); // should display announcement content
+                });
             });
-            cy.contains('[Advisory] Test Announcement 1'); // should display announcement title
         });
     });
-
-     */
+    */
 
     describe('Testing Announcement Console', () => {
         beforeEach(() => {
@@ -58,7 +65,8 @@ describe('Testing Announcement Feature', () => {
                 fixture: 'login_as_user.json',
             });
             cy.getByDataTestId('pageNotFound').contains('h2', '404 - Page Not Found');
-        });*/
+        });
+         */
 
         describe('Admin User', () => {
             beforeEach(() => {
@@ -67,11 +75,12 @@ describe('Testing Announcement Feature', () => {
                 });
             });
 
+            /*
             it('Announcement Console should load for admin user', () => {
                 cy.contains('h2', 'Admin Announcement Console');
             });
 
-            it('Announcements should have edit & delete button', () => {
+            it('Announcements items should have edit & delete button', () => {
                 // Arrange
                 cy.intercept('GET', '/api/web/announcements/all/page?limit=5&offset=0', {
                     fixture: 'announcement_list.json',
@@ -79,21 +88,50 @@ describe('Testing Announcement Feature', () => {
                 cy.intercept('GET', '/api/web/announcements/all/page?limit=5&offset=1', []);
                 // Assert
                 cy.getByDataTestId('islv_rootDiv').within(() => {
-                    cy.get('li button').should('have.length', 4); // 2 buttons per announcements
+                    // check first item
+                    cy.get('li')
+                        .first()
+                        .within(($listItem) => {
+                            const $buttons = $listItem.find('button');
+                            const $editBtnLabel = $buttons[0].getAttribute('aria-label');
+                            const $deleteBtnLabel = $buttons[1].getAttribute('aria-label');
+                            cy.wrap($editBtnLabel).should('eq', 'edit');
+                            cy.wrap($deleteBtnLabel).should('eq', 'delete');
+                        });
+                    // check second item (idx=2 because idx=1 & idx=3 is the divider)
+                    cy.get('li')
+                        .eq(2)
+                        .within(($listItem) => {
+                            const $buttons = $listItem.find('button');
+                            const $editBtnLabel = $buttons[0].getAttribute('aria-label');
+                            const $deleteBtnLabel = $buttons[1].getAttribute('aria-label');
+                            cy.wrap($editBtnLabel).should('eq', 'edit');
+                            cy.wrap($deleteBtnLabel).should('eq', 'delete');
+                        });
                 });
             });
+             */
 
-            it('Click on announcements to view content - should have edit button', () => {
+            it('Click on announcements to view content - should have content & edit button', () => {
                 // Arrange
                 cy.intercept('GET', '/api/web/announcements/all/page?limit=5&offset=0', {
                     fixture: 'announcement_list.json',
                 });
                 cy.intercept('GET', '/api/web/announcements/all/page?limit=5&offset=1', []);
-                cy.getByDataTestId('islv_rootDiv').within(() => {
-                    cy.get('li').first().click(); // click on first announcement
+                cy.waitForTinyMCELoaded().then(() => {
+                    // act
+                    cy.getByDataTestId('islv_rootDiv').within(() => {
+                        cy.get('li').first().click(); // click on first announcement
+                    });
+                    // assert
+                    cy.contains('[Advisory] Test Announcement 1'); // should display announcement title
+                    cy.getTinyMceContent('tinymceEditor').then(($content) => {
+                        expect($content).to.have.string('This is a test content 1'); // should display announcement content
+                    });
+                    cy.get('.euiPageContentHeader').within(() => {
+                        cy.get('button').contains('Edit');
+                    });
                 });
-                // Assert
-                cy.contains('[Advisory] Test Announcement 1'); // should display announcement title
             });
         });
     });
