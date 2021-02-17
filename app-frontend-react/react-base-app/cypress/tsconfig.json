@@ -4,7 +4,7 @@
     "baseUrl": "../node_modules",
     "target": "es6",
     "lib": ["es6", "dom"],
-    "types": ["cypress", "./support"]
+    "types": ["cypress", "cypress-wait-until" , "./support"]
   },
   "include": [
     "**/*.ts"

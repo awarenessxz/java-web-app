@@ -165,3 +165,4 @@ it("Writing your first test case", () => {
 - [End-to-End Testing Web Apps: The painless way](https://mtlynch.io/painless-web-app-testing/)
 - [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/)
 - [Introducing cy.intercept - Next Generation Network Stubbing in Cypress 6.0](https://www.cypress.io/blog/2020/11/24/introducing-cy-intercept-next-generation-network-stubbing-in-cypress-6-0/)
+- [Element Detached from DOM issue](https://github.com/cypress-io/cypress/issues/7306)

@@ -4,22 +4,20 @@
  * https://github.com/tracim/tracim/blob/develop/functionnal_tests/cypress/support/commands.js#L108
  * https://github.com/tracim/tracim/issues/2041
  */
-import Chainable = Cypress.Chainable;
 
-Cypress.Commands.add('waitForTinyMCELoaded', (): void => {
+Cypress.Commands.add('waitForTinyMCELoaded', (eventName = 'tinymceLoaded'): void => {
     cy.document().then(
         ($doc): Promise<null> => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
             return new Cypress.Promise((resolve) => {
                 // Cypress will wait for this Promise to resolve
                 const onTinyMceLoaded = (): void => {
-                    $doc.removeEventListener('tinymceLoaded', onTinyMceLoaded); // cleanup
+                    $doc.removeEventListener(eventName, onTinyMceLoaded); // cleanup
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                     resolve(); // resolve and allow Cypress to continue
                 };
-                $doc.addEventListener('tinymceLoaded', onTinyMceLoaded);
+                $doc.addEventListener(eventName, onTinyMceLoaded);
             });
         },
     );
@@ -32,7 +30,6 @@ Cypress.Commands.add('waitForTinyMCELoaded', (): void => {
 
 Cypress.Commands.add('getTinyMce', (tinyMceId: string) => {
     cy.window().then((win) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         return win.tinymce.editors[tinyMceId];
@@ -41,7 +38,6 @@ Cypress.Commands.add('getTinyMce', (tinyMceId: string) => {
 
 Cypress.Commands.add('setTinyMceContent', (tinyMceId: string, content: string) => {
     cy.window().then((win) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
         const editor = win.tinymce.editors[tinyMceId];
@@ -52,7 +48,6 @@ Cypress.Commands.add('setTinyMceContent', (tinyMceId: string, content: string) =
 
 Cypress.Commands.add('getTinyMceContent', (tinyMceId: string) => {
     cy.window().then((win) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
         const editor = win.tinymce.editors[tinyMceId];

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './pages/App';
+import App from './modules/app/pages/App';
 import './styles/app.scss';
 
 import configureStore from './redux/redux-store';
@@ -21,7 +21,7 @@ render(App);
 
 // webpack dev server : Hot Module Replacement
 if (module.hot) {
-    module.hot.accept('./pages/App', () => {
+    module.hot.accept('./modules/app/pages/App', () => {
         render(App);
     });
 }

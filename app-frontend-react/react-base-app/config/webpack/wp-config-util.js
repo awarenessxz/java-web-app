@@ -75,13 +75,11 @@ module.exports = {
             ]
         }
     }),
-    loadImages: ({include, exclude}) => ({
+    loadImages: () => ({
         module: {
             rules: [
                 {
                     test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-                    include,
-                    exclude,
                     type: 'asset/resource',
                 }
             ]

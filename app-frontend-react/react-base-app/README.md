@@ -13,24 +13,36 @@ Simple React Web Application Template built with typescript,webpack,react
 
 ## Folder Structure
 
-```bash
+```
 root
-├── assets              # images / css / javascript files
 ├── config              
-    ├── nginx           # for deployment
-    └── utils           # webpack configuration files
-├── cypress             # testing via cypress
-├── doc                 # documentations
+    ├── nginx               # for deployment
+    └── utils               # webpack configuration files
+├── cypress                 # testing via cypress
+├── doc                     # documentations
 └── src
-    ├── api             # api type definitions
-    ├── components      # components used by pages
-    ├── pages           # main web pages
-    ├── redux           # global variable (state management)
-    ├── styles          # css global style sheets (css modules with SASS)
-    └── utils           # helper functions
-        ├── hooks       # custom hooks 
-        ├── routing     # routing / menu / navigation related
-        └── ...         # etc...
+    ├── assets              # images / css / javascript files
+    ├── modules
+        ├── app
+            ├── api         # api type definitions
+            ├── component   # components used by pages
+            ├── pages       # main web pages
+            ├── redux       # global variable (state management)
+            ├── styles      # css modules with SASS
+            └── utils       # helper functions
+        ├── common
+            ├── components  # common components
+            ├── pages       # common pages
+            └── utils          
+                ├── hooks   # custom hooks 
+                ├── routing # routing / menu / navigation related
+                └── ...     # etc...
+        ...
+    ├── redux               # main redux store (state management)
+    ├── styles              # global SASS stylesheets
+    ├── declaration.d.ts    # global type declaration
+    ├── index.html          # main html
+    └── index.tsx           # start point
 ```
 
 Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on how you should structure your codes

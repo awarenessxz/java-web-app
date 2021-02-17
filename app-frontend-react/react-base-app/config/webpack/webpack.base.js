@@ -19,7 +19,7 @@ module.exports = merge([
         plugins: [
             new HtmlWebpackPlugin({
                 title: app.title,
-                favicon: `${app.paths.assets}/favicon.ico`,
+                favicon: `${app.paths.src}/assets/favicon.ico`,
                 template: `${app.paths.src}/index.html`,
                 hash: true,
             })
@@ -30,9 +30,7 @@ module.exports = merge([
         include: [app.paths.src],
         exclude: /node_modules/,
     }),
-    util.loadImages({
-        include: [app.paths.assets]
-    }),
+    util.loadImages(),
     util.lint({
         options: {
             emitWarning: true,
