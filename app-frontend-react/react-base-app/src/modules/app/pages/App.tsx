@@ -6,13 +6,13 @@ import loadingGif from '../../../assets/loading.gif';
 import AppHeader from '../components/AppHeader/AppHeader';
 import PageNotFound from '../../common/pages/PageNotFound';
 import ToastHandler from '../../common/utils/ToastHandler';
-import { routes as localRoutes } from '../../common/utils/routing/routes';
-import { getBrokerUrl } from '../../common/utils/routing/navigation-utils';
-import ProtectedRoute from '../../common/utils/routing/ProtectedRoute';
+import { getBrokerUrl } from '../utils/routing/navigation-utils';
+import { routes as localRoutes } from '../utils/routing/app-routes';
+import ProtectedRoute from '../utils/routing/ProtectedRoute';
 import useWebSocket from '../../common/utils/hooks/UseWebSocket';
 import { RootState } from '../../../redux/root-reducer';
-import { initBaseApplication } from '../redux/app-action';
-import { receiveNewAnnouncement } from '../../announcement/redux/announcement-action';
+import { initBaseApplicationAction } from '../redux/app-action';
+import { receiveNewAnnouncementAction } from '../../announcement/redux/announcement-action';
 import { AnnouncementEntity } from '../../announcement/api/announcement-api.types';
 
 const App = (): JSX.Element => {
@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
         // sleep for 2 seconds to show the loading component
         setTimeout(() => {
             // initialize base application state
-            dispatch(initBaseApplication());
+            dispatch(initBaseApplicationAction());
         }, 2000);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -36,9 +36,8 @@ const App = (): JSX.Element => {
         if (isWebSocketConnected && stompClient !== null) {
             stompClient.subscribe('/topic/announcement/new', (message: Message) => {
                 if (message.body) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     const announcement: AnnouncementEntity = JSON.parse(message.body);
-                    dispatch(receiveNewAnnouncement(announcement));
+                    dispatch(receiveNewAnnouncementAction(announcement));
                 }
             });
         }

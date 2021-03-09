@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { EuiHeaderSectionItemButton, EuiIcon, EuiKeyPadMenu, EuiKeyPadMenuItem, EuiPopover } from '@elastic/eui';
 import moment from 'moment';
 import { RootState } from '../../../../redux/root-reducer';
-import { setIsAdminUser } from '../../redux/app-action';
-import { setShowAnnouncement } from '../../../announcement/redux/announcement-action';
+import { setIsAdminUserAction } from '../../redux/app-action';
+import { setShowAnnouncementAction } from '../../../announcement/redux/announcement-action';
 import { AnnouncementEntity } from '../../../announcement/api/announcement-api.types';
 
 const AppHeaderKeypadMenu = (): JSX.Element => {
@@ -14,11 +14,11 @@ const AppHeaderKeypadMenu = (): JSX.Element => {
     const dispatch = useDispatch();
 
     const toggleAdminState = (): void => {
-        dispatch(setIsAdminUser(!isAdmin));
+        dispatch(setIsAdminUserAction(!isAdmin));
     };
 
     const toggleAnnouncement = (): void => {
-        dispatch(setShowAnnouncement(!showAnnouncement));
+        dispatch(setShowAnnouncementAction(!showAnnouncement));
     };
 
     const submitMockAnnouncement = (): void => {

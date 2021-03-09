@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiEmptyPrompt } from '@elastic/eui';
-import EuiCustomLink from '../utils/routing/EuiCustomLink';
+import EuiCustomLink from '../../app/utils/routing/EuiCustomLink';
 
 const PageNotFound = (): JSX.Element => {
     return (

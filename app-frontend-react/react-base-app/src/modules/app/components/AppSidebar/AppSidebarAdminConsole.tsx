@@ -1,16 +1,16 @@
 import React from 'react';
 import { EuiCollapsibleNavGroup, EuiFlexItem, EuiListGroup } from '@elastic/eui';
-import { adminConsoleMenuItems, MenuItem } from '../../../common/utils/routing/app-menu-item-config';
+import { MenuItem, sidebarAdminMenuItems } from '../../utils/routing/app-menu-item-config';
 
 interface AppSidebarAdminConsoleProps {
-    goToRoute: (item: MenuItem) => void;
+    goToRoute: (input: string | undefined | MenuItem) => void;
 }
 
 const AppSidebarAdminConsole = (props: AppSidebarAdminConsoleProps): JSX.Element => {
-    const listItems = adminConsoleMenuItems.map((item) => {
+    const listItems = sidebarAdminMenuItems.map((item) => {
         return {
             ...item,
-            onClick: (): void => props.goToRoute(item),
+            onClick: (): void => props.goToRoute(item.route),
         };
     });
 

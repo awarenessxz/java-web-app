@@ -8,34 +8,30 @@ export interface MenuItem {
     route?: string | undefined;
     iconType?: string | undefined; // EUI Icon Type
     items?: MenuItem[] | undefined;
-    parent?: MenuItem | undefined;
 }
 
-type GeneralMenuItem = MenuItem & EuiListGroupItemProps;
+type EuiListMenuItem = MenuItem & EuiListGroupItemProps;
 
-export const adminConsoleMenuItems: GeneralMenuItem[] = [
+export const sidebarAdminMenuItems: EuiListMenuItem[] = [
     {
         route: '/admin/announcements',
         title: 'Announcement Console', // required for MenuItem
         label: 'Announcement Console', // required for EuiListGroupItemProps
         iconType: 'cheer',
         size: 's',
-        parent: {
-            title: 'admin',
-        },
     },
 ];
 
-export const defaultMenuItems: MenuItem[] = [
+export const sidebarMenuItems: MenuItem[] = [
     {
         title: 'Search',
         iconType: 'searchProfilerApp',
-        route: '/',
+        route: '/search',
         items: [
             {
                 title: 'Search Templates',
                 iconType: 'list',
-                route: '/templates',
+                route: '/search/templates',
                 items: [
                     {
                         title: 'Default',
@@ -44,12 +40,12 @@ export const defaultMenuItems: MenuItem[] = [
                             {
                                 title: 'Template A',
                                 iconType: 'search',
-                                route: '/templates/templateA',
+                                route: '/search/templates/templateA',
                             },
                             {
                                 title: 'Template B',
                                 iconType: 'search',
-                                route: '/templates/templateB',
+                                route: '/search/templates/templateB',
                             },
                         ],
                     },
@@ -66,7 +62,7 @@ export const defaultMenuItems: MenuItem[] = [
             {
                 title: 'Search Results',
                 iconType: 'reportingApp',
-                route: '/searchResults',
+                route: '/search/results',
             },
         ],
     },
@@ -86,15 +82,5 @@ export const defaultMenuItems: MenuItem[] = [
                 route: '/tns/microFrontend',
             },
         ],
-    },
-];
-
-export const generalMenuItems: GeneralMenuItem[] = [
-    {
-        route: '/announcements',
-        title: 'Announcements', // required for MenuItem
-        label: 'Announcements', // required for EuiListGroupItemProps
-        iconType: 'cheer',
-        size: 's',
     },
 ];

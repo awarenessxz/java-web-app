@@ -35,6 +35,7 @@ const useWebSocket = (brokerUrl: string): [Client | null, boolean] => {
                 setIsConnected(false);
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return [stompClient.current, isConnected];

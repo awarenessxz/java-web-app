@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { EuiButtonIcon, EuiCollapsibleNavGroup, EuiText } from '@elastic/eui';
-import { setShowAnnouncement } from '../../../announcement/redux/announcement-action';
+import { setShowAnnouncementAction } from '../../../announcement/redux/announcement-action';
 import { RootState } from '../../../../redux/root-reducer';
-import EuiCustomLink from '../../../common/utils/routing/EuiCustomLink';
+import EuiCustomLink from '../../utils/routing/EuiCustomLink';
 import useLocalStorageState from '../../../common/utils/hooks/UseLocalStorageState';
 
 const AppSidebarAnnouncement = (): JSX.Element => {
@@ -13,7 +13,7 @@ const AppSidebarAnnouncement = (): JSX.Element => {
     const dispatch = useDispatch();
 
     const closeAnnouncement = (): void => {
-        dispatch(setShowAnnouncement(false));
+        dispatch(setShowAnnouncementAction(false));
     };
 
     const loadAnnouncementText = (): JSX.Element => {

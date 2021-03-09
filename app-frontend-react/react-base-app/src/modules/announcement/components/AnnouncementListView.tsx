@@ -18,7 +18,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { AnnouncementEntity } from '../api/announcement-api.types';
 import { fetchBasic } from '../../common/utils/fetch-util';
 import useLocalStorageState from '../../common/utils/hooks/UseLocalStorageState';
-import { setShowAnnouncement } from '../redux/announcement-action';
+import { setShowAnnouncementAction } from '../redux/announcement-action';
 
 interface AnnouncementListViewProps {
     isAdminView?: boolean;
@@ -47,7 +47,7 @@ const AnnouncementListView = ({ isAdminView = false, handleChangeTab }: Announce
                 if (!readAnnouncementIdsArr.includes(item.id)) {
                     readAnnouncementIdsArr.push(item.id);
                     setAnnouncementIdsInLocalStorage(JSON.stringify(readAnnouncementIdsArr));
-                    dispatch(setShowAnnouncement(false)); // close announcement pop up (hackish fix)
+                    dispatch(setShowAnnouncementAction(false)); // close announcement pop up (hackish fix)
                 }
             }
         }

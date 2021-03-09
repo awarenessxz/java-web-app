@@ -7,7 +7,7 @@ import { fetchBasic } from '../../common/utils/fetch-util';
  * Action Creators (Standard Redux Actions)
  *************************************************************************************** */
 
-export const setShowAnnouncement = (showAnnouncement: boolean): AnnouncementActionTypes => ({
+export const setShowAnnouncementAction = (showAnnouncement: boolean): AnnouncementActionTypes => ({
     type: SET_SHOW_ANNOUNCEMENT,
     payload: {
         showAnnouncement,
@@ -18,7 +18,7 @@ export const setShowAnnouncement = (showAnnouncement: boolean): AnnouncementActi
  * Thunk Action (for supporting async/wait)
  *************************************************************************************** */
 
-export const receiveNewAnnouncement = (announcement: AnnouncementEntity): RootThunkResult<void> => (
+export const receiveNewAnnouncementAction = (announcement: AnnouncementEntity): RootThunkResult<void> => (
     dispatch,
     getState,
 ): void => {
@@ -32,7 +32,7 @@ export const receiveNewAnnouncement = (announcement: AnnouncementEntity): RootTh
     });
 };
 
-export const initAnnouncements = (): RootThunkResult<void> => (dispatch, getState): void => {
+export const initAnnouncementsAction = (): RootThunkResult<void> => (dispatch, getState): void => {
     fetchBasic('/api/web/announcements/latest', 'GET')
         .then((res) => res.json())
         .then((data) => {

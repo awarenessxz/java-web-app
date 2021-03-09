@@ -2,10 +2,14 @@
  * Declares routing configuration for react-router-dom
  */
 import React from 'react';
-import { RouteProps } from 'react-router-dom';
+import { Redirect, RouteProps } from 'react-router-dom';
 
 interface AppRouteProps extends RouteProps {
     isAdminRoute?: boolean;
+}
+
+export interface AppRoutesMap {
+    [path: string]: AppRouteProps; // ['route'] = MenuItem;
 }
 
 const SearchForm = React.lazy(() => import('../../../search/pages/SearchForm'));
@@ -21,6 +25,12 @@ const AnnouncementPage = React.lazy(() => import('../../../announcement/pages/An
 export const routes: AppRouteProps[] = [
     {
         path: '/',
+        exact: true,
+        // eslint-disable-next-line react/display-name
+        render: (props): JSX.Element => <Redirect to="/search" />,
+    },
+    {
+        path: '/search',
         component: SearchForm,
         exact: true,
     },
@@ -31,17 +41,17 @@ export const routes: AppRouteProps[] = [
         exact: true,
     },
     {
-        path: '/templates',
+        path: '/search/templates',
         component: SearchTemplateList,
         exact: true,
     },
     {
-        path: '/templates/:templateId',
+        path: '/search/templates/:templateId',
         // eslint-disable-next-line react/display-name
         render: (props): JSX.Element => <SearchForm {...props} loadTemplate />,
     },
     {
-        path: '/searchResults',
+        path: '/search/results',
         component: SearchResults,
         exact: true,
     },

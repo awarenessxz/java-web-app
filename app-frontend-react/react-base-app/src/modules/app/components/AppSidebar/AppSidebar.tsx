@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
     EuiCollapsibleNav,
     EuiCollapsibleNavGroup,
@@ -14,50 +13,41 @@ import {
 } from '@elastic/eui';
 import AppSidebarAdminConsole from './AppSidebarAdminConsole';
 import AppSidebarAnnouncement from './AppSidebarAnnouncement';
-import { setSelectedMenuItem } from '../../redux/app-action';
 import { RootState } from '../../../../redux/root-reducer';
-import { defaultMenuItems, MenuItem } from '../../../common/utils/routing/app-menu-item-config';
+import { MenuItem, sidebarMenuItems } from '../../utils/routing/app-menu-item-config';
 
-const AppSidebar = (): JSX.Element => {
+interface AppSidebarProps {
+    selectedMenuItem: MenuItem | undefined;
+    goToRoute: (input: string | undefined | MenuItem) => void;
+}
+
+const AppSidebar = (props: AppSidebarProps): JSX.Element => {
     const [navIsOpen, setIsNavOpen] = useState(true);
     const [navIsDocked, setIsNavDocked] = useState(true);
-    const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
     const isAdminUser = useSelector((state: RootState) => state.app.isAdminUser);
     const showAnnouncement = useSelector((state: RootState) => state.announcement.showAnnouncement);
-    const dispatch = useDispatch();
-    const history = useHistory();
-
-    const goToRoute = (item: MenuItem): void => {
-        dispatch(setSelectedMenuItem(item));
-        if (item.route !== undefined) {
-            history.push(item.route);
-        }
-    };
 
     // function for recursively create menu item in side nav
-    const createMenuItem = (menuItem: MenuItem, parent?: MenuItem): EuiSideNavItemType<any> => {
+    const createMenuItem = (menuItem: MenuItem): EuiSideNavItemType<any> => {
         // NOTE: Duplicate `name` values will cause `id` collisions.
         const mMenuItem = { ...menuItem };
         const icon = mMenuItem.iconType ? <EuiIcon type={mMenuItem.iconType} /> : undefined;
-        if (parent !== undefined) {
-            mMenuItem.parent = { ...parent, items: undefined }; // removes the items to prevent recursive stack overflow
-        }
         return {
             icon,
             id: mMenuItem.title,
             name: mMenuItem.title,
-            isSelected: selectedMenuItem?.title === mMenuItem.title,
-            onClick: (): void => goToRoute(mMenuItem),
-            items: mMenuItem.items?.map((item) => createMenuItem(item, mMenuItem)),
+            isSelected: props.selectedMenuItem?.title === mMenuItem.title,
+            onClick: (): void => props.goToRoute(mMenuItem),
+            items: mMenuItem.items?.map((item) => createMenuItem(item)),
         };
     };
 
     // function to re-render sidebar every time user clicks on menu items
     const generateSideBarMenuItems = (): EuiSideNavItemType<any>[] => {
-        if (selectedMenuItem === undefined) {
+        if (props.selectedMenuItem === undefined) {
             return [];
         }
-        return defaultMenuItems.map((item) => createMenuItem(item));
+        return sidebarMenuItems.map((item) => createMenuItem(item));
     };
 
     return (
@@ -76,8 +66,8 @@ const AppSidebar = (): JSX.Element => {
             }
             showCloseButton={false}
         >
-            {/* Console */}
-            {isAdminUser && <AppSidebarAdminConsole goToRoute={goToRoute} />}
+            {/* Admin Console */}
+            {isAdminUser && <AppSidebarAdminConsole goToRoute={props.goToRoute} />}
 
             <EuiFlexItem className="eui-yScroll">
                 {/* Announcement Section */}

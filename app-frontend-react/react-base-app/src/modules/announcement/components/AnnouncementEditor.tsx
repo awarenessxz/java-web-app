@@ -145,7 +145,7 @@ const AnnouncementEditor = ({ announcementInput }: AnnouncementEditorProps): JSX
         if (editorRef !== null && editorRef.current !== null) {
             // @ts-ignore
             const { editor } = editorRef.current;
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             content = editor.getContent();
 
             if (!aTitle) {

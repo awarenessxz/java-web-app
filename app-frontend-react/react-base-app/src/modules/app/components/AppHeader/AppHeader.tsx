@@ -1,69 +1,89 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { EuiBreadcrumb, EuiHeader, EuiHeaderLogo } from '@elastic/eui';
 import AppHeaderKeypadMenu from './AppHeaderKeypadMenu';
 import AppHeaderAnnouncementBtn from './AppHeaderAnnouncementBtn';
 import AppSidebar from '../AppSidebar/AppSidebar';
-import { setSelectedMenuItem } from '../../redux/app-action';
-import { RootState } from '../../../../redux/root-reducer';
-import { MenuItem } from '../../../common/utils/routing/app-menu-item-config';
+import { MenuItem } from '../../utils/routing/app-menu-item-config';
+import { convertRoutesArrToMap, getRoutePaths, initMenuItems, MenuItemMap } from '../../utils/routing/navigation-utils';
 
 const AppHeader = (): JSX.Element => {
+    const routesMap = convertRoutesArrToMap();
     const [breadcrumbs, setBreadcrumbs] = useState<EuiBreadcrumb[]>([]);
-    const selectedMenuItem = useSelector((state: RootState) => state.app.selectedMenuItem);
-    const dispatch = useDispatch();
+    const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | undefined>(undefined);
+    const [menuItemMap, setMenuItemMap] = useState<MenuItemMap>({});
     const history = useHistory();
+    const location = useLocation();
 
-    const goToRoute = (item: MenuItem): void => {
-        dispatch(setSelectedMenuItem(item));
-        if (item.route !== undefined) {
-            history.push(item.route);
+    const goToRoute = (input: string | undefined | MenuItem): void => {
+        if (typeof input === 'object') {
+            setSelectedMenuItem(input);
+            if (input.route !== undefined) {
+                history.push(input.route);
+            }
+        } else if (typeof input === 'string') {
+            history.push(input);
+            if (input in menuItemMap) {
+                setSelectedMenuItem(menuItemMap[input]);
+            }
         }
     };
 
-    // function for recursively create breadcrumbs in header
-    const createBreadcrumb = (breadcrumbsArr: EuiBreadcrumb[], menuItem: MenuItem): void => {
-        const breadcrumb: EuiBreadcrumb = {
-            text: menuItem.title,
-        };
-        if (menuItem.route !== undefined) {
-            breadcrumb.href = menuItem.route;
-            breadcrumb.onClick = (e): void => {
-                e.preventDefault();
-                goToRoute(menuItem);
-            };
-        }
-        if (menuItem.parent !== undefined) {
-            createBreadcrumb(breadcrumbsArr, menuItem.parent);
-        }
-        breadcrumbsArr.push(breadcrumb);
-    };
-
-    // function to re-render breadcrumbs in header every time user clicks on menu items
     const generateBreadcrumbs = (): void => {
+        const paths = getRoutePaths(location.pathname);
         const breadcrumbsArr: EuiBreadcrumb[] = [];
-        if (selectedMenuItem !== undefined) {
-            createBreadcrumb(breadcrumbsArr, selectedMenuItem);
-        }
+        let tempRoute = '';
+        paths.forEach((path) => {
+            tempRoute = tempRoute.concat('/').concat(path);
+            const currentRoute = tempRoute;
+            const breadcrumb: EuiBreadcrumb = {
+                text: path,
+            };
+            if (currentRoute in routesMap) {
+                breadcrumb.href = currentRoute;
+                breadcrumb.onClick = (e): void => {
+                    e.preventDefault();
+                    goToRoute(currentRoute);
+                };
+            }
+            breadcrumbsArr.push(breadcrumb);
+        });
         setBreadcrumbs(breadcrumbsArr);
     };
 
     useEffect(() => {
-        // re-render breadcrumbs whenever selected menuItem changes
+        console.log('generating bread crumbs');
         generateBreadcrumbs();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location]);
+
+    useEffect(() => {
+        console.log('selectedMenuItem Changed');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedMenuItem]);
+
+    useEffect(() => {
+        console.log('init App Header');
+        const results = initMenuItems();
+        setSelectedMenuItem(results.selectedMenuItem);
+        setMenuItemMap(results.menuItemsMapping);
+        generateBreadcrumbs();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Navigation Menu + Logo
     const leftSectionItems = [
-        <AppSidebar key="appSidebar" />,
+        <AppSidebar key="appSidebar" selectedMenuItem={selectedMenuItem} goToRoute={goToRoute} />,
         <EuiHeaderLogo key="appLogo" iconType="logoElastic">
             Elastic
         </EuiHeaderLogo>,
     ];
 
     // Other Icons
-    const rightSectionItems = [<AppHeaderAnnouncementBtn />, <AppHeaderKeypadMenu key="appKeypadMenu" />];
+    const rightSectionItems = [
+        <AppHeaderAnnouncementBtn key="appAnnouncementBtn" />,
+        <AppHeaderKeypadMenu key="appKeypadMenu" />,
+    ];
 
     return (
         <EuiHeader

@@ -1,8 +1,6 @@
-import { AppActionTypes, INIT_BASE_APP, SET_IS_ADMIN_USER, SET_SELECTED_MENU_ITEM } from './app-action.types';
+import { AppActionTypes, INIT_BASE_APP, SET_IS_ADMIN_USER } from './app-action.types';
 import { RootThunkResult } from '../../../redux/root-action';
-import { initAnnouncements } from '../../announcement/redux/announcement-action';
-import { MenuItem } from '../../common/utils/routing/app-menu-item-config';
-import { generateMenuItemMapping, getCurrentRoute } from '../../common/utils/routing/navigation-utils';
+import { initAnnouncementsAction } from '../../announcement/redux/announcement-action';
 import { fetchBasic } from '../../common/utils/fetch-util';
 import { UserInfo, UserRoles } from '../api/userinfo-api.types';
 
@@ -11,17 +9,10 @@ import { UserInfo, UserRoles } from '../api/userinfo-api.types';
  *************************************************************************************** */
 
 // Temporary only (To Be Removed...)
-export const setIsAdminUser = (isAdminUser: boolean): AppActionTypes => ({
+export const setIsAdminUserAction = (isAdminUser: boolean): AppActionTypes => ({
     type: SET_IS_ADMIN_USER,
     payload: {
         isAdminUser,
-    },
-});
-
-export const setSelectedMenuItem = (menuItem: MenuItem | undefined): AppActionTypes => ({
-    type: SET_SELECTED_MENU_ITEM,
-    payload: {
-        menuItem,
     },
 });
 
@@ -29,17 +20,13 @@ export const setSelectedMenuItem = (menuItem: MenuItem | undefined): AppActionTy
  * Thunk Action (for supporting async/wait)
  *************************************************************************************** */
 
-export const initBaseApplication = (): RootThunkResult<void> => (dispatch, getState): void => {
-    // initialize menu items
-    const menuItemsMapping = generateMenuItemMapping();
-    const selectedMenuItem = menuItemsMapping[getCurrentRoute()];
-
+export const initBaseApplicationAction = (): RootThunkResult<void> => (dispatch, getState): void => {
     // fetch user details
     fetchBasic('/api/web/user/info', 'GET')
         .then((res) => res.json())
         .then((userInfo: UserInfo) => {
             // fetch announcements
-            dispatch(initAnnouncements());
+            dispatch(initAnnouncementsAction());
 
             console.log(userInfo);
 
@@ -48,8 +35,6 @@ export const initBaseApplication = (): RootThunkResult<void> => (dispatch, getSt
             dispatch({
                 type: INIT_BASE_APP,
                 payload: {
-                    selectedMenuItem,
-                    menuItemsMapping,
                     isAdminUser,
                     isSiteReady: true,
                 },
