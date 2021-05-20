@@ -20,7 +20,7 @@ This is a full stack java application built with multiple technology stack.
 
 ### In Depth Design Concepts
 
-1. [Frontend](app-frontend-react) 
+1. [Frontend](app-frontend) 
 2. [Microservice Backend](app-backend)
 3. [API Gateway](app-backend/web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
 4. [Websocket Implementation](app-backend/ms-notification-service/doc/NOTIFICATION_SERVICE.md#websocket-server-to-client-communication)
@@ -32,11 +32,11 @@ This is a full stack java application built with multiple technology stack.
 ## Apps / Services / API
 
 - **Apps / Services**
-    - **6006** -- Storybook ([React Component Library](app-frontend-react/react-component-library))
+    - **6006** -- Storybook ([React Component Library](app-frontend/react-component-library))
     - **7001** -- Microservice ([Web Service](app-backend/ms-web-service))
     - **7002** -- Microservice ([Notification Service - WebSocket](app-backend/ms-notification-service))
         - [WebSocket Topics](app-backend/ms-notification-service/doc/NOTIFICATION_SERVICE.md#topics)
-    - **8080** -- [React Web App](app-frontend-react/react-base-app)
+    - **8080** -- [React Web App](app-frontend/react-base-app)
     - **8888** -- [Cloud Config Server](app-backend/ms-config-server)
     - **9090** -- [API Gateway](app-backend/web-api-gateway-nginx)
     - **15672** -- [RabbitMQ](app-backend/rabbitmq)
@@ -64,13 +64,13 @@ If you are keen on making contributions. Please adhere to the following rules:
 
 ### Relevant Materials
 
-- [Writing Test using react-testing-library](app-frontend-react/react-component-library/doc/WRITING_TEST_CASES.md)
-- [End to End Testing for Frontend using Cypress](app-frontend-react/react-base-app/cypress)
-- [Webpack Configuration](app-frontend-react/react-base-app/doc/WEBPACK.md)
+- [Writing Test using react-testing-library](app-frontend/react-component-library/doc/WRITING_TEST_CASES.md)
+- [End to End Testing for Frontend using Cypress](app-frontend/react-base-app/cypress)
+- [Webpack Configuration](app-frontend/react-base-app/doc/WEBPACK.md)
 
 ### Misc / Just for Knowledge
 
 - [IntelliJ set up](doc/PROJECT_SETUP.md)
 - [Setting up Gradle for Multi Project](doc/GRADLE_TIPS.md)
-- [Create custom reusable React component Library](app-frontend-react/react-component-library/doc/CREATE_NEW_LIBRARY.md)
+- [Create custom reusable React component Library](app-frontend/react-component-library/doc/CREATE_NEW_LIBRARY.md)
 - [React Micro Frontend Experiments](https://github.com/awarenessxz/react-micro-frontend)

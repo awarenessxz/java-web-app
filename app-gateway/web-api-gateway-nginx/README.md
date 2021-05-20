@@ -5,7 +5,7 @@ balancing, caching, request shaping and management, and static response handling
 
 Refer to the documentation on the [API Gateway design](doc/API_GATEWAY_DESIGN.md).
 
-Refer to [API End Points](../README.md#apps--services--api) for list of all rest api.
+Refer to [API End Points](../../app-backend/README.md#apps--services--api) for list of all rest api.
 
 ## Getting Started
 
