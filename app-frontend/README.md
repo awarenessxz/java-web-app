@@ -19,7 +19,7 @@ The frontend is build primarily using **React** framework. Additional tech stack
 
 ## Folder Structure
 
-There are multiple components that are being experimented. Refer to the folder structure before to know what each project
+There are multiple components that are being experimented. Refer to the folder structure below to know what each project
 is about.
 
 ```

@@ -1,11 +1,7 @@
-# Web API Gateway (using Nginx)
+# API Gateway (using Nginx)
 
 Simple API Gateway to enable request rerouting. Possible responsibilities includes **authentication, monitoring, load
 balancing, caching, request shaping and management, and static response handling**.
-
-Refer to the documentation on the [API Gateway design](doc/API_GATEWAY_DESIGN.md).
-
-Refer to [API End Points](../../app-backend/README.md#apps--services--api) for list of all rest api.
 
 ## Getting Started
 

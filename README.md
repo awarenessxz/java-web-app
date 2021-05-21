@@ -33,7 +33,7 @@ This is a full stack java application built with multiple technology stack.
 
 1. [Frontend](app-frontend) 
 2. [Microservice Backend](app-backend)
-3. [API Gateway](app-backend/web-api-gateway-nginx/doc/API_GATEWAY_DESIGN.md)
+3. [API Gateway](app-gateway)
 4. [Websocket Implementation](app-backend/ms-notification-service/doc/NOTIFICATION_SERVICE.md#websocket-server-to-client-communication)
 5. Message Queue
 6. Logging
@@ -61,7 +61,6 @@ Before you can run this project, please follow the instructions on how to [set u
     - **Web Service**
         - [Announcements](app-backend/ms-web-service/doc/ANNOUNCEMENT_SERVICE.md)
         - User Info
-
 
 ## Contributions
 
