@@ -1,16 +1,27 @@
 # java-web-app
 
-This is a full stack java application built with multiple technology stack.
+This is a full stack java application built with multiple technology stack. 
 
-| Component | Descriptions |
-| --- | --- |
-| React Frontend | React Application coded in **typescript** and bundled using **webpack**. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using **Cypress**. |
-| Component Library | Custom React Reusable Component Library coded in **typescript** and bundled using **rollup**. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using **React Testing Library**. Components can be viewed on **storybook** |
-| Micro Frontend | React Application coded in **typescript** and bundled using **webpack**. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposed from this application. |
-| Config Server | **Spring Cloud Config Server** |
-| Microservices | Bunch of Microservices coded using **Spring Boot** coded in **Kotlin**. Refer to documentation below for more details... |
-| API Gateway | Api Gateway deployed on **Nginx** |
-| Mongo DB | database for storing data |
+| Category | Component | Descriptions |
+| --- | --- | --- |
+| Frontend | React Frontend | React Application coded in **typescript** and bundled using **webpack**. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using **Cypress**. |
+| Frontend | Component Library | Custom React Reusable Component Library coded in **typescript** and bundled using **rollup**. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using **React Testing Library**. Components can be viewed on **storybook** |
+| Frontend | Micro Frontend | React Application coded in **typescript** and bundled using **webpack**. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposed from this application. |
+| Backend | Microservices | Bunch of Microservices coded using **Spring Boot** and **Kotlin**. Refer to documentation below for more details... |
+| Backend - Gateway | API Gateway | **Spring Cloud Gateway** as the first line of defence when handling requests from external |
+| Backend - Infra | Config Server | **Spring Cloud Config Server** for centralized configuration management |
+| Backend - Infra | Databases | Using **MongoDB** for data storage |
+| Backend - Infra | Message Queues | Using **RabbitMQ** as our message broker |
+| Backend - Infra | Registry Manager | Using **Nexus3** for publishing **docker images / java libraries / npm packages**
+
+**Table of Content**
+- [Architecture](#architecture)
+    - [High Level Overview](#high-level-overview)
+    - [In Depth Design Concepts](#in-depth-design-concepts)
+- [Getting Started](#getting-started)
+    - [Environment Configuration](#prerequisite)
+    - [Overview of Apps / Services / API available](#apps--services--api)
+- [Contributions](#contributions)
 
 ## Architecture
 
@@ -29,7 +40,13 @@ This is a full stack java application built with multiple technology stack.
 7. Authentication
 8. Kubernetes
 
-## Apps / Services / API
+## Getting Started
+
+### Prerequisite
+
+Before you can run this project, please follow the instructions on how to [set up your project environment](doc/PROJECT_SETUP.md).
+
+### Apps / Services / API
 
 - **Apps / Services**
     - **6006** -- Storybook ([React Component Library](app-frontend/react-component-library))
@@ -45,13 +62,6 @@ This is a full stack java application built with multiple technology stack.
         - [Announcements](app-backend/ms-web-service/doc/ANNOUNCEMENT_SERVICE.md)
         - User Info
 
-## Quick Start
-
-Before you can run this project, please follow the instructions on how to [set up your project environment](doc/PROJECT_SETUP.md).
-
-### Docker-Compose
-
-### Helm Chart?
 
 ## Contributions
 
