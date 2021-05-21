@@ -51,11 +51,17 @@ are two different designs for deploying Frontend.
 
 - All Rest call will be made to the Backend web service where **Netflix Zuul** will reverse proxy the request accordingly.
 
-#### Design 2: Frontend served in nginx webserver, separated from Backend web service.
+#### Design 2: Frontend served in Nginx webserver, separated from Backend web service.
 
 ![Frontend Design 2](../doc/images/frontend_design2.png)
 
 - All Rest call will be reverse proxy by the **Nginx reverse proxy configuration**.
+
+#### Design 3: Frontend served in Nginx webserver and interacts with Backend through API Gateway
+
+![Frontend Design 3](../doc/images/frontend_design3.png)
+
+- All Rest Call will be made to the **API Gateway** which will reverse proxy the request accordingly.
 
 ## Usage
 
