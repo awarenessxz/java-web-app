@@ -7,12 +7,12 @@ This is a full stack java application built with multiple technology stack.
 | Frontend | React Frontend | React Application coded in **typescript** and bundled using **webpack**. The app is designed using Elastic-UI, CSS Modules, SASS and Custom Component Library. End-to-End testing is done using **Cypress**. |
 | Frontend | Component Library | Custom React Reusable Component Library coded in **typescript** and bundled using **rollup**. The library is built using Material-UI, CSS Modules, SASS and etc... Functional testing is done using **React Testing Library**. Components can be viewed on **storybook** |
 | Frontend | Micro Frontend | React Application coded in **typescript** and bundled using **webpack**. Making using of Module Federation in Webpack 5, it allows the main frontend app to consume components exposed from this application. |
-| Backend | Microservices | Bunch of Microservices coded using **Spring Boot** and **Kotlin**. Refer to documentation below for more details... |
-| Backend - Gateway | API Gateway | **Spring Cloud Gateway** as the first line of defence when handling requests from external |
-| Backend - Infra | Config Server | **Spring Cloud Config Server** for centralized configuration management |
-| Backend - Infra | Databases | Using **MongoDB** for data storage |
-| Backend - Infra | Message Queues | Using **RabbitMQ** as our message broker |
-| Backend - Infra | Registry Manager | Using **Nexus3** for publishing **docker images / java libraries / npm packages**
+| Backend | Microservices / APIs | Bunch of Microservices coded using **Spring Boot** and **Kotlin**. Refer to documentation below for more details... |
+| Backend (Gateway) | API Gateway | **Spring Cloud Gateway** as the first line of defence when handling requests from external |
+| Backend (Infra) | Config Server | **Spring Cloud Config Server** for centralized configuration management |
+| Backend (Infra) | Databases | Using **MongoDB** for data storage |
+| Backend (Infra) | Message Queues | Using **RabbitMQ** as our message broker |
+| Backend (Infra) | Registry Manager | Using **Nexus3** for publishing **docker images / java libraries / npm packages**
 
 **Table of Content**
 - [Architecture](#architecture)

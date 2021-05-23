@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.4.1"
-	id("io.spring.dependency-management") version "1.0.10.RELEASE"
-	kotlin("jvm") version "1.4.21"
-	kotlin("plugin.spring") version "1.4.21"
+	id("org.springframework.boot") version "2.5.0"
+	id("io.spring.dependency-management") version "1.0.11.RELEASE"
+	kotlin("jvm") version "1.5.0"
+	kotlin("plugin.spring") version "1.5.0"
 }
 
 group = "com.javawebapp"
@@ -13,15 +13,22 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	maven { url = uri("https://repo.spring.io/snapshot") }
 	maven { url = uri("https://repo.spring.io/milestone") }
 }
 
-extra["springCloudVersion"] = "2020.0.0-RC1"
+extra["springCloudVersion"] = "2020.0.3-SNAPSHOT"
 
 dependencies {
+	/* Spring Framework */
+	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+	/* Kotlin */
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.springframework.cloud:spring-cloud-config-server")
+
+	/* Testing */
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
