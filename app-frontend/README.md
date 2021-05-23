@@ -43,7 +43,9 @@ As seen in the image above, during development process, React applications bundl
 to proxy rest calls while in React applications created using **create-react-app**, there is **http-proxy-middleware**. Hence, 
 when a rest call is made. Eg `fetch("/rest/user/info")`, the proxy middleware will then resolve these calls to the correct
 backend services. In production, we will have to use something with reverse proxy features like **Nginx** or **Netflix Zuul**. Below
-are two different designs for deploying Frontend.
+are three different designs for deploying Frontend. 
+
+Do note that these designs are base on the fact that the backend are build using Spring Framework.
 
 #### Design 1: Frontend served in same webserver as Backend web service, Netflix Zuul for reverse proxy.
 
