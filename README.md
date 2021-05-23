@@ -68,18 +68,3 @@ If you are keen on making contributions. Please adhere to the following rules:
 1. Create a branch / fork 
 2. Create a pull request to merge your codes to master
 3. **DO NOT** edit the master branch directly
-
-## Documentations
-
-### Relevant Materials
-
-- [Writing Test using react-testing-library](app-frontend/react-component-library/doc/WRITING_TEST_CASES.md)
-- [End to End Testing for Frontend using Cypress](app-frontend/react-base-app/cypress)
-- [Webpack Configuration](app-frontend/react-base-app/doc/WEBPACK.md)
-
-### Misc / Just for Knowledge
-
-- [IntelliJ set up](doc/PROJECT_SETUP.md)
-- [Setting up Gradle for Multi Project](doc/GRADLE_TIPS.md)
-- [Create custom reusable React component Library](app-frontend/react-component-library/doc/CREATE_NEW_LIBRARY.md)
-- [React Micro Frontend Experiments](https://github.com/awarenessxz/react-micro-frontend)

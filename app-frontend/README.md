@@ -12,6 +12,10 @@ The frontend is build primarily using **React** framework. Additional tech stack
 - [Folder Structure](#folder-structure)
 - [Design Concepts](#design-concepts)
     - [How to deploy frontend](#how-to-deploy-frontend)
+    - [Frontend Testing](#frontend-testing)
+    - [Webpack Configuration](#webpack-configuration)
+    - [Micro Frontend Experiments](https://github.com/awarenessxz/react-micro-frontend)
+    - [Custom Reusable Component Library](react-component-library)
 - [Usage](#usage)
     - [Run the projects via localhost](#localhost)
     - [Run the projects via docker](#docker)
@@ -64,6 +68,17 @@ Do note that these designs are base on the fact that the backend are build using
 ![Frontend Design 3](../doc/images/frontend_design3.png)
 
 - All Rest Call will be made to the **API Gateway** which will reverse proxy the request accordingly.
+
+### Frontend Testing
+
+- [Writing Test using react-testing-library](react-component-library/doc/WRITING_TEST_CASES.md)
+- [End to End Testing for Frontend using Cypress](react-base-app/cypress)
+
+### Webpack Configuration
+
+[TO ADD MORE CONTENT ON WEBPACK CONFIGURATION]
+
+- [Webpack Configuration](react-base-app/doc/WEBPACK.md)
 
 ## Usage
 
