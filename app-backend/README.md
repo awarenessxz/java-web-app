@@ -23,14 +23,13 @@ root
 ### Localhost
 
 1. Web Service
-   ```bash
-   cd ms-web-service
-   ./gradlew bootRun 
-   ```
+    ```bash
+    cd <root>
+    ./gradlew app-backend:ms-web-service:bootRun
+    ```
 
 2. Notification Service
-   ```bash
-   cd ms-notification-service
-   ./gradlew bootRun 
-   ```
-   
+    ```bash
+    cd <root>
+    ./gradlew app-backend:ms-notification-service:bootRun
+    ```

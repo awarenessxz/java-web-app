@@ -5,7 +5,10 @@ balancing, caching, request shaping and management, and static response handling
 
 ## Usage
 
-`./gradlew bootRun`
+```bash
+cd <root>
+./gradlew app-gateway:api-gateway-spring:bootRun
+```
 
 ## Key Concepts
 
@@ -30,7 +33,6 @@ There are a couple of built-in predicate factories which we can use. Refer to do
 Spring Web Filters. The route filters make modification to incoming HTTP request or outgoing HTTP response based on what 
 was defined. There are a couple of built-in WebFilter factories as well.
 
-
 ## References
 - https://spring.io/blog/2019/07/01/hiding-services-runtime-discovery-with-spring-cloud-gateway
 - https://www.javainuse.com/spring/cloud-gateway-eureka
@@ -39,4 +41,5 @@ was defined. There are a couple of built-in WebFilter factories as well.
 - https://www.javainuse.com/spring/cloud-hystrix
 - [Spring Cloud Kubernetes - Discovery Client](https://www.youtube.com/watch?v=icyHIjfgYRY)
 - [Rewrite Path Filters](https://thetechstack.net/spring-cloud-gateway-part-2/)
+- [Spring Cloud Gateway - Websockets](https://www.devglan.com/spring-cloud/spring-cloud-gateway-websockets)
 

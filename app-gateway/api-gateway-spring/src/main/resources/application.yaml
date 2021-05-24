@@ -22,3 +22,14 @@ spring.cloud.gateway.routes:
       - Path=/api/testapi/**                                    # matches if the request path is, for example, /api/testapi/fakeapi
     filters:
       - RewritePath=/api/testapi(?<segment>/?.*), $\{segment}   # /api/testapi/something --becomes--> /fakeapi
+  - id: web-service
+    uri: http://localhost:7001/
+    predicates:
+      - Method=GET,POST,PUT,DELETE
+      - Path=/api/web/**
+    filters:
+      - RewritePath=/api/web(?<segment>/?.*), $\{segment}
+  - id: notification-service
+    uri: ws://localhost:7002/
+    predicates:
+      - Path=/websocket/**
