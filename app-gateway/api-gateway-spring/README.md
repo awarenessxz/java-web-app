@@ -42,4 +42,4 @@ was defined. There are a couple of built-in WebFilter factories as well.
 - [Spring Cloud Kubernetes - Discovery Client](https://www.youtube.com/watch?v=icyHIjfgYRY)
 - [Rewrite Path Filters](https://thetechstack.net/spring-cloud-gateway-part-2/)
 - [Spring Cloud Gateway - Websockets](https://www.devglan.com/spring-cloud/spring-cloud-gateway-websockets)
-
+- [Replacing Zuul with Spring Cloud gateway to access websocket](https://programming.vip/docs/replacing-zuul-with-spring-cloud-gateway-to-access-websocket.html)
