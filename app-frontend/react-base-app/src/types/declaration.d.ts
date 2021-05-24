@@ -1,3 +1,7 @@
+/* **********************************************************************
+ * This file is meant for global type declarations
+ ********************************************************************** */
+
 // defining global type for importing gif files
 declare module '*.gif' {
     const value: string;

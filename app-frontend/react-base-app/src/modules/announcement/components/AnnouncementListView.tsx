@@ -15,9 +15,9 @@ import {
     EuiTitle,
 } from '@elastic/eui';
 import { Editor } from '@tinymce/tinymce-react';
-import { AnnouncementEntity } from '../api/announcement-api.types';
+import { AnnouncementEntity } from '../../../types/announcement-api.types';
 import { fetchBasic } from '../../common/utils/fetch-util';
-import useLocalStorageState from '../../common/utils/hooks/UseLocalStorageState';
+import useLocalStorageState from '../../common/hooks/UseLocalStorageState';
 import { setShowAnnouncementAction } from '../redux/announcement-action';
 
 interface AnnouncementListViewProps {

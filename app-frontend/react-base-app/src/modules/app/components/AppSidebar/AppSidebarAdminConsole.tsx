@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiCollapsibleNavGroup, EuiFlexItem, EuiListGroup } from '@elastic/eui';
-import { MenuItem, sidebarAdminMenuItems } from '../../utils/routing/app-menu-item-config';
+import { MenuItem, sidebarAdminMenuItems } from '../../../../config/app-menu-item-config';
 
 interface AppSidebarAdminConsoleProps {
     goToRoute: (input: string | undefined | MenuItem) => void;

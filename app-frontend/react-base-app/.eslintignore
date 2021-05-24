@@ -2,3 +2,4 @@ assets/
 build/
 config/
 node_modules/
+**/*.js

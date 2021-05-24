@@ -37,7 +37,7 @@ import 'tinymce/plugins/paste';
 import 'tinymce/plugins/help';
 import 'tinymce/plugins/wordcount';
 
-import { AnnouncementEntity } from '../api/announcement-api.types';
+import { AnnouncementEntity } from '../../../types/announcement-api.types';
 import { fetchBasic, fetchWithJsonBody } from '../../common/utils/fetch-util';
 
 interface AnnouncementEditorProps {

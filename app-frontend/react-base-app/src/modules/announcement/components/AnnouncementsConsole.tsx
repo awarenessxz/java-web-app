@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { EuiLoadingSpinner, EuiTabbedContent, EuiTabbedContentTab, EuiSpacer } from '@elastic/eui';
 import AppContent from '../../app/components/AppContent/AppContent';
-import AnnouncementEditor from '../components/AnnouncementEditor';
-import AnnouncementListView from '../components/AnnouncementListView';
-import { AnnouncementEntity } from '../api/announcement-api.types';
+import AnnouncementEditor from './AnnouncementEditor';
+import AnnouncementListView from './AnnouncementListView';
+import { AnnouncementEntity } from '../../../types/announcement-api.types';
 
 const AnnouncementsConsole = (): JSX.Element => {
     const [selectedTab, setSelectedTab] = useState<EuiTabbedContentTab | undefined>(undefined);

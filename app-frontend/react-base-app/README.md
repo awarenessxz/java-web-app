@@ -17,30 +17,22 @@ Simple React Web Application Template built with typescript,webpack,react
 root
 ├── config              
     ├── nginx               # for deployment
-    └── utils               # webpack configuration files
+    └── webpack             # webpack configuration files
 ├── cypress                 # testing via cypress
 ├── doc                     # documentations
 └── src
-    ├── assets              # images / css / javascript files
+    ├── assets              # images / global css / javascript files
     ├── modules
-        ├── app
-            ├── api         # api type definitions
-            ├── component   # components used by pages
-            ├── pages       # main web pages
-            ├── redux       # global variable (state management)
+        ├── module-name
+            ├── component   # react components
+            ├── redux       # state management
             ├── styles      # css modules with SASS
             └── utils       # helper functions
-        ├── common
-            ├── components  # common components
-            ├── pages       # common pages
-            └── utils          
-                ├── hooks   # custom hooks 
-                ├── routing # routing / menu / navigation related
-                └── ...     # etc...
-        ...
+        .
+        .
+        .
     ├── redux               # main redux store (state management)
-    ├── styles              # global SASS stylesheets
-    ├── declaration.d.ts    # global type declaration
+    ├── types               # type definitions 
     ├── index.html          # main html
     └── index.tsx           # start point
 ```
@@ -69,7 +61,7 @@ Refer to the [coding convention](doc/CODING_CONVENTIONS.md) for more details on 
 
 - **TLDR**
     - [Folder Structure & Coding Conventions](doc/CODING_CONVENTIONS.md)
-    - [Webpack configuration details](doc/WEBPACK.md)
+    - [Webpack configuration details](../../doc/WEBPACK.md)
     - [End to End Testing using Cypress](cypress)
 - **Notes**
     - **React-Component-Library** : 

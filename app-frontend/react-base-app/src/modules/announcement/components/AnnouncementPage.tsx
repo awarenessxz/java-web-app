@@ -1,6 +1,6 @@
 import React from 'react';
 import AppContent from '../../app/components/AppContent/AppContent';
-import AnnouncementListView from '../components/AnnouncementListView';
+import AnnouncementListView from './AnnouncementListView';
 
 const AnnouncementPage = (): JSX.Element => {
     return (

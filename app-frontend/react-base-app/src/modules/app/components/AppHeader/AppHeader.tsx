@@ -4,8 +4,8 @@ import { EuiBreadcrumb, EuiHeader, EuiHeaderLogo } from '@elastic/eui';
 import AppHeaderKeypadMenu from './AppHeaderKeypadMenu';
 import AppHeaderAnnouncementBtn from './AppHeaderAnnouncementBtn';
 import AppSidebar from '../AppSidebar/AppSidebar';
-import { MenuItem } from '../../utils/routing/app-menu-item-config';
-import { convertRoutesArrToMap, getRoutePaths, initMenuItems, MenuItemMap } from '../../utils/routing/navigation-utils';
+import { MenuItem } from '../../../../config/app-menu-item-config';
+import { convertRoutesArrToMap, getRoutePaths, initMenuItems, MenuItemMap } from '../../utils/navigation-utils';
 
 const AppHeader = (): JSX.Element => {
     const routesMap = convertRoutesArrToMap();

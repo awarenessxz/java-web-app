@@ -78,7 +78,7 @@ Do note that these designs are base on the fact that the backend are build using
 
 [TO ADD MORE CONTENT ON WEBPACK CONFIGURATION]
 
-- [Webpack Configuration](react-base-app/doc/WEBPACK.md)
+- [Webpack Configuration](../doc/WEBPACK.md)
 
 ## Usage
 

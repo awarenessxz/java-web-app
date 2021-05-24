@@ -1,5 +1,5 @@
 const { merge } = require("webpack-merge");
-const app = require('./wp-config');
+const app = require('./wp-config-values');
 const util = require('./wp-config-util');
 
 const buildProductionConfig = baseConfig => {

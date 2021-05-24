@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { EuiCard, EuiIcon, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 import AppContent from '../../app/components/AppContent/AppContent';
-import { tnsCards } from '../utils/app-tools-and-services-cards-config';
+import { tnsCards } from '../../../config/app-tools-and-services-cards-config';
 
 const ToolsAndServices = (): JSX.Element => {
     const history = useHistory();

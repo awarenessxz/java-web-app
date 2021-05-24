@@ -2,7 +2,6 @@
 1. **Folder Structure**
     - module based structuring
     - for assets like images / scripts, put into assets folder.
-    - refer to [README.md](../README.md) for current structure
 2. **Code in Typescript**
     - declare type definitions within components or create a new 
 3. **Naming of files**

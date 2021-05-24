@@ -4,7 +4,7 @@
 import React from 'react';
 import { Route, RouteProps, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/root-reducer';
+import { RootState } from '../../../redux/root-reducer';
 
 const ProtectedRoute = (props: RouteProps): JSX.Element => {
     const isAuthed = useSelector((state: RootState) => state.app.isAdminUser);

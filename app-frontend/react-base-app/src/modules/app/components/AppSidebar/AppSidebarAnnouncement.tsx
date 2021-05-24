@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { EuiButtonIcon, EuiCollapsibleNavGroup, EuiText } from '@elastic/eui';
 import { setShowAnnouncementAction } from '../../../announcement/redux/announcement-action';
 import { RootState } from '../../../../redux/root-reducer';
-import EuiCustomLink from '../../utils/routing/EuiCustomLink';
-import useLocalStorageState from '../../../common/utils/hooks/UseLocalStorageState';
+import EuiCustomLink from '../../utils/EuiCustomLink';
+import useLocalStorageState from '../../../common/hooks/UseLocalStorageState';
 
 const AppSidebarAnnouncement = (): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

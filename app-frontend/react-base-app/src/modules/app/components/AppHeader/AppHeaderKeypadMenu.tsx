@@ -5,7 +5,7 @@ import moment from 'moment';
 import { RootState } from '../../../../redux/root-reducer';
 import { setIsAdminUserAction } from '../../redux/app-action';
 import { setShowAnnouncementAction } from '../../../announcement/redux/announcement-action';
-import { AnnouncementEntity } from '../../../announcement/api/announcement-api.types';
+import { AnnouncementEntity } from '../../../../types/announcement-api.types';
 
 const AppHeaderKeypadMenu = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);

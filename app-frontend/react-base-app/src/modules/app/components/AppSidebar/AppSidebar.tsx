@@ -14,7 +14,7 @@ import {
 import AppSidebarAdminConsole from './AppSidebarAdminConsole';
 import AppSidebarAnnouncement from './AppSidebarAnnouncement';
 import { RootState } from '../../../../redux/root-reducer';
-import { MenuItem, sidebarMenuItems } from '../../utils/routing/app-menu-item-config';
+import { MenuItem, sidebarMenuItems } from '../../../../config/app-menu-item-config';
 
 interface AppSidebarProps {
     selectedMenuItem: MenuItem | undefined;

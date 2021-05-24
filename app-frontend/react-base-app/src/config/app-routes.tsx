@@ -12,14 +12,14 @@ export interface AppRoutesMap {
     [path: string]: AppRouteProps; // ['route'] = MenuItem;
 }
 
-const SearchForm = React.lazy(() => import('../../../search/pages/SearchForm'));
-const SearchTemplateList = React.lazy(() => import('../../../search/pages/SearchTemplateList'));
-const SearchResults = React.lazy(() => import('../../../search/pages/SearchResults'));
-const ToolsAndServices = React.lazy(() => import('../../../tools-and-services/Pages/ToolsAndServices'));
-const DemoCompLibrary = React.lazy(() => import('../../../tools-and-services/Pages/DemoCompLibrary'));
-const DemoMicroFrontend = React.lazy(() => import('../../../tools-and-services/Pages/DemoMicroFrontend'));
-const AnnouncementsConsole = React.lazy(() => import('../../../announcement/pages/AnnouncementsConsole'));
-const AnnouncementPage = React.lazy(() => import('../../../announcement/pages/AnnouncementPage'));
+const SearchForm = React.lazy(() => import('../modules/search/components/SearchForm'));
+const SearchTemplateList = React.lazy(() => import('../modules/search/components/SearchTemplateList'));
+const SearchResults = React.lazy(() => import('../modules/search/components/SearchResults'));
+const ToolsAndServices = React.lazy(() => import('../modules/tools-and-services/components/ToolsAndServices'));
+const DemoCompLibrary = React.lazy(() => import('../modules/tools-and-services/components/DemoCompLibrary'));
+const DemoMicroFrontend = React.lazy(() => import('../modules/tools-and-services/components/DemoMicroFrontend'));
+const AnnouncementsConsole = React.lazy(() => import('../modules/announcement/components/AnnouncementsConsole'));
+const AnnouncementPage = React.lazy(() => import('../modules/announcement/components/AnnouncementPage'));
 
 // eslint-disable-next-line import/prefer-default-export
 export const routes: AppRouteProps[] = [

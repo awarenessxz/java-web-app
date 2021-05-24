@@ -1,4 +1,4 @@
-import { AnnouncementEntity } from '../api/announcement-api.types';
+import { AnnouncementEntity } from '../../../types/announcement-api.types';
 
 /* ***************************************************************************************
  * Types Definition for other

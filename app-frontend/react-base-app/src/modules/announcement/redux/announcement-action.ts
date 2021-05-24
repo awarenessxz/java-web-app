@@ -1,5 +1,5 @@
 import { AnnouncementActionTypes, SET_ACTIVE_ANNOUNCEMENTS, SET_SHOW_ANNOUNCEMENT } from './announcement-action.types';
-import { AnnouncementEntity } from '../api/announcement-api.types';
+import { AnnouncementEntity } from '../../../types/announcement-api.types';
 import { RootThunkResult } from '../../../redux/root-action';
 import { fetchBasic } from '../../common/utils/fetch-util';
 

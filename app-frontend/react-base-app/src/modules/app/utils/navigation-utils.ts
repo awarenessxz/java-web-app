@@ -1,9 +1,8 @@
 /*
  * Utility file for dealing with url navigations
  */
-import { sidebarAdminMenuItems, sidebarMenuItems, MenuItem } from './app-menu-item-config';
-import { AppRoutesMap, routes } from './app-routes';
-import { stringify } from 'querystring';
+import { sidebarAdminMenuItems, sidebarMenuItems, MenuItem } from '../../../config/app-menu-item-config';
+import { AppRoutesMap, routes } from '../../../config/app-routes';
 
 /* ***************************************************************************************
  * Routing Related Utility Functions
